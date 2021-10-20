@@ -1,4 +1,5 @@
 # Ads in Video apps
+# Reference: https://raw.githubusercontent.com/lhie1/Rules/master/Clash/Provider/Reject.yaml, yaml to list transition
   # > iqiyi & pps
 DOMAIN-SUFFIX,a.ckm.iqiyi.com
 DOMAIN-SUFFIX,ad.m.iqiyi.com
