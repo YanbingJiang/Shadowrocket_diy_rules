@@ -1,0 +1,19 @@
+# Archived URL: https://github.com/h2y/Shadowrocket-ADBlock-Rules
+
+Original-URL:
+  - BlackList:
+    - AdIncluded: https://git.io/JfIXs
+    - AdExcluded: https://git.io/JfIXS
+  - WhiteList:
+    - AdIncluded: https://git.io/JfIXo
+    - AdExcluded: https://git.io/JfIXh
+  - RegionDivision
+    # Direct CN, Proxy OS
+    - AdIncluded: https://git.io/JfI1k
+    - AdExcluded: https://git.io/JfI1q
+  - AdBlocker
+    - Direct: https://git.io/JfI1m
+    - Proxy: https://git.io/JfI13
+  - BackToCN
+    - AdIncluded: https://git.io/JfI1Z
+    - AdExcluded: https://git.io/JfI1s
