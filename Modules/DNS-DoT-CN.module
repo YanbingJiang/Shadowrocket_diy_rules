@@ -1,0 +1,6 @@
+#!name=DNS DoT CN
+#!desc=DNS DoT China
+# alibaba, tencent, 360
+
+[General]
+dns-server = tls://dns.alidns.com,tls://dot.pub,tls://dot.360.cn
