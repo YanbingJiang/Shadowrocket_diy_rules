@@ -113,12 +113,7 @@ async function signBiliBili() {
       real_times = exec_times;
       exec_times = exec_times - config.coins.num / 10;
     }
-    if (
-      config.user.num < 1 ||
-      config.watch.num < 1 ||
-      config.share.num < 1 ||
-      config.coins.num < real_times * 10
-    ) {
+    if (config.user.num < 1 || config.watch.num < 1) {
       flag = false;
     }
     if (!flag) {
@@ -166,21 +161,14 @@ async function signBiliBili() {
       await vipWatchAccept();
     }
 
-    if (
-      config.user.num < 1 ||
-      config.watch.num < 1 ||
-      config.share.num < 1 ||
-      config.coins.num < real_times * 10
-    ) {
+    if (config.user.num < 1 || config.watch.num < 1) {
       flag = false;
     } else {
       flag = true;
     }
     let title = `${name} 每日任务 登录${config.user.num}/观看${
       config.watch.num
-    }/分享${config.share.num}/投币${config.coins.num / 10}${
-      flag ? "已完成" : "未完成"
-    }`;
+    }${flag ? "已完成" : "未完成"}`;
     console.log(`#### ${title}`);
 
     let u = `登录时间: ${config.user.time}`;
@@ -213,7 +201,7 @@ async function signBiliBili() {
       $.msg(
         notice.title,
         "",
-        `- !!!有未完成的任务, 请检查console查看具体原因, 可尝试手动执行完成任务\n` +
+        `- 有未完成的任务, 请检查console查看具体原因, 可尝试手动执行完成任务\n` +
           notice.content
       );
     } else {
