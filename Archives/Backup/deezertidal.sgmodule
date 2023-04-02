@@ -1,4 +1,5 @@
 # Credit: https://github.com/deezertidal/shadowrocket-rules/commit/91e63541eeb788886c4e831b7ca3ce82d6a55f38
+# Root Repo: https://github.com/deezertidal/shadowrocket-rules
 # Script Archiver from deezertidal
 [URL Rewrite]
 #地址栏输入bd+空格 切换百度搜索
