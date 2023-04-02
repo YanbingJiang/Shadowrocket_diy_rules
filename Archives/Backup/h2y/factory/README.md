@@ -2,13 +2,11 @@
 
 这里是规则文件的生成车间，欢迎访问。
 
-
 ## 规则模板
 
 `template/` 目录下为规则模板，`build_confs.py` 脚本运行时会按照模板生成规则文件。
 
 每个规则对应一个模板，不过 `sr_head.txt` 和 `sr_foot.txt` 是例外，这两个文件是所有模板的公共的头部和尾部。
-
 
 ## 手工配置的文件
 
@@ -28,14 +26,13 @@
 
 GFWList 不能无损转换为 SR 规则，所以这里是对 GFWList 的补充。
 
-
 ## 代码及自动生成的文件
 
-**resultant/top500_direct.list** 
+**resultant/top500_direct.list**
 
 域名列表，由 `top500.py` 自动生成。记录着前 500 网站中所有可直连网站的域名，并已排除了以 `.cn` 结尾的域名。
 
-**resultant/top500_proxy.list** 
+**resultant/top500_proxy.list**
 
 域名列表，由 `top500.py` 自动生成。记录着前 500 网站中无法直连网站的域名。
 
@@ -45,7 +42,7 @@ GFWList 不能无损转换为 SR 规则，所以这里是对 GFWList 的补充�
 
 脚本，运行所需时间较长。自动爬取生成 `top500_*.list` 文件。
 
------------------------------------
+---
 
 **resultant/ad.list**
 
@@ -55,7 +52,7 @@ GFWList 不能无损转换为 SR 规则，所以这里是对 GFWList 的补充�
 
 脚本，从指定的 Adblock Rule 中提取广告服务器的域名和 IP 至 `ad.list` 文件。
 
------------------------------------
+---
 
 **resultant/gfw.list**
 
