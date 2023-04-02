@@ -1,5 +1,5 @@
-# Credit: https://github.com/deezertidal/shadowrocket-rules/blob/main/shadowrocket.conf
-# Script Archiver 
+# Credit: https://github.com/deezertidal/shadowrocket-rules/commit/91e63541eeb788886c4e831b7ca3ce82d6a55f38
+# Script Archiver from deezertidal
 [URL Rewrite]
 #地址栏输入bd+空格 切换百度搜索
 ^https:\/\/www\.google\.com\/search\?q=bd\+([^&]+) https://m.baidu.com/s?word=$1 302
