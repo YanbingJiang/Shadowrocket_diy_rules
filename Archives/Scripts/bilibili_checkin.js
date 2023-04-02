@@ -92,20 +92,6 @@ function GetCookie() {
 }
 
 async function signBiliBili() {
-  config.cookie = cookie2object(config.headers.Cookie);
-  if (config.cookie.DedeUserID) {
-    console.log("- cookie获取成功");
-    $.setdata("", name + "_watch");
-    $.setdata("", name + "_share");
-    $.setdata("", name + "_coins");
-    $.setdata("", name + "_score");
-    let url = $request.url;
-    let key = /.*access_key=(.*?)&build/.exec(url)[1];
-    $.setdata(key, name + "_key");
-    $.setdata(JSON.stringify(config.headers), name + "_headers");
-  } else {
-    console.log("- 尚未登录, 请登录后再重新获取cookie");
-  }
   config.headers = $.getjson(name + "_headers", {});
   config.user = $.getjson(name + "_user", {});
   config.watch = $.getjson(name + "_watch", {});
@@ -115,6 +101,7 @@ async function signBiliBili() {
   }
   config.score = $.getjson(name + "_score", {});
   config.key = $.getdata(name + "_key");
+  config.cookie = cookie2object(config.headers.Cookie);
 
   await queryStatus();
   if (config.cookie && (await me())) {
