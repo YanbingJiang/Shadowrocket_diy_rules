@@ -1,6 +1,5 @@
 /*
 哔哩哔哩签到脚本
-
 Author: @ClydeTime
 软件功能: 登录/观看/分享/投币/直播签到/银瓜子转硬币/大会员积分签到+任务等
 ************************
@@ -10,7 +9,8 @@ Author: @ClydeTime
 如通知成功获取cookie, 则可以使用此签到脚本.
 获取Cookie后, 请将Cookie脚本禁用并移除主机名, 以免产生不必要的MITM.
 2.投币设置
-已修改脚本为不投币版本.
+已修改脚本为不投币不分享版本. 纯登录签到.
+如需分享，投币: set extra = true
 /***********************
 Shadowrocket 脚本配置:
 ************************
@@ -46,6 +46,7 @@ const cookie2object = (cookie) => {
 
 const $ = new Env("bilibili");
 const name = "bilibili";
+const extra = false; // For share and coin 分享投币
 const startTime = $.time("yyyy-MM-dd HH:mm:ss");
 const config = {
   cookie: {},
@@ -91,27 +92,46 @@ function GetCookie() {
 }
 
 async function signBiliBili() {
+  config.cookie = cookie2object(config.headers.Cookie);
+  if (config.cookie.DedeUserID) {
+    console.log("- cookie获取成功");
+    $.setdata("", name + "_watch");
+    $.setdata("", name + "_share");
+    $.setdata("", name + "_coins");
+    $.setdata("", name + "_score");
+    let url = $request.url;
+    let key = /.*access_key=(.*?)&build/.exec(url)[1];
+    $.setdata(key, name + "_key");
+    $.setdata(JSON.stringify(config.headers), name + "_headers")
+      ? $.msg(name, "cookie catch success", "获得 cookie 成功")
+      : $.msg(name, "cookie catch failed", "获得 cookie 失败");
+  } else {
+    console.log("- 尚未登录, 请登录后再重新获取cookie");
+  }
   config.headers = $.getjson(name + "_headers", {});
   config.user = $.getjson(name + "_user", {});
   config.watch = $.getjson(name + "_watch", {});
-  config.share = $.getjson(name + "_share", {});
-  config.coins = $.getjson(name + "_coins", {});
+  if (extra) {
+    config.share = $.getjson(name + "_share", {});
+    config.coins = $.getjson(name + "_coins", {});
+  }
   config.score = $.getjson(name + "_score", {});
   config.key = $.getdata(name + "_key");
-  config.cookie = cookie2object(config.headers.Cookie);
 
   await queryStatus();
   if (config.cookie && (await me())) {
     var flag = true;
 
-    let exec_times = 0; //$.getdata(name + "_exec"); //实际执行次数
-    let real_times = 0; //需要执行总数
-    if (exec_times == "" || typeof exec_times == "undefined") {
-      real_times = 5;
-      exec_times = 5 - config.coins.num / 10;
-    } else {
-      real_times = exec_times;
-      exec_times = exec_times - config.coins.num / 10;
+    if (extra) {
+      let exec_times = $.getdata(name + "_exec"); //实际执行次数
+      let real_times = 0; //需要执行总数
+      if (exec_times == "" || typeof exec_times == "undefined") {
+        real_times = 5;
+        exec_times = 5 - config.coins.num / 10;
+      } else {
+        real_times = exec_times;
+        exec_times = exec_times - config.coins.num / 10;
+      }
     }
     if (config.user.num < 1 || config.watch.num < 1) {
       flag = false;
@@ -122,31 +142,35 @@ async function signBiliBili() {
         item = config.cards[Math.floor(Math.random() * config.cards.length)];
         card = JSON.parse(item.card);
         await watch(item.desc.rid, item.desc.bvid, card.cid);
-        // await share(item.desc.rid, item.desc.bvid);
+        if (extra) {
+          await share(item.desc.rid, item.desc.bvid);
+        }
       } else {
         console.log("- 获取视频失败，请重试或寻求帮助");
       }
 
-      //   if (config.user.money < 1) {
-      //     console.log("#### 投币任务");
-      //     console.log("- 硬币不足, 投币失败");
-      //     exec_times = 0;
-      //   } else {
-      //     if (exec_times == 0) {
-      //       console.log("#### 投币任务");
-      //       console.log(`- 今日已完成投币 ${config.coins.time}`);
-      //     } else {
-      //       //console.log(`- 需要投币次数 ${exec_times}`);
-      //       for (var i = 0; i < exec_times; i++) {
-      //         if (config.user.money < 5) {
-      //           console.log("- 硬币不足, 投币失败");
-      //           break;
-      //         } else {
-      //           await coin();
-      //         }
-      //       }
-      //     }
-      //   }
+      if (extra) {
+        if (config.user.money < 1) {
+          console.log("#### 投币任务");
+          console.log("- 硬币不足, 投币失败");
+          exec_times = 0;
+        } else {
+          if (exec_times == 0) {
+            console.log("#### 投币任务");
+            console.log(`- 今日已完成投币 ${config.coins.time}`);
+          } else {
+            //console.log(`- 需要投币次数 ${exec_times}`);
+            for (var i = 0; i < exec_times; i++) {
+              if (config.user.money < 5) {
+                console.log("- 硬币不足, 投币失败");
+                break;
+              } else {
+                await coin();
+              }
+            }
+          }
+        }
+      }
     } else {
       console.log("#### 经验值任务均已完成,将尝试额外任务");
     }
@@ -173,30 +197,43 @@ async function signBiliBili() {
 
     let u = `登录时间: ${config.user.time}`;
     let w = `观看时间: ${config.watch.time}`;
-    // let s = `分享时间: ${config.share.time}`;
-    // let z = `投币时间: ${config.coins.time}`;
-
     console.log(`- ${u}`);
     console.log(`- ${w}`);
-    // console.log(`- ${s}`);
-    // console.log(`- ${z}`);
+
+    if (extra) {
+      let s = `分享时间: ${config.share.time}`;
+      let z = `投币时间: ${config.coins.time}`;
+      console.log(`- ${s}`);
+      console.log(`- ${z}`);
+    }
 
     //$.msg(title, `📅  ${format(startTime)}`, `${u}\n${w}\n${s}`);
 
-    notice = {
-      title: `${name} [${config.user.uname}]`,
-      content:
-        `更新时间: ${format(startTime)}\n` +
-        `任务:登录(观看)${check("watch") ? "" : "+10exp"} 分享${
-          check("share") ? "" : "+5exp"
-        } 投币${check("coins") ? "" : "+50exp"}\n` +
-        `经验:当前${config.user.level_info.current_exp}/下级${config.user.level_info.next_exp}/满级28800\n` +
-        `等级:${config.user.level_info.current_level} 升级${
-          config.user.next_day
-        }/满级${config.user.v6_day}/满级(投币方式)${Math.ceil(
-          config.user.v6_exp / 65
-        )}/天`,
-    };
+    if (extra) {
+      notice = {
+        title: `${name} [${config.user.uname}]`,
+        content:
+          `更新时间: ${format(startTime)}\n` +
+          `任务:登录(观看)${check("watch") ? "" : "+10exp"} 分享${
+            check("share") ? "" : "+5exp"
+          } 投币${check("coins") ? "" : "+50exp 成功!"}\n` +
+          `经验:当前${config.user.level_info.current_exp}/下级${config.user.level_info.next_exp}/满级28800\n` +
+          `等级:${config.user.level_info.current_level} 升级${
+            config.user.next_day
+          }/满级${config.user.v6_day}/满级(投币方式)${Math.ceil(
+            config.user.v6_exp / 65
+          )}/天`,
+      };
+    } else {
+      notice = {
+        title: `${name} [${config.user.uname}]`,
+        content:
+          `更新时间: ${format(startTime)}\n` +
+          `任务:登录(观看)${check("watch") ? "" : "+10exp 成功!"}\n` +
+          `经验:当前${config.user.level_info.current_exp}/下级${config.user.level_info.next_exp}\n` +
+          `等级:${config.user.level_info.current_level} 升级 ${config.user.next_day}`,
+      };
+    }
     if (!flag) {
       $.msg(
         notice.title,
@@ -255,37 +292,39 @@ async function queryStatus() {
           config.watch.num = 0;
           $.setdata(JSON.stringify(config.watch), name + "_watch");
         }
-        // if (body.data.share) {
-        //   console.log("- 今日已分享");
-        //   config.share.num =
-        //     config.share.num == 0 || typeof config.share.num == "undefined"
-        //       ? 1
-        //       : config.share.num;
-        //   if (!config["share"].hasOwnProperty("time")) {
-        //     config.share.time = format(startTime);
-        //   }
-        //   $.setdata(JSON.stringify(config.share), name + "_share");
-        // } else {
-        //   console.log("- 今日尚未分享");
-        //   config.share.num = 0;
-        //   $.setdata(JSON.stringify(config.share), name + "_share");
-        // }
-        // if (body.data.coins == 50) {
-        //   console.log("- 今日已投币");
-        //   config.coins.num = 50;
-        //   if (!config["coins"].hasOwnProperty("time")) {
-        //     config.coins.time = format(startTime);
-        //   } else {
-        //     if (format(new Date().toDateString()) > config.coins.time) {
-        //       config.coins.time = format(startTime);
-        //     }
-        //   }
-        //   $.setdata(JSON.stringify(config.coins), name + "_coins");
-        // } else {
-        //   console.log("- 今日尚未投币(或不足五次投币)");
-        //   config.coins.num = body.data.coins;
-        //   $.setdata(JSON.stringify(config.coins), name + "_coins");
-        // }
+        if (extra) {
+          if (body.data.share) {
+            console.log("- 今日已分享");
+            config.share.num =
+              config.share.num == 0 || typeof config.share.num == "undefined"
+                ? 1
+                : config.share.num;
+            if (!config["share"].hasOwnProperty("time")) {
+              config.share.time = format(startTime);
+            }
+            $.setdata(JSON.stringify(config.share), name + "_share");
+          } else {
+            console.log("- 今日尚未分享");
+            config.share.num = 0;
+            $.setdata(JSON.stringify(config.share), name + "_share");
+          }
+          if (body.data.coins == 50) {
+            console.log("- 今日已投币");
+            config.coins.num = 50;
+            if (!config["coins"].hasOwnProperty("time")) {
+              config.coins.time = format(startTime);
+            } else {
+              if (format(new Date().toDateString()) > config.coins.time) {
+                config.coins.time = format(startTime);
+              }
+            }
+            $.setdata(JSON.stringify(config.coins), name + "_coins");
+          } else {
+            console.log("- 今日尚未投币(或不足五次投币)");
+            config.coins.num = body.data.coins;
+            $.setdata(JSON.stringify(config.coins), name + "_coins");
+          }
+        }
         return true;
       } else {
         console.log("- 查询失败");
@@ -809,12 +848,16 @@ async function me() {
           config.user = body.data;
           config.user.time = format(startTime);
           config.watch.time = format(startTime);
-          config.share.time = format(startTime);
-          config.coins.time = format(startTime);
+          if (extra) {
+            config.share.time = format(startTime);
+            config.coins.time = format(startTime);
+          }
           config.score.num = 0;
           $.setdata(JSON.stringify(config.watch), name + "_watch");
-          $.setdata(JSON.stringify(config.share), name + "_share");
-          $.setdata(JSON.stringify(config.coins), name + "_coins");
+          if (extra) {
+            $.setdata(JSON.stringify(config.share), name + "_share");
+            $.setdata(JSON.stringify(config.coins), name + "_coins");
+          }
           $.setdata(JSON.stringify(config.score), name + "_score");
           config.user.num = 1;
         } else {
