@@ -59,7 +59,7 @@ const config = {
     console.log("- 正在获取cookie，请稍后");
     GetCookie();
   } else {
-    console.log("- 任务正在进行，请耐心等待");
+    console.log("- 任务正在进行中...");
     signBiliBili();
   }
 })();
@@ -829,8 +829,10 @@ async function me() {
         return false;
       } else {
         console.log("- cookie有效即将开始任务");
+        const tmp_counter = config.user.num;
+        config.user = body.data;
+        config.user.num = tmp_counter;
         if (check("user") || config.user.mid != body.data.mid) {
-          config.user = body.data;
           config.user.time = format(startTime);
           config.watch.time = format(startTime);
           if (extra) {
