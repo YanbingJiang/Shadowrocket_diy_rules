@@ -829,10 +829,12 @@ async function me() {
         return false;
       } else {
         console.log("- cookie有效即将开始任务");
-        const tmp_counter = config.user.num;
-        config.user = body.data;
-        config.user.num = tmp_counter;
+        // Always update exp/coin info
+        config.user.level_info = body.data.level_info;
+        config.user.wallet = body.data.wallet;
+        config.user.money = body.data.money;
         if (check("user") || config.user.mid != body.data.mid) {
+          config.user = body.data;
           config.user.time = format(startTime);
           config.watch.time = format(startTime);
           if (extra) {
