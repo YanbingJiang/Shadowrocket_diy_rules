@@ -102,9 +102,7 @@ async function signBiliBili() {
     let url = $request.url;
     let key = /.*access_key=(.*?)&build/.exec(url)[1];
     $.setdata(key, name + "_key");
-    $.setdata(JSON.stringify(config.headers), name + "_headers")
-      ? $.msg(name, "cookie catch success", "获得 cookie 成功")
-      : $.msg(name, "cookie catch failed", "获得 cookie 失败");
+    $.setdata(JSON.stringify(config.headers), name + "_headers");
   } else {
     console.log("- 尚未登录, 请登录后再重新获取cookie");
   }
