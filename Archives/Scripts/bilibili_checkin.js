@@ -127,7 +127,7 @@ async function signBiliBili() {
         item = config.cards[Math.floor(Math.random() * config.cards.length)];
         card = JSON.parse(item.card);
         await watch(item.desc.rid, item.desc.bvid, card.cid);
-        await share(item.desc.rid, item.desc.bvid);
+        // await share(item.desc.rid, item.desc.bvid);
       } else {
         console.log("- 获取视频失败，请重试或寻求帮助");
       }
@@ -157,7 +157,7 @@ async function signBiliBili() {
     }
 
     await liveSign();
-    await silver2coin();
+    // await silver2coin();
     await vipScoreSign();
     if (config.user.vipStatus == 1) {
       await vipScoreGo();
@@ -185,13 +185,13 @@ async function signBiliBili() {
 
     let u = `登录时间: ${config.user.time}`;
     let w = `观看时间: ${config.watch.time}`;
-    let s = `分享时间: ${config.share.time}`;
-    let z = `投币时间: ${config.coins.time}`;
+    // let s = `分享时间: ${config.share.time}`;
+    // let z = `投币时间: ${config.coins.time}`;
 
     console.log(`- ${u}`);
     console.log(`- ${w}`);
-    console.log(`- ${s}`);
-    console.log(`- ${z}`);
+    // console.log(`- ${s}`);
+    // console.log(`- ${z}`);
 
     //$.msg(title, `📅  ${format(startTime)}`, `${u}\n${w}\n${s}`);
 
@@ -267,37 +267,37 @@ async function queryStatus() {
           config.watch.num = 0;
           $.setdata(JSON.stringify(config.watch), name + "_watch");
         }
-        if (body.data.share) {
-          console.log("- 今日已分享");
-          config.share.num =
-            config.share.num == 0 || typeof config.share.num == "undefined"
-              ? 1
-              : config.share.num;
-          if (!config["share"].hasOwnProperty("time")) {
-            config.share.time = format(startTime);
-          }
-          $.setdata(JSON.stringify(config.share), name + "_share");
-        } else {
-          console.log("- 今日尚未分享");
-          config.share.num = 0;
-          $.setdata(JSON.stringify(config.share), name + "_share");
-        }
-        if (body.data.coins == 50) {
-          console.log("- 今日已投币");
-          config.coins.num = 50;
-          if (!config["coins"].hasOwnProperty("time")) {
-            config.coins.time = format(startTime);
-          } else {
-            if (format(new Date().toDateString()) > config.coins.time) {
-              config.coins.time = format(startTime);
-            }
-          }
-          $.setdata(JSON.stringify(config.coins), name + "_coins");
-        } else {
-          console.log("- 今日尚未投币(或不足五次投币)");
-          config.coins.num = body.data.coins;
-          $.setdata(JSON.stringify(config.coins), name + "_coins");
-        }
+        // if (body.data.share) {
+        //   console.log("- 今日已分享");
+        //   config.share.num =
+        //     config.share.num == 0 || typeof config.share.num == "undefined"
+        //       ? 1
+        //       : config.share.num;
+        //   if (!config["share"].hasOwnProperty("time")) {
+        //     config.share.time = format(startTime);
+        //   }
+        //   $.setdata(JSON.stringify(config.share), name + "_share");
+        // } else {
+        //   console.log("- 今日尚未分享");
+        //   config.share.num = 0;
+        //   $.setdata(JSON.stringify(config.share), name + "_share");
+        // }
+        // if (body.data.coins == 50) {
+        //   console.log("- 今日已投币");
+        //   config.coins.num = 50;
+        //   if (!config["coins"].hasOwnProperty("time")) {
+        //     config.coins.time = format(startTime);
+        //   } else {
+        //     if (format(new Date().toDateString()) > config.coins.time) {
+        //       config.coins.time = format(startTime);
+        //     }
+        //   }
+        //   $.setdata(JSON.stringify(config.coins), name + "_coins");
+        // } else {
+        //   console.log("- 今日尚未投币(或不足五次投币)");
+        //   config.coins.num = body.data.coins;
+        //   $.setdata(JSON.stringify(config.coins), name + "_coins");
+        // }
         return true;
       } else {
         console.log("- 查询失败");
