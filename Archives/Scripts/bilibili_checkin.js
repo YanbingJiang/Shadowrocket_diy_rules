@@ -178,9 +178,17 @@ async function signBiliBili() {
       }
     }
     flag = config.user.num < 1 || config.watch.num < 1 ? false : true;
-    let title = `${$.name} 登录${config.user.num}/观看${config.watch.num}/分享${
-      config.share.num
-    }/投币${config.coins.num / 10}${flag ? "已完成" : "未完成"}`;
+
+    let title;
+    if (extra) {
+      title = `${$.name} 登录${config.user.num}/观看${config.watch.num}/分享${
+        config.share.num
+      }/投币${config.coins.num / 10}${flag ? "已完成" : "未完成"}`;
+    } else {
+      title = `${$.name} 登录${config.user.num}/观看${config.watch.num}${
+        flag ? "已完成" : "未完成"
+      }`;
+    }
     $.log(`#### ${title}`);
 
     let u = `登录时间: ${config.user.time || "暂无"}`;
