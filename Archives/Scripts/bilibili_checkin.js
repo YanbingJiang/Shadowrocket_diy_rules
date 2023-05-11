@@ -1,6 +1,7 @@
 /*
 哔哩哔哩签到脚本
 Author: @ClydeTime
+Origin: https://raw.githubusercontent.com/ClydeTime/Quantumult/main/Script/Task/BiliBili.js
 软件功能: 登录/观看/分享/投币/直播签到/银瓜子转硬币/大会员积分签到+任务等
 ************************
 1.获取cookie
@@ -99,7 +100,7 @@ async function signBiliBili() {
     var flag = true;
 
     if (extra) {
-      let exec_times = $.getdata($.name + "_exec"); //用户设置投币次数
+      let exec_times = 0; //$.getdata($.name + "_exec"); //用户设置投币次数
       if (!Boolean(exec_times)) {
         exec_times = 5;
         real_times = 5 - Number(config.coins.num) / 10;
