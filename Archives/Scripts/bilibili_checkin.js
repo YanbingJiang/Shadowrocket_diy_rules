@@ -150,7 +150,7 @@ async function signBiliBili() {
     }
 
     await liveSign();
-    await silver2coin();
+    // await silver2coin();
     await vipScoreSign();
     if (config.user.vipStatus === 1) {
       await vipScoreGo();
@@ -199,24 +199,21 @@ async function signBiliBili() {
 
     if (extra) {
       notice = {
-        title: `${name} [${config.user.uname}]`,
+        title: `${$.name} [${config.user.uname}]`,
         content:
-          `更新时间: ${format(startTime)}\n` +
           `任务:登录(观看)${check("watch") ? "" : "+10exp"} 分享${
             check("share") ? "" : "+5exp"
-          } 投币${check("coins") ? "" : "+50exp 成功!"}\n` +
+          } 投币${check("coins") ? "" : "+50exp"}\n` +
           `经验:当前${config.user.level_info.current_exp}/下级${config.user.level_info.next_exp}/满级28800\n` +
-          `等级:${config.user.level_info.current_level} 升级${
-            config.user.next_day
-          }/满级${config.user.v6_day}/满级(投币方式)${Math.ceil(
-            config.user.v6_exp / 65
-          )}/天`,
+          `等级:当前${
+            config.user.level_info.current_level
+          }级 升满级最快需${Math.ceil(config.user.v6_exp / 65)}天`,
       };
     } else {
       notice = {
-        title: `${name} [${config.user.uname}]`,
+        title: `${$.name} [${config.user.uname}]`,
         content:
-          `更新时间: ${format(startTime)}\n` +
+          // `更新时间: ${format(startTime)}\n` +
           `任务:登录${check("watch") ? "" : "成功!"}\n` +
           `经验:当前${config.user.level_info.current_exp}/下级${config.user.level_info.next_exp}/硬币${config.user.money}\n` +
           `等级:${config.user.level_info.current_level} 升级:${config.user.next_day} 天 `,
