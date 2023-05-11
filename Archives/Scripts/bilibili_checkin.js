@@ -64,29 +64,25 @@ const config = {
 
 function GetCookie() {
   if ("object" == typeof $request) {
+    let Cookie;
     if (typeof $request.headers.cookie != "undefined") {
-      config.headers.Cookie = $request.headers.cookie;
+      Cookie = $request.headers.cookie;
     } else if (typeof $request.headers.Cookie != "undefined") {
-      config.headers.Cookie = $request.headers.Cookie;
+      Cookie = $request.headers.Cookie;
     }
-    config.cookie = cookie2object(config.headers.Cookie);
+    config.cookie = cookie2object(Cookie);
     if (config.cookie.DedeUserID) {
-      console.log("- cookie获取成功");
-      $.setdata("", name + "_watch");
-      $.setdata("", name + "_share");
-      $.setdata("", name + "_coins");
-      $.setdata("", name + "_score");
+      $.log("- cookie获取成功");
       let url = $request.url;
-      let key = /.*access_key=(.*?)&build/.exec(url)[1];
-      $.setdata(key, name + "_key");
-      $.setdata(JSON.stringify(config.headers), name + "_headers")
-        ? $.msg(name, "cookie catch success", "获得 cookie 成功")
-        : $.msg(name, "cookie catch failed", "获得 cookie 失败");
+      config.key = url.match(/.*access_key=(.*?)&build/)?.[1];
+      config.cookieStr = `DedeUserID=${config.cookie.DedeUserID}; DedeUserID__ckMd5=${config.cookie.DedeUserID__ckMd5}; SESSDATA=${config.cookie.SESSDATA}; bili_jct=${config.cookie.bili_jct}; sid=${config.cookie.sid}`;
+      $.setdata($.toStr(config), $.name + "_daily_bonus")
+        ? $.msg($.name, "cookie catch success", "🎉获得 cookie 成功")
+        : $.msg($.name, "cookie catch failed", "🤒获得 cookie 失败");
     } else {
-      console.log("- 尚未登录, 请登录后再重新获取cookie");
+      $.log("- 尚未登录, 请登录后再重新获取cookie");
     }
   }
-  $.done();
 }
 
 async function signBiliBili() {
