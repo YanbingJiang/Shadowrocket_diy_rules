@@ -1,8 +1,8 @@
 // SOURCE: https://raw.githubusercontent.com/ddgksf2013/Scripts/master/weibo_json.js
 // Author: @ddgksf2013 @Zmqcherish
-// Update: 2023-04-16
+// Update: 2023-08-05
 
-const version = "V2.0.111";
+const version = "V2.0.115";
 
 const mainConfig = {
     isDebug: !1,
@@ -147,7 +147,7 @@ function modifiedUserCenter(e) {
       0 !== e.data.length &&
       e.data.cards &&
       (e.data.cards = Object.values(e.data.cards).filter(
-        (e) => "personal_vip" != e.items[0].type,
+        (e) => "personal_vip" != e.items[0].type
       )),
     e
   );
@@ -204,7 +204,7 @@ function removeMain(e) {
           (e) =>
             e?.data?.itemid?.includes("mine_topics") ||
             e?.data?.itemid?.includes("search_input") ||
-            e?.data?.card_type == 202,
+            e?.data?.card_type == 202
         )),
           (o.items[0].data.hotwords = [{ word: "搜索超话", tip: "" }]),
           t.push(o);
@@ -216,7 +216,7 @@ function removeMain(e) {
           continue;
         o.items.length > 0 &&
           (o.items = Object.values(o.items).filter(
-            (e) => "feed" == e.category || "card" == e.category,
+            (e) => "feed" == e.category || "card" == e.category
           )),
           t.push(o);
       }
@@ -258,7 +258,7 @@ function topicHandler(e) {
           for (let s of n)
             -1 ==
               ["chaohua_discovery_banner_1", "bottom_mix_activity"].indexOf(
-                s.itemid,
+                s.itemid
               ) && d.push(s);
           i.card_group = d;
         }
@@ -292,14 +292,14 @@ function removeSearch(e) {
   if (!e.items) return e;
   let t = [];
   for (let o of e.items)
-    if ("feed" == o.category)
-      isAd(o.data) ||
+    "feed" == o.category
+      ? isAd(o.data) ||
         (o.data?.page_info?.video_limit && delete o.data.page_info.video_limit,
-        t.push(o));
-    else {
-      if ("group" == o.category) continue;
-      checkSearchWindow(o) || t.push(o);
-    }
+        t.push(o))
+      : "group" == o.category
+      ? ((o.items = o.items.filter((e) => e.data?.card_type === 17)),
+        o.items.length > 0 && t.push(o))
+      : checkSearchWindow(o) || t.push(o);
   return (
     (e.items = t),
     e.loadedInfo &&
@@ -329,7 +329,7 @@ function removePage(e) {
             e?.actionlog?.ext?.includes("ads_word") ||
             e?.itemid?.includes("t:51") ||
             e?.itemid?.includes("ads_word")
-          ),
+          )
       )),
     e
   );
@@ -338,11 +338,9 @@ function removeCards(e) {
   if ((e.hotwords && (e.hotwords = []), !e.cards)) return;
   let t = [];
   for (let o of e.cards) {
-    if (
-      e.cardlistInfo?.containerid == "232082type=1" &&
-      (17 == o.card_type || 58 == o.card_type || 11 == o.card_type)
-    )
-      continue;
+    e.cardlistInfo?.containerid == "232082type=1" &&
+      (17 == o.card_type || 58 == o.card_type || 11 == o.card_type) &&
+      (o = { card_type: o.card_type + 1 });
     let i = o.card_group;
     if (i && i.length > 0) {
       let a = [];
@@ -415,10 +413,11 @@ function itemExtendHandler(e) {
   }
   mainConfig.removeFollow && e.follow_data && (e.follow_data = null),
     mainConfig.removeRewardItem && e.reward_info && (e.reward_info = null),
+    e.head_cards && delete e.head_cards,
     e.page_alerts && (e.page_alerts = null);
   try {
     e.trend.extra_struct.extBtnInfo.btn_picurl.indexOf(
-      "timeline_icon_ad_delete",
+      "timeline_icon_ad_delete"
     ) > -1 && delete e.trend;
   } catch (o) {}
   if (mainConfig.modifyMenus && e.custom_action_list) {
@@ -442,7 +441,7 @@ function updateFollowOrder(e) {
         let o = t.click.modules[0].scheme;
         (t.click.modules[0].scheme = o.replace(
           "231093_-_selfrecomm",
-          "231093_-_selffollowed",
+          "231093_-_selffollowed"
         )),
           log("updateFollowOrder success");
         return;
@@ -496,7 +495,7 @@ function removeHome(e) {
         (o.images = o.images.filter(
           (e) =>
             "100505_-_chaohua" == e.itemId ||
-            "100505_-_recentlyuser" == e.itemId,
+            "100505_-_recentlyuser" == e.itemId
         )),
         t.push(o);
     }
@@ -518,7 +517,9 @@ function removeComments(e) {
     let r = a.adType || "";
     -1 == t.indexOf(r) && 6 != a.type && i.push(a);
   }
-  log("remove 评论区相关和推荐内容"), (e.datas = i);
+  log("remove 评论区相关和推荐内容"),
+    (e.datas = i),
+    e.tip_msg && delete e.tip_msg;
 }
 function containerHandler(e) {
   mainConfig.removeInterestFriendInTopic &&
