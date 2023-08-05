@@ -417,7 +417,7 @@
   function v(n) {
     if ("encoding-indexes" in i) return i["encoding-indexes"][n];
     throw Error(
-      "Indexes missing. Did you forget to include encoding-indexes.js first?"
+      "Indexes missing. Did you forget to include encoding-indexes.js first?",
     );
   }
   var x = "utf-8";
@@ -447,7 +447,7 @@
         n
       );
     throw Error(
-      "Decoder not present. Did you forget to include encoding-indexes.js first?"
+      "Decoder not present. Did you forget to include encoding-indexes.js first?",
     );
   }
   function k(n, e) {
@@ -464,7 +464,7 @@
         throw RangeError("Unknown encoding: " + n);
       if (!h[e.name])
         throw Error(
-          "Encoder not present. Did you forget to include encoding-indexes.js first?"
+          "Encoder not present. Did you forget to include encoding-indexes.js first?",
         );
       this._encoding = e;
     } else
@@ -472,7 +472,7 @@
         void 0 !== n &&
           "console" in i &&
           console.warn(
-            "TextEncoder constructor called with encoding label, which is ignored."
+            "TextEncoder constructor called with encoding label, which is ignored.",
           );
     return (
       Object.defineProperty ||
@@ -1084,7 +1084,7 @@
             : ((s -= 65536),
               (t += String.fromCharCode(
                 55296 + (s >> 10),
-                56320 + (1023 & s)
+                56320 + (1023 & s),
               )));
         }
         return t;
@@ -1126,7 +1126,7 @@
                   (r += 1);
               }
               return t;
-            })(n)
+            })(n),
           ),
           t = [];
         ;
@@ -1378,7 +1378,7 @@ const BI = detectBi();
 function assertBi(e) {
   if (!e)
     throw new Error(
-      "BigInt unavailable, see https://github.com/timostamm/protobuf-ts/blob/v1.0.8/MANUAL.md#bigint-support"
+      "BigInt unavailable, see https://github.com/timostamm/protobuf-ts/blob/v1.0.8/MANUAL.md#bigint-support",
     );
 }
 const RE_DECIMAL_STR = /^-?[0-9]+$/,
@@ -1750,7 +1750,7 @@ class BinaryWriter {
       varint64write(
         (e.lo << 1) ^ r,
         ((e.hi << 1) | (e.lo >>> 31)) ^ r,
-        this.buf
+        this.buf,
       ),
       this
     );
@@ -2027,13 +2027,13 @@ class ReflectionTypeCheck {
         return this.scalars(
           a.slice(0, t).map((e) => parseInt(e)),
           r,
-          t
+          t,
         );
       case ScalarType.BOOL:
         return this.scalars(
           a.slice(0, t).map((e) => "true" == e || ("false" != e && e)),
           r,
-          t
+          t,
         );
       default:
         return this.scalars(a, r, t, LongType.STRING);
@@ -2053,7 +2053,7 @@ function isJsonObject(e) {
 }
 let encTable =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split(
-      ""
+      "",
     ),
   decTable = [];
 for (let e = 0; e < encTable.length; e++)
@@ -2161,7 +2161,7 @@ class ReflectionJsonReader {
         if (t.ignoreUnknownFields) continue;
         throw new Error(
           `Found unknown field while reading ${this.info.typeName} from JSON format. JSON key: ` +
-            a
+            a,
         );
       }
       var o = i.localName;
@@ -2169,7 +2169,7 @@ class ReflectionJsonReader {
       if (i.oneof) {
         if (s.includes(i.oneof))
           throw new Error(
-            `Multiple members of the oneof group "${i.oneof}" of ${this.info.typeName} are present in JSON.`
+            `Multiple members of the oneof group "${i.oneof}" of ${this.info.typeName} are present in JSON.`,
           );
         s.push(i.oneof), (e = r[i.oneof] = { oneofKind: o });
       } else e = r;
@@ -2235,7 +2235,7 @@ class ReflectionJsonReader {
               ? this.assert(
                   void 0 === i.oneof,
                   i.name + " (oneof member)",
-                  null
+                  null,
                 )
               : (e[o] = i.T().internalJsonRead(n, t, e[o]));
             break;
@@ -2253,7 +2253,7 @@ class ReflectionJsonReader {
       ("google.protobuf.NullValue" == r[0] &&
         assert(
           null === t,
-          `Unable to parse field ${this.info.typeName}#${a}, enum ${r[0]} only accepts null.`
+          `Unable to parse field ${this.info.typeName}#${a}, enum ${r[0]} only accepts null.`,
         ),
       null === t)
     )
@@ -2263,7 +2263,7 @@ class ReflectionJsonReader {
         return (
           assert(
             Number.isInteger(t),
-            `Unable to parse field ${this.info.typeName}#${a}, enum can only be integral number, got ${t}.`
+            `Unable to parse field ${this.info.typeName}#${a}, enum can only be integral number, got ${t}.`,
           ),
           t
         );
@@ -2277,7 +2277,7 @@ class ReflectionJsonReader {
           ? !1
           : (assert(
               "number" == typeof s,
-              `Unable to parse field ${this.info.typeName}#${a}, enum ${r[0]} has no value for "${t}".`
+              `Unable to parse field ${this.info.typeName}#${a}, enum ${r[0]} has no value for "${t}".`,
             ),
             s);
     }
@@ -2285,7 +2285,7 @@ class ReflectionJsonReader {
       !1,
       `Unable to parse field ${
         this.info.typeName
-      }#${a}, cannot parse enum value from ${typeof t}".`
+      }#${a}, cannot parse enum value from ${typeof t}".`,
     );
   }
   scalar(r, t, a, e) {
@@ -2462,7 +2462,7 @@ class ReflectionJsonWriter {
             r.name,
             r.opt,
             a.emitDefaultValues,
-            a.enumAsInteger
+            a.enumAsInteger,
           );
           break;
         case "message":
@@ -2525,7 +2525,9 @@ class ReflectionJsonWriter {
         case ScalarType.UINT64:
         case ScalarType.FIXED64:
           assert(
-            "number" == typeof r || "string" == typeof r || "bigint" == typeof r
+            "number" == typeof r ||
+              "string" == typeof r ||
+              "bigint" == typeof r,
           );
           var i = PbULong.from(r);
           return i.isZero() && !s ? void 0 : i.toString();
@@ -2533,7 +2535,9 @@ class ReflectionJsonWriter {
         case ScalarType.SFIXED64:
         case ScalarType.SINT64:
           assert(
-            "number" == typeof r || "string" == typeof r || "bigint" == typeof r
+            "number" == typeof r ||
+              "string" == typeof r ||
+              "bigint" == typeof r,
           );
           i = PbLong.from(r);
           return i.isZero() && !s ? void 0 : i.toString();
@@ -2625,7 +2629,7 @@ class ReflectionBinaryReader {
         var d = s.readUnknownField;
         if ("throw" == d)
           throw new Error(
-            `Unknown field ${t} (wire type ${i}) for ` + this.info.typeName
+            `Unknown field ${t} (wire type ${i}) for ` + this.info.typeName,
           );
         var y = a.skip(i);
         !1 !== d &&
@@ -2634,7 +2638,7 @@ class ReflectionBinaryReader {
             n,
             t,
             i,
-            y
+            y,
           );
       }
     }
@@ -2668,7 +2672,7 @@ class ReflectionBinaryReader {
         default:
           throw new Error(
             `Unknown field ${o} (wire type ${l}) in map entry for ${this.info.typeName}#` +
-              e.name
+              e.name,
           );
       }
     }
@@ -2977,7 +2981,7 @@ function reflectionEquals(e, r, t) {
               : repeatedPrimitiveEq(
                   "enum" == a.V.kind ? ScalarType.INT32 : a.V.T,
                   objectValues(s),
-                  objectValues(i)
+                  objectValues(i),
                 )
           )
             break;
@@ -3063,7 +3067,7 @@ class MessageType {
     return JSON.stringify(
       e,
       null,
-      null != (e = null == r ? void 0 : r.prettySpaces) ? e : 0
+      null != (e = null == r ? void 0 : r.prettySpaces) ? e : 0,
     );
   }
   toBinary(e, r) {
@@ -3074,8 +3078,8 @@ class MessageType {
     if (null === e || "object" != typeof e || Array.isArray(e))
       throw new Error(
         `Unable to parse message ${this.typeName} from JSON ${typeofJsonValue(
-          e
-        )}.`
+          e,
+        )}.`,
       );
     return (
       (t = null != t ? t : this.create()), this.refJsonReader.read(e, t, r), t
@@ -3127,7 +3131,7 @@ class browseRes$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -3136,7 +3140,7 @@ class browseRes$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -3148,7 +3152,7 @@ class browseRes$Type extends MessageType {
         .internalBinaryWrite(
           e.n1F9,
           n.tag(9, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join(),
       e.n1F10 &&
@@ -3156,7 +3160,7 @@ class browseRes$Type extends MessageType {
           .internalBinaryWrite(
             e.n1F10,
             n.tag(10, WireType.LengthDelimited).fork(),
-            t
+            t,
           )
           .join();
     let r = t.writeUnknownFields;
@@ -3201,14 +3205,14 @@ class n1F9$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.m2F58173949
+            i.m2F58173949,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -3217,7 +3221,7 @@ class n1F9$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -3229,7 +3233,7 @@ class n1F9$Type extends MessageType {
         .internalBinaryWrite(
           e.m2F58173949,
           n.tag(58173949, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -3274,14 +3278,14 @@ class n1F10$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n2F49399797
+            i.n2F49399797,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -3290,7 +3294,7 @@ class n1F10$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -3302,7 +3306,7 @@ class n1F10$Type extends MessageType {
         .internalBinaryWrite(
           e.n2F49399797,
           n.tag(49399797, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -3344,7 +3348,7 @@ class m2F58173949$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -3353,7 +3357,7 @@ class m2F58173949$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -3365,7 +3369,7 @@ class m2F58173949$Type extends MessageType {
         .internalBinaryWrite(
           e.m3F1[r],
           n.tag(1, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -3410,14 +3414,14 @@ class m3F1$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.m4F58174010
+            i.m4F58174010,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -3426,7 +3430,7 @@ class m3F1$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -3438,7 +3442,7 @@ class m3F1$Type extends MessageType {
         .internalBinaryWrite(
           e.m4F58174010,
           n.tag(58174010, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -3480,7 +3484,7 @@ class m4F58174010$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -3489,7 +3493,7 @@ class m4F58174010$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -3501,7 +3505,7 @@ class m4F58174010$Type extends MessageType {
         .internalBinaryWrite(
           e.n1F10,
           n.tag(4, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -3543,7 +3547,7 @@ class n2F49399797$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -3552,7 +3556,7 @@ class n2F49399797$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -3564,7 +3568,7 @@ class n2F49399797$Type extends MessageType {
         .internalBinaryWrite(
           e.n3F1[r],
           n.tag(1, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -3615,7 +3619,7 @@ class n3F1$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n4F50195462
+            i.n4F50195462,
           );
           break;
         case 51845067:
@@ -3623,14 +3627,14 @@ class n3F1$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n4F51845067
+            i.n4F51845067,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -3639,7 +3643,7 @@ class n3F1$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -3651,7 +3655,7 @@ class n3F1$Type extends MessageType {
         .internalBinaryWrite(
           e.n4F50195462,
           n.tag(50195462, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join(),
       e.n4F51845067 &&
@@ -3659,7 +3663,7 @@ class n3F1$Type extends MessageType {
           .internalBinaryWrite(
             e.n4F51845067,
             n.tag(51845067, WireType.LengthDelimited).fork(),
-            t
+            t,
           )
           .join();
     let r = t.writeUnknownFields;
@@ -3701,7 +3705,7 @@ class n4F50195462$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -3710,7 +3714,7 @@ class n4F50195462$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -3722,7 +3726,7 @@ class n4F50195462$Type extends MessageType {
         .internalBinaryWrite(
           e.n5F1[r],
           n.tag(1, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -3764,7 +3768,7 @@ class n4F51845067$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -3773,7 +3777,7 @@ class n4F51845067$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -3785,7 +3789,7 @@ class n4F51845067$Type extends MessageType {
         .internalBinaryWrite(
           e.n5F5,
           n.tag(5, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -3848,7 +3852,7 @@ class n5F1$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n6F153515154
+            i.n6F153515154,
           );
           break;
         case 166487981:
@@ -3856,7 +3860,7 @@ class n5F1$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n6F166487981
+            i.n6F166487981,
           );
           break;
         case 62887855:
@@ -3864,7 +3868,7 @@ class n5F1$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n6F62887855
+            i.n6F62887855,
           );
           break;
         case 157152291:
@@ -3872,14 +3876,14 @@ class n5F1$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n7F157152291
+            i.n7F157152291,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -3888,7 +3892,7 @@ class n5F1$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -3900,7 +3904,7 @@ class n5F1$Type extends MessageType {
         .internalBinaryWrite(
           e.n6F153515154,
           n.tag(153515154, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join(),
       e.n6F166487981 &&
@@ -3908,7 +3912,7 @@ class n5F1$Type extends MessageType {
           .internalBinaryWrite(
             e.n6F166487981,
             n.tag(166487981, WireType.LengthDelimited).fork(),
-            t
+            t,
           )
           .join(),
       e.n6F62887855 &&
@@ -3916,7 +3920,7 @@ class n5F1$Type extends MessageType {
           .internalBinaryWrite(
             e.n6F62887855,
             n.tag(62887855, WireType.LengthDelimited).fork(),
-            t
+            t,
           )
           .join(),
       e.n7F157152291 &&
@@ -3924,7 +3928,7 @@ class n5F1$Type extends MessageType {
           .internalBinaryWrite(
             e.n7F157152291,
             n.tag(157152291, WireType.LengthDelimited).fork(),
-            t
+            t,
           )
           .join();
     let r = t.writeUnknownFields;
@@ -3975,7 +3979,7 @@ class n5F5$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n6F51431404
+            i.n6F51431404,
           );
           break;
         case 157152291:
@@ -3983,14 +3987,14 @@ class n5F5$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n7F157152291
+            i.n7F157152291,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -3999,7 +4003,7 @@ class n5F5$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -4011,7 +4015,7 @@ class n5F5$Type extends MessageType {
         .internalBinaryWrite(
           e.n6F51431404,
           n.tag(51431404, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join(),
       e.n7F157152291 &&
@@ -4019,7 +4023,7 @@ class n5F5$Type extends MessageType {
           .internalBinaryWrite(
             e.n7F157152291,
             n.tag(157152291, WireType.LengthDelimited).fork(),
-            t
+            t,
           )
           .join();
     let r = t.writeUnknownFields;
@@ -4064,14 +4068,14 @@ class n6F153515154$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n7F172660663
+            i.n7F172660663,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -4080,7 +4084,7 @@ class n6F153515154$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -4092,7 +4096,7 @@ class n6F153515154$Type extends MessageType {
         .internalBinaryWrite(
           e.n7F172660663,
           n.tag(172660663, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -4134,7 +4138,7 @@ class n6F51431404$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -4143,7 +4147,7 @@ class n6F51431404$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -4155,7 +4159,7 @@ class n6F51431404$Type extends MessageType {
         .internalBinaryWrite(
           e.n5F1[r],
           n.tag(1, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -4289,7 +4293,7 @@ class n7F172660663$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -4298,7 +4302,7 @@ class n7F172660663$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -4310,7 +4314,7 @@ class n7F172660663$Type extends MessageType {
         .internalBinaryWrite(
           e.n8F1,
           n.tag(1, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join(),
       e.n8F2 &&
@@ -4318,7 +4322,7 @@ class n7F172660663$Type extends MessageType {
           .internalBinaryWrite(
             e.n8F2,
             n.tag(2, WireType.LengthDelimited).fork(),
-            t
+            t,
           )
           .join(),
       e.n8F3 &&
@@ -4326,7 +4330,7 @@ class n7F172660663$Type extends MessageType {
           .internalBinaryWrite(
             e.n8F3,
             n.tag(3, WireType.LengthDelimited).fork(),
-            t
+            t,
           )
           .join();
     let r = t.writeUnknownFields;
@@ -4371,14 +4375,14 @@ class n8F1$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n9F168777401
+            i.n9F168777401,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -4387,7 +4391,7 @@ class n8F1$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -4399,7 +4403,7 @@ class n8F1$Type extends MessageType {
         .internalBinaryWrite(
           e.n9F168777401,
           n.tag(168777401, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -4444,14 +4448,14 @@ class n8F2$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n9F183314536
+            i.n9F183314536,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -4460,7 +4464,7 @@ class n8F2$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -4472,7 +4476,7 @@ class n8F2$Type extends MessageType {
         .internalBinaryWrite(
           e.n9F183314536,
           n.tag(183314536, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -4518,7 +4522,7 @@ class n8F3$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -4527,7 +4531,7 @@ class n8F3$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -4539,7 +4543,7 @@ class n8F3$Type extends MessageType {
         .internalBinaryWrite(
           e.n8F1,
           n.tag(1, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join(),
       e.n8F2 &&
@@ -4547,7 +4551,7 @@ class n8F3$Type extends MessageType {
           .internalBinaryWrite(
             e.n8F2,
             n.tag(2, WireType.LengthDelimited).fork(),
-            t
+            t,
           )
           .join();
     let r = t.writeUnknownFields;
@@ -4589,7 +4593,7 @@ class n9F168777401$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -4598,7 +4602,7 @@ class n9F168777401$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -4610,7 +4614,7 @@ class n9F168777401$Type extends MessageType {
         .internalBinaryWrite(
           e.n10F3,
           n.tag(3, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -4650,7 +4654,7 @@ class n9F183314536$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -4659,7 +4663,7 @@ class n9F183314536$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -4709,14 +4713,14 @@ class n10F3$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n11F172035250
+            i.n11F172035250,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -4725,7 +4729,7 @@ class n10F3$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -4737,7 +4741,7 @@ class n10F3$Type extends MessageType {
         .internalBinaryWrite(
           e.n11F172035250,
           n.tag(172035250, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -4777,7 +4781,7 @@ class n11F172035250$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -4786,7 +4790,7 @@ class n11F172035250$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -4837,7 +4841,7 @@ class nextRes$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -4846,7 +4850,7 @@ class nextRes$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -4858,7 +4862,7 @@ class nextRes$Type extends MessageType {
         .internalBinaryWrite(
           e.a1F7,
           n.tag(7, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join(),
       e.a1F8 &&
@@ -4866,7 +4870,7 @@ class nextRes$Type extends MessageType {
           .internalBinaryWrite(
             e.a1F8,
             n.tag(8, WireType.LengthDelimited).fork(),
-            t
+            t,
           )
           .join();
     let r = t.writeUnknownFields;
@@ -4911,14 +4915,14 @@ class a1F7$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.a2F51779735
+            i.a2F51779735,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -4927,7 +4931,7 @@ class a1F7$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -4939,7 +4943,7 @@ class a1F7$Type extends MessageType {
         .internalBinaryWrite(
           e.a2F51779735,
           n.tag(51779735, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -4984,14 +4988,14 @@ class a1F8$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n2F49399797
+            i.n2F49399797,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -5000,7 +5004,7 @@ class a1F8$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -5012,7 +5016,7 @@ class a1F8$Type extends MessageType {
         .internalBinaryWrite(
           e.n2F49399797,
           n.tag(49399797, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -5054,7 +5058,7 @@ class a2F51779735$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -5063,7 +5067,7 @@ class a2F51779735$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -5075,7 +5079,7 @@ class a2F51779735$Type extends MessageType {
         .internalBinaryWrite(
           e.a3F1,
           n.tag(1, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -5120,14 +5124,14 @@ class a3F1$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n2F49399797
+            i.n2F49399797,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -5136,7 +5140,7 @@ class a3F1$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -5148,7 +5152,7 @@ class a3F1$Type extends MessageType {
         .internalBinaryWrite(
           e.n2F49399797,
           n.tag(49399797, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -5194,7 +5198,7 @@ class searchRes$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -5203,7 +5207,7 @@ class searchRes$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -5215,7 +5219,7 @@ class searchRes$Type extends MessageType {
         .internalBinaryWrite(
           e.s1F4,
           n.tag(4, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join(),
       e.s1F7 &&
@@ -5223,7 +5227,7 @@ class searchRes$Type extends MessageType {
           .internalBinaryWrite(
             e.s1F7,
             n.tag(7, WireType.LengthDelimited).fork(),
-            t
+            t,
           )
           .join();
     let r = t.writeUnknownFields;
@@ -5268,14 +5272,14 @@ class s1F4$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n2F49399797
+            i.n2F49399797,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -5284,7 +5288,7 @@ class s1F4$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -5296,7 +5300,7 @@ class s1F4$Type extends MessageType {
         .internalBinaryWrite(
           e.n2F49399797,
           n.tag(49399797, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -5347,7 +5351,7 @@ class s1F7$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n4F50195462
+            i.n4F50195462,
           );
           break;
         case 49399797:
@@ -5355,14 +5359,14 @@ class s1F7$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n2F49399797
+            i.n2F49399797,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -5371,7 +5375,7 @@ class s1F7$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -5383,7 +5387,7 @@ class s1F7$Type extends MessageType {
         .internalBinaryWrite(
           e.n4F50195462,
           n.tag(50195462, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join(),
       e.n2F49399797 &&
@@ -5391,7 +5395,7 @@ class s1F7$Type extends MessageType {
           .internalBinaryWrite(
             e.n2F49399797,
             n.tag(49399797, WireType.LengthDelimited).fork(),
-            t
+            t,
           )
           .join();
     let r = t.writeUnknownFields;
@@ -5433,7 +5437,7 @@ class shortsRes$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -5442,7 +5446,7 @@ class shortsRes$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -5454,7 +5458,7 @@ class shortsRes$Type extends MessageType {
         .internalBinaryWrite(
           e.t1F2[r],
           n.tag(2, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -5494,7 +5498,7 @@ class t1F2$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -5503,7 +5507,7 @@ class t1F2$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -5515,7 +5519,7 @@ class t1F2$Type extends MessageType {
         .internalBinaryWrite(
           e.n2F1,
           n.tag(1, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -5560,14 +5564,14 @@ class n2F1$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.n3F139608561
+            i.n3F139608561,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -5576,7 +5580,7 @@ class n2F1$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -5588,7 +5592,7 @@ class n2F1$Type extends MessageType {
         .internalBinaryWrite(
           e.n3F139608561,
           n.tag(139608561, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -5630,7 +5634,7 @@ class n3F139608561$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -5639,7 +5643,7 @@ class n3F139608561$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -5651,7 +5655,7 @@ class n3F139608561$Type extends MessageType {
         .internalBinaryWrite(
           e.n4F8,
           n.tag(8, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -5725,7 +5729,7 @@ class guideRes$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -5734,7 +5738,7 @@ class guideRes$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -5746,7 +5750,7 @@ class guideRes$Type extends MessageType {
         .internalBinaryWrite(
           e.g1F4[r],
           n.tag(4, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     for (let r = 0; r < e.g1F6.length; r++)
@@ -5754,7 +5758,7 @@ class guideRes$Type extends MessageType {
         .internalBinaryWrite(
           e.g1F6[r],
           n.tag(6, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -5799,14 +5803,14 @@ class g1F4$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.g2F117866661
+            i.g2F117866661,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -5815,7 +5819,7 @@ class g1F4$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -5827,7 +5831,7 @@ class g1F4$Type extends MessageType {
         .internalBinaryWrite(
           e.g2F117866661,
           n.tag(117866661, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -5872,14 +5876,14 @@ class g1F6$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.g2F117866661
+            i.g2F117866661,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -5888,7 +5892,7 @@ class g1F6$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -5900,7 +5904,7 @@ class g1F6$Type extends MessageType {
         .internalBinaryWrite(
           e.g2F117866661,
           n.tag(117866661, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -5942,7 +5946,7 @@ class g2F117866661$Type extends MessageType {
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -5951,7 +5955,7 @@ class g2F117866661$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -5963,7 +5967,7 @@ class g2F117866661$Type extends MessageType {
         .internalBinaryWrite(
           e.g3F1[r],
           n.tag(1, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -6008,14 +6012,14 @@ class g3F1$Type extends MessageType {
             e,
             e.uint32(),
             t,
-            i.g4F318370163
+            i.g4F318370163,
           );
           break;
         default:
           let a = t.readUnknownField;
           if ("throw" === a)
             throw new globalThis.Error(
-              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`
+              `Unknown field ${n} (wire type ${r}) for ${this.typeName}`,
             );
           let l = e.skip(r);
           !1 !== a &&
@@ -6024,7 +6028,7 @@ class g3F1$Type extends MessageType {
               i,
               n,
               r,
-              l
+              l,
             );
       }
     }
@@ -6036,7 +6040,7 @@ class g3F1$Type extends MessageType {
         .internalBinaryWrite(
           e.g4F318370163,
           n.tag(318370163, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     let r = t.writeUnknownFields;
@@ -6109,7 +6113,7 @@ class playerRes$Type extends MessageType {
         var s = r.readUnknownField;
         if ("throw" === s)
           throw new globalThis.Error(
-            `Unknown field ${l} (wire type ${o}) for ` + this.typeName
+            `Unknown field ${l} (wire type ${o}) for ` + this.typeName,
           );
         var d = e.skip(o);
         !1 !== s &&
@@ -6118,7 +6122,7 @@ class playerRes$Type extends MessageType {
             a,
             l,
             o,
-            d
+            d,
           );
       }
     }
@@ -6130,7 +6134,7 @@ class playerRes$Type extends MessageType {
         .internalBinaryWrite(
           e.b1F7[t],
           n.tag(7, WireType.LengthDelimited).fork(),
-          r
+          r,
         )
         .join();
     var t = r.writeUnknownFields;
@@ -6173,13 +6177,13 @@ class b1f7$Type extends MessageType {
           e,
           e.uint32(),
           r,
-          a.b2F84813246
+          a.b2F84813246,
         );
       else {
         var s = r.readUnknownField;
         if ("throw" === s)
           throw new globalThis.Error(
-            `Unknown field ${l} (wire type ${o}) for ` + this.typeName
+            `Unknown field ${l} (wire type ${o}) for ` + this.typeName,
           );
         var d = e.skip(o);
         !1 !== s &&
@@ -6188,7 +6192,7 @@ class b1f7$Type extends MessageType {
             a,
             l,
             o,
-            d
+            d,
           );
       }
     }
@@ -6201,7 +6205,7 @@ class b1f7$Type extends MessageType {
           .internalBinaryWrite(
             e.b2F84813246,
             n.tag(84813246, WireType.LengthDelimited).fork(),
-            r
+            r,
           )
           .join(),
       !1 !== (r = r.writeUnknownFields) &&
@@ -6234,7 +6238,7 @@ class b2f84813246$Type extends MessageType {
         var s = r.readUnknownField;
         if ("throw" === s)
           throw new globalThis.Error(
-            `Unknown field ${l} (wire type ${o}) for ` + this.typeName
+            `Unknown field ${l} (wire type ${o}) for ` + this.typeName,
           );
         var d = e.skip(o);
         !1 !== s &&
@@ -6243,7 +6247,7 @@ class b2f84813246$Type extends MessageType {
             a,
             l,
             o,
-            d
+            d,
           );
       }
     }
@@ -6312,7 +6316,7 @@ if (url.includes("/v1/browse")) {
   let shortsRawLength = shortsMessage.t1F2?.length;
   if (shortsMessage.t1F2) {
     shortsMessage.t1F2 = shortsMessage.t1F2?.filter?.(
-      (io) => io.n2F1?.n3F139608561?.n4F8
+      (io) => io.n2F1?.n3F139608561?.n4F8,
     );
     if (shortsMessage.t1F2.length !== shortsRawLength) {
       needProcessFlag = true;
@@ -6337,7 +6341,7 @@ if (needProcessFlag) {
     $done({
       bodyBytes: body.buffer.slice(
         body.byteOffset,
-        body.byteLength + body.byteOffset
+        body.byteLength + body.byteOffset,
       ),
     });
   } else {
@@ -6378,7 +6382,7 @@ function isVideo(o) {
       parseEml(o?.n6F153515154?.n7F172660663?.n8F3);
     adFlag =
       /_ads?\.|ads?_|video_display_full|image|shorts|shelf_header|cell_divider/.test(
-        type
+        type,
       );
     // 用于排查遗留的广告类型
     if (!/cell_divider|video_with|comment_thread|post_base/.test(type))

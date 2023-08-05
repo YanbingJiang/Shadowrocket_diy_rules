@@ -304,7 +304,7 @@ function removePage(data) {
   if (mainConfig.removePinedTrending && data.cards && data.cards.length > 0) {
     if (data.cards[0].card_group) {
       data.cards[0].card_group = data.cards[0].card_group.filter(
-        (c) => !c.itemid.includes("t:51")
+        (c) => !c.itemid.includes("t:51"),
       );
     }
   }
@@ -480,7 +480,7 @@ function updateFollowOrder(item) {
         let s = d.click.modules[0].scheme;
         d.click.modules[0].scheme = s.replace(
           "231093_-_selfrecomm",
-          "231093_-_selffollowed"
+          "231093_-_selffollowed",
         );
         log("updateFollowOrder success");
         return;
@@ -860,7 +860,7 @@ function Env(t, e) {
                 Object(t[s]) === t[s]
                   ? t[s]
                   : (t[s] = Math.abs(e[i + 1]) >> 0 == +e[i + 1] ? [] : {}),
-              t
+              t,
             )[e[e.length - 1]] = s),
           t);
     }
@@ -953,7 +953,7 @@ function Env(t, e) {
               const { statusCode: s, statusCode: i, headers: r, body: o } = t;
               e(null, { status: s, statusCode: i, headers: r, body: o }, o);
             },
-            (t) => e((t && t.error) || "UndefinedError")
+            (t) => e((t && t.error) || "UndefinedError"),
           );
       else if (this.isNode()) {
         let s = require("iconv-lite");
@@ -984,13 +984,13 @@ function Env(t, e) {
                 e(
                   null,
                   { status: i, statusCode: r, headers: o, rawBody: n, body: a },
-                  a
+                  a,
                 );
               },
               (t) => {
                 const { message: i, response: r } = t;
                 e(i, r, r && s.decode(r.rawBody, this.encoding));
-              }
+              },
             );
       }
     }
@@ -1025,7 +1025,7 @@ function Env(t, e) {
               const { statusCode: s, statusCode: i, headers: r, body: o } = t;
               e(null, { status: s, statusCode: i, headers: r, body: o }, o);
             },
-            (t) => e((t && t.error) || "UndefinedError")
+            (t) => e((t && t.error) || "UndefinedError"),
           );
       else if (this.isNode()) {
         let i = require("iconv-lite");
@@ -1038,13 +1038,13 @@ function Env(t, e) {
             e(
               null,
               { status: s, statusCode: r, headers: o, rawBody: n, body: a },
-              a
+              a,
             );
           },
           (t) => {
             const { message: s, response: r } = t;
             e(s, r, r && i.decode(r.rawBody, this.encoding));
-          }
+          },
         );
       }
     }
@@ -1062,7 +1062,7 @@ function Env(t, e) {
       /(y+)/.test(t) &&
         (t = t.replace(
           RegExp.$1,
-          (s.getFullYear() + "").substr(4 - RegExp.$1.length)
+          (s.getFullYear() + "").substr(4 - RegExp.$1.length),
         ));
       for (let e in i)
         new RegExp("(" + e + ")").test(t) &&
@@ -1070,7 +1070,7 @@ function Env(t, e) {
             RegExp.$1,
             1 == RegExp.$1.length
               ? i[e]
-              : ("00" + i[e]).substr(("" + i[e]).length)
+              : ("00" + i[e]).substr(("" + i[e]).length),
           ));
       return t;
     }

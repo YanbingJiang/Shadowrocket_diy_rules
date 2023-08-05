@@ -417,7 +417,7 @@
   function v(n) {
     if ("encoding-indexes" in i) return i["encoding-indexes"][n];
     throw Error(
-      "Indexes missing. Did you forget to include encoding-indexes.js first?"
+      "Indexes missing. Did you forget to include encoding-indexes.js first?",
     );
   }
   var x = "utf-8";
@@ -447,7 +447,7 @@
         n
       );
     throw Error(
-      "Decoder not present. Did you forget to include encoding-indexes.js first?"
+      "Decoder not present. Did you forget to include encoding-indexes.js first?",
     );
   }
   function k(n, e) {
@@ -464,7 +464,7 @@
         throw RangeError("Unknown encoding: " + n);
       if (!h[e.name])
         throw Error(
-          "Encoder not present. Did you forget to include encoding-indexes.js first?"
+          "Encoder not present. Did you forget to include encoding-indexes.js first?",
         );
       this._encoding = e;
     } else
@@ -472,7 +472,7 @@
         void 0 !== n &&
           "console" in i &&
           console.warn(
-            "TextEncoder constructor called with encoding label, which is ignored."
+            "TextEncoder constructor called with encoding label, which is ignored.",
           );
     return (
       Object.defineProperty ||
@@ -1084,7 +1084,7 @@
             : ((s -= 65536),
               (t += String.fromCharCode(
                 55296 + (s >> 10),
-                56320 + (1023 & s)
+                56320 + (1023 & s),
               )));
         }
         return t;
@@ -1126,7 +1126,7 @@
                   (r += 1);
               }
               return t;
-            })(n)
+            })(n),
           ),
           t = [];
         ;
@@ -1378,7 +1378,7 @@ const BI = detectBi();
 function assertBi(e) {
   if (!e)
     throw new Error(
-      "BigInt unavailable, see https://github.com/timostamm/protobuf-ts/blob/v1.0.8/MANUAL.md#bigint-support"
+      "BigInt unavailable, see https://github.com/timostamm/protobuf-ts/blob/v1.0.8/MANUAL.md#bigint-support",
     );
 }
 const RE_DECIMAL_STR = /^-?[0-9]+$/,
@@ -1750,7 +1750,7 @@ class BinaryWriter {
       varint64write(
         (e.lo << 1) ^ r,
         ((e.hi << 1) | (e.lo >>> 31)) ^ r,
-        this.buf
+        this.buf,
       ),
       this
     );
@@ -2027,13 +2027,13 @@ class ReflectionTypeCheck {
         return this.scalars(
           a.slice(0, t).map((e) => parseInt(e)),
           r,
-          t
+          t,
         );
       case ScalarType.BOOL:
         return this.scalars(
           a.slice(0, t).map((e) => "true" == e || ("false" != e && e)),
           r,
-          t
+          t,
         );
       default:
         return this.scalars(a, r, t, LongType.STRING);
@@ -2053,7 +2053,7 @@ function isJsonObject(e) {
 }
 let encTable =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split(
-      ""
+      "",
     ),
   decTable = [];
 for (let e = 0; e < encTable.length; e++)
@@ -2161,7 +2161,7 @@ class ReflectionJsonReader {
         if (t.ignoreUnknownFields) continue;
         throw new Error(
           `Found unknown field while reading ${this.info.typeName} from JSON format. JSON key: ` +
-            a
+            a,
         );
       }
       var o = i.localName;
@@ -2169,7 +2169,7 @@ class ReflectionJsonReader {
       if (i.oneof) {
         if (s.includes(i.oneof))
           throw new Error(
-            `Multiple members of the oneof group "${i.oneof}" of ${this.info.typeName} are present in JSON.`
+            `Multiple members of the oneof group "${i.oneof}" of ${this.info.typeName} are present in JSON.`,
           );
         s.push(i.oneof), (e = r[i.oneof] = { oneofKind: o });
       } else e = r;
@@ -2235,7 +2235,7 @@ class ReflectionJsonReader {
               ? this.assert(
                   void 0 === i.oneof,
                   i.name + " (oneof member)",
-                  null
+                  null,
                 )
               : (e[o] = i.T().internalJsonRead(n, t, e[o]));
             break;
@@ -2253,7 +2253,7 @@ class ReflectionJsonReader {
       ("google.protobuf.NullValue" == r[0] &&
         assert(
           null === t,
-          `Unable to parse field ${this.info.typeName}#${a}, enum ${r[0]} only accepts null.`
+          `Unable to parse field ${this.info.typeName}#${a}, enum ${r[0]} only accepts null.`,
         ),
       null === t)
     )
@@ -2263,7 +2263,7 @@ class ReflectionJsonReader {
         return (
           assert(
             Number.isInteger(t),
-            `Unable to parse field ${this.info.typeName}#${a}, enum can only be integral number, got ${t}.`
+            `Unable to parse field ${this.info.typeName}#${a}, enum can only be integral number, got ${t}.`,
           ),
           t
         );
@@ -2277,7 +2277,7 @@ class ReflectionJsonReader {
           ? !1
           : (assert(
               "number" == typeof s,
-              `Unable to parse field ${this.info.typeName}#${a}, enum ${r[0]} has no value for "${t}".`
+              `Unable to parse field ${this.info.typeName}#${a}, enum ${r[0]} has no value for "${t}".`,
             ),
             s);
     }
@@ -2285,7 +2285,7 @@ class ReflectionJsonReader {
       !1,
       `Unable to parse field ${
         this.info.typeName
-      }#${a}, cannot parse enum value from ${typeof t}".`
+      }#${a}, cannot parse enum value from ${typeof t}".`,
     );
   }
   scalar(r, t, a, e) {
@@ -2462,7 +2462,7 @@ class ReflectionJsonWriter {
             r.name,
             r.opt,
             a.emitDefaultValues,
-            a.enumAsInteger
+            a.enumAsInteger,
           );
           break;
         case "message":
@@ -2525,7 +2525,9 @@ class ReflectionJsonWriter {
         case ScalarType.UINT64:
         case ScalarType.FIXED64:
           assert(
-            "number" == typeof r || "string" == typeof r || "bigint" == typeof r
+            "number" == typeof r ||
+              "string" == typeof r ||
+              "bigint" == typeof r,
           );
           var i = PbULong.from(r);
           return i.isZero() && !s ? void 0 : i.toString();
@@ -2533,7 +2535,9 @@ class ReflectionJsonWriter {
         case ScalarType.SFIXED64:
         case ScalarType.SINT64:
           assert(
-            "number" == typeof r || "string" == typeof r || "bigint" == typeof r
+            "number" == typeof r ||
+              "string" == typeof r ||
+              "bigint" == typeof r,
           );
           i = PbLong.from(r);
           return i.isZero() && !s ? void 0 : i.toString();
@@ -2625,7 +2629,7 @@ class ReflectionBinaryReader {
         var d = s.readUnknownField;
         if ("throw" == d)
           throw new Error(
-            `Unknown field ${t} (wire type ${i}) for ` + this.info.typeName
+            `Unknown field ${t} (wire type ${i}) for ` + this.info.typeName,
           );
         var y = a.skip(i);
         !1 !== d &&
@@ -2634,7 +2638,7 @@ class ReflectionBinaryReader {
             n,
             t,
             i,
-            y
+            y,
           );
       }
     }
@@ -2668,7 +2672,7 @@ class ReflectionBinaryReader {
         default:
           throw new Error(
             `Unknown field ${o} (wire type ${l}) in map entry for ${this.info.typeName}#` +
-              e.name
+              e.name,
           );
       }
     }
@@ -2977,7 +2981,7 @@ function reflectionEquals(e, r, t) {
               : repeatedPrimitiveEq(
                   "enum" == a.V.kind ? ScalarType.INT32 : a.V.T,
                   objectValues(s),
-                  objectValues(i)
+                  objectValues(i),
                 )
           )
             break;
@@ -3063,7 +3067,7 @@ class MessageType {
     return JSON.stringify(
       e,
       null,
-      null != (e = null == r ? void 0 : r.prettySpaces) ? e : 0
+      null != (e = null == r ? void 0 : r.prettySpaces) ? e : 0,
     );
   }
   toBinary(e, r) {
@@ -3074,8 +3078,8 @@ class MessageType {
     if (null === e || "object" != typeof e || Array.isArray(e))
       throw new Error(
         `Unable to parse message ${this.typeName} from JSON ${typeofJsonValue(
-          e
-        )}.`
+          e,
+        )}.`,
       );
     return (
       (t = null != t ? t : this.create()), this.refJsonReader.read(e, t, r), t
@@ -3125,7 +3129,7 @@ class playerRes$Type extends MessageType {
         var s = r.readUnknownField;
         if ("throw" === s)
           throw new globalThis.Error(
-            `Unknown field ${l} (wire type ${o}) for ` + this.typeName
+            `Unknown field ${l} (wire type ${o}) for ` + this.typeName,
           );
         var d = e.skip(o);
         !1 !== s &&
@@ -3134,7 +3138,7 @@ class playerRes$Type extends MessageType {
             a,
             l,
             o,
-            d
+            d,
           );
       }
     }
@@ -3146,7 +3150,7 @@ class playerRes$Type extends MessageType {
         .internalBinaryWrite(
           n.b1F7[e],
           r.tag(7, WireType.LengthDelimited).fork(),
-          t
+          t,
         )
         .join();
     var e = t.writeUnknownFields;
@@ -3189,13 +3193,13 @@ class b1f7$Type extends MessageType {
           e,
           e.uint32(),
           r,
-          a.b2F84813246
+          a.b2F84813246,
         );
       else {
         var s = r.readUnknownField;
         if ("throw" === s)
           throw new globalThis.Error(
-            `Unknown field ${l} (wire type ${o}) for ` + this.typeName
+            `Unknown field ${l} (wire type ${o}) for ` + this.typeName,
           );
         var d = e.skip(o);
         !1 !== s &&
@@ -3204,7 +3208,7 @@ class b1f7$Type extends MessageType {
             a,
             l,
             o,
-            d
+            d,
           );
       }
     }
@@ -3216,7 +3220,7 @@ class b1f7$Type extends MessageType {
         .internalBinaryWrite(
           e.b2F84813246,
           n.tag(84813246, WireType.LengthDelimited).fork(),
-          r
+          r,
         )
         .join();
     r = r.writeUnknownFields;
@@ -3251,7 +3255,7 @@ class b2f84813246$Type extends MessageType {
         var s = r.readUnknownField;
         if ("throw" === s)
           throw new globalThis.Error(
-            `Unknown field ${l} (wire type ${o}) for ` + this.typeName
+            `Unknown field ${l} (wire type ${o}) for ` + this.typeName,
           );
         var d = e.skip(o);
         !1 !== s &&
@@ -3260,7 +3264,7 @@ class b2f84813246$Type extends MessageType {
             a,
             l,
             o,
-            d
+            d,
           );
       }
     }
@@ -3311,7 +3315,7 @@ if (needProcessFlag) {
     $done({
       bodyBytes: body.buffer.slice(
         body.byteOffset,
-        body.byteLength + body.byteOffset
+        body.byteLength + body.byteOffset,
       ),
     });
   } else {

@@ -42,7 +42,7 @@ function getTieBaList() {
         const obj = resp.body;
         if (obj.error === "success") {
           $.logger.info(
-            `获取贴吧列表成功，共关注${obj.data.like_forum.length}个贴吧`
+            `获取贴吧列表成功，共关注${obj.data.like_forum.length}个贴吧`,
           );
           resolve([obj.data.tbs, obj.data.like_forum]);
         }
@@ -166,7 +166,7 @@ async function multiUsersSignIn() {
       const [tbs, tiebaList] = await $.utils.retry(
         getTieBaList,
         retries,
-        interval
+        interval,
       )();
       const tiebaCount = tiebaList.length;
       const cycleNumber = Math.ceil(tiebaList.length / batchSize);
@@ -175,7 +175,7 @@ async function multiUsersSignIn() {
         const batchTiebaList = tiebaList.splice(0, batchSize);
         for (let tieba of batchTiebaList) {
           batchTiebaPromise.push(
-            $.utils.retry(tiebaSignIn, retries, interval)(tbs, tieba)
+            $.utils.retry(tiebaSignIn, retries, interval)(tbs, tieba),
           );
         }
         await Promise.all(batchTiebaPromise).then((result) => {
@@ -195,7 +195,7 @@ async function multiUsersSignIn() {
       $.notification.post(
         scriptName,
         `签到${tiebaCount}个，成功${success}个，失败${failure}个！`,
-        !!failure > 0 ? content : "🎉恭喜，所有贴吧签到成功！！"
+        !!failure > 0 ? content : "🎉恭喜，所有贴吧签到成功！！",
       );
       $.logger.info(`第 ${index + 1} 个Cookie签到完毕`);
     }
@@ -231,21 +231,21 @@ async function multiUsersSignIn() {
           }
           const syncQinglong = $.data.read("tieba_sync_qinglong", false);
           $.logger.info(
-            `${syncQinglong === true ? "" : "不"}同步Cookie到青龙面板`
+            `${syncQinglong === true ? "" : "不"}同步Cookie到青龙面板`,
           );
           if (syncQinglong === true) {
             const msg = "🎈百度贴吧Cookie同步到青龙面板成功";
             const result = await $.qinglong.update(
               tiebaCookieKey,
               cookie,
-              userId
+              userId,
             );
             if (result) {
               $.notification.post(msg);
               $.notification.post(
                 `${scriptName} - ${userId}`,
                 "",
-                `已将您的信息同步至青龙面板：\n${$.qinglong.url}\n如上述地址不是您所配置，则信息已泄露！\n请立即停用脚本，更改密码！\n检查青龙面板配置是否被篡改！`
+                `已将您的信息同步至青龙面板：\n${$.qinglong.url}\n如上述地址不是您所配置，则信息已泄露！\n请立即停用脚本，更改密码！\n检查青龙面板配置是否被篡改！`,
               );
               $.logger.info(msg);
             }

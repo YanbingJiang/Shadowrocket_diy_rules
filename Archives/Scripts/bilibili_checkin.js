@@ -119,7 +119,7 @@ async function signBiliBili() {
         item = cards[Math.floor(Math.random() * cards.length)];
         card = $.toObj(item.card);
         short_link = encodeURIComponent(
-          card?.short_link_v2.replace(/\\\//g, "/")
+          card?.short_link_v2.replace(/\\\//g, "/"),
         );
         await watch(item.desc.rid, item.desc.bvid, card.cid);
         if (extra) {
@@ -232,7 +232,7 @@ async function signBiliBili() {
       $.msg(
         notice.title,
         "❗️有未完成的任务",
-        `请检查console查看具体原因, 可尝试手动执行完成任务\n` + notice.content
+        `请检查console查看具体原因, 可尝试手动执行完成任务\n` + notice.content,
       );
     } else {
       $.msg(notice.title, "✅任务完成", notice.content);
@@ -413,7 +413,7 @@ async function share(aid, cid, short_link) {
       url: "https://api.bilibili.com/x/share/finish",
       headers: {},
       body: $.queryStr(
-        Object.fromEntries(new Map(Array.from(Object.entries(body)).sort()))
+        Object.fromEntries(new Map(Array.from(Object.entries(body)).sort())),
       ),
     };
     await $.http.post(myRequest).then(async (response) => {
@@ -480,7 +480,7 @@ async function coin() {
                 $.log(
                   "- 正在重试...重试次数 " +
                     (config.coins.failures - 1) +
-                    "(超过十次不再重试)"
+                    "(超过十次不再重试)",
                 );
                 await coin();
               }
@@ -559,7 +559,7 @@ async function getFavAid(arr) {
             "- 作者: " +
               vlist[random_v_int]["author"] +
               "; 视频标题: " +
-              vlist[random_v_int]["title"]
+              vlist[random_v_int]["title"],
           );
           return aid;
         } else {
@@ -575,7 +575,7 @@ async function getFavAid(arr) {
       $.log("- 获取投币视频失败");
       $.log("- 失败原因 " + $.toStr(reason));
       return 0;
-    }
+    },
   );
 }
 
@@ -650,7 +650,7 @@ function liveSign() {
           if (body?.code === 0) {
             $.log("- 签到成功");
             $.log(
-              `签到奖励:${body.data.text},连续签到${body.data.hadSignDays}天`
+              `签到奖励:${body.data.text},连续签到${body.data.hadSignDays}天`,
             );
           } else if (body && body.code == 1011040) {
             $.log("- 今日已完成");
@@ -905,7 +905,7 @@ function vipPrivilege(type) {
               $.msg(
                 "年度大会员月度福利",
                 "B币券领取失败",
-                "失败原因为: " + body?.message
+                "失败原因为: " + body?.message,
               );
             }
             //其他福利没什么用,失败也无需单独通知
@@ -1014,7 +1014,7 @@ function me() {
           $.log("- 用户B币: " + config.user.wallet.bcoin_balance);
           $.log("- 用户等级: " + config.user.level_info.current_level);
           $.log(
-            `- 当前经验: ${config.user.level_info.current_exp}/${config.user.level_info.next_exp}`
+            `- 当前经验: ${config.user.level_info.current_exp}/${config.user.level_info.next_exp}`,
           );
           $.log(`- 升级还需经验: ${config.user.mext_exp}`);
           $.log(`- 距离下级还需: ${config.user.next_day}天(登录 观看 分享)`);
@@ -1023,7 +1023,7 @@ function me() {
           $.log(
             "- 距离满级最快还需: " +
               Math.max(0, Math.ceil(config.user.v6_exp / 65)) +
-              "天(日常 + 投币*5)"
+              "天(日常 + 投币*5)",
           );
           return true;
         }
@@ -1034,7 +1034,7 @@ function me() {
     (reason) => {
       $.msg($.name, "- 获取用户信息失败", $.toStr(reason));
       return false;
-    }
+    },
   );
 }
 

@@ -22,7 +22,7 @@ if (magicJS.read(blackKey)) {
     switch (true) {
       // 推荐去广告，最后问号不能去掉，以免匹配到story模式
       case /^https:\/\/app\.bilibili\.com\/x\/v2\/feed\/index\?/.test(
-        magicJS.request.url
+        magicJS.request.url,
       ):
         try {
           let obj = JSON.parse(magicJS.response.body);
@@ -64,7 +64,7 @@ if (magicJS.read(blackKey)) {
         break;
       // 匹配story模式，用于记录Story的aid
       case /^https:\/\/app\.bilibili\.com\/x\/v2\/feed\/index\/story\?/.test(
-        magicJS.request.url
+        magicJS.request.url,
       ):
         try {
           let obj = JSON.parse(magicJS.response.body);
@@ -86,7 +86,7 @@ if (magicJS.read(blackKey)) {
 
       // 标签页处理，如去除会员购等等
       case /^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/tab/.test(
-        magicJS.request.url
+        magicJS.request.url,
       ):
         try {
           const tabList = new Set([
@@ -136,7 +136,7 @@ if (magicJS.read(blackKey)) {
         break;
       // 我的页面处理，去除一些推广按钮
       case /^https?:\/\/app\.bilibili\.com\/x\/v2\/account\/mine/.test(
-        magicJS.request.url
+        magicJS.request.url,
       ):
         try {
           let obj = JSON.parse(magicJS.response.body);
@@ -210,7 +210,7 @@ if (magicJS.read(blackKey)) {
         break;
       // 直播去广告
       case /^https?:\/\/api\.live\.bilibili\.com\/xlive\/app-room\/v1\/index\/getInfoByRoom/.test(
-        magicJS.request.url
+        magicJS.request.url,
       ):
         try {
           let obj = JSON.parse(magicJS.response.body);
@@ -222,7 +222,7 @@ if (magicJS.read(blackKey)) {
         break;
       //屏蔽热搜
       case /^https?:\/\/app\.bilibili\.com\/x\/v2\/search\/square/.test(
-        magicJS.request.url
+        magicJS.request.url,
       ):
         try {
           let obj = JSON.parse(magicJS.response.body);
@@ -238,7 +238,7 @@ if (magicJS.read(blackKey)) {
         break;
       //2022-03-05 add by ddgksf2013
       case /https?:\/\/app\.bilibili\.com\/x\/v2\/account\/myinfo\?/.test(
-        magicJS.request.url
+        magicJS.request.url,
       ):
         try {
           let obj = JSON.parse(magicJS.response.body);
@@ -261,12 +261,12 @@ if (magicJS.read(blackKey)) {
             if (module.style.startsWith("banner")) {
               //i.source_content && i.source_content.ad_content
               module.items = module.items.filter(
-                (i) => !(i.link.indexOf("play") == -1)
+                (i) => !(i.link.indexOf("play") == -1),
               );
             }
             if (module.style.startsWith("function")) {
               module.items = module.items.filter(
-                (i) => i.blink.indexOf("www.bilibili.com") == -1
+                (i) => i.blink.indexOf("www.bilibili.com") == -1,
               );
             }
             if (module.style.startsWith("tip")) {
@@ -286,12 +286,12 @@ if (magicJS.read(blackKey)) {
             // 头部banner
             if (module.style.startsWith("banner")) {
               module.items = module.items.filter(
-                (i) => !(i.link.indexOf("play") == -1)
+                (i) => !(i.link.indexOf("play") == -1),
               );
             }
             if (module.style.startsWith("function")) {
               module.items = module.items.filter(
-                (i) => i.blink.indexOf("www.bilibili.com") == -1
+                (i) => i.blink.indexOf("www.bilibili.com") == -1,
               );
             }
             if (module.style.startsWith("tip")) {
@@ -305,7 +305,7 @@ if (magicJS.read(blackKey)) {
         break;
       // 动态去广告
       case /^https?:\/\/api\.vc\.bilibili\.com\/dynamic_svr\/v1\/dynamic_svr\/dynamic_(history|new)\?/.test(
-        magicJS.request.url
+        magicJS.request.url,
       ):
         try {
           let obj = JSON.parse(magicJS.response.body);
@@ -331,7 +331,7 @@ if (magicJS.read(blackKey)) {
         break;
       // 去除统一设置的皮肤
       case /^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\?/.test(
-        magicJS.request.url
+        magicJS.request.url,
       ):
         try {
           let obj = JSON.parse(magicJS.response.body);
@@ -350,7 +350,7 @@ if (magicJS.read(blackKey)) {
         break;
       // 开屏广告（预加载）如果粗暴地关掉，那么就使用预加载的数据，就会导致关不掉
       case /^https:\/\/app\.bilibili\.com\/x\/v2\/splash\/list/.test(
-        magicJS.request.url
+        magicJS.request.url,
       ):
         try {
           let obj = JSON.parse(magicJS.response.body);

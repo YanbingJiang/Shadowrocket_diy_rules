@@ -135,7 +135,7 @@ async function signBiliBili() {
         notice.title,
         "",
         `- 有未完成的任务, 请检查console查看具体原因, 可尝试手动执行完成任务\n` +
-          notice.content
+          notice.content,
       );
     } else {
       $.msg(notice.title, "", notice.content);
@@ -184,7 +184,7 @@ async function queryStatus() {
       console.log("- 查询失败");
       console.log(`- headers ${JSON.stringify(response.headers)}`);
       return false;
-    }
+    },
   );
 }
 
@@ -204,7 +204,7 @@ async function liveSign() {
       if (body && body.code == 0) {
         console.log("- 直播签到成功");
         console.log(
-          `签到奖励:${body.data.text},连续签到${body.data.hadSignDays}天`
+          `签到奖励:${body.data.text},连续签到${body.data.hadSignDays}天`,
         );
         return true;
       } else if (body && body.code == 1011040) {
@@ -220,7 +220,7 @@ async function liveSign() {
       console.log(`- headers ${JSON.stringify(response.headers)}`);
       console.log("- 直播签到失败");
       return false;
-    }
+    },
   );
 }
 
@@ -258,7 +258,7 @@ async function vipScoreSign() {
           console.log("- 大会员大积分任务签到失败");
           console.log(`- headers ${JSON.stringify(response.headers)}`);
           return false;
-        }
+        },
       );
     } else {
       console.log("- 今日已完成会员积分签到任务");
@@ -296,7 +296,7 @@ async function vipScoreGo() {
       console.log("- 浏览会员购任务失败");
       console.log(`- headers ${JSON.stringify(response.headers)}`);
       return false;
-    }
+    },
   );
 }
 
@@ -324,7 +324,7 @@ async function vipScoreFan() {
       console.log("- 浏览追番频道任务失败");
       console.log(`- headers ${JSON.stringify(response.headers)}`);
       return false;
-    }
+    },
   );
 }
 
@@ -352,7 +352,7 @@ async function vipScoreMovie() {
       console.log("- 浏览影视频道任务失败");
       console.log(`- headers ${JSON.stringify(response.headers)}`);
       return false;
-    }
+    },
   );
 }
 
@@ -386,7 +386,7 @@ async function vipWatchAccept() {
       console.log("- 大会员观看正片任务接取失败");
       console.log(`- headers ${JSON.stringify(response.headers)}`);
       return false;
-    }
+    },
   );
 }
 
@@ -442,13 +442,13 @@ async function me() {
         console.log("- 用户B币: " + config.user.wallet.bcoin_balance);
         console.log("- 用户等级: " + config.user.level_info.current_level);
         console.log(
-          `- 当前经验:${config.user.level_info.current_exp}/${config.user.level_info.next_exp}`
+          `- 当前经验:${config.user.level_info.current_exp}/${config.user.level_info.next_exp}`,
         );
 
         console.log(`- 升级还需经验: ${config.user.mext_exp}`);
         console.log(`- 距离下级还需: ${config.user.next_day}天(登录+5 观看+5)`);
         console.log(
-          `- 距离满级(6级)还需: ${config.user.v6_day}天(登录+5 观看+5)`
+          `- 距离满级(6级)还需: ${config.user.v6_day}天(登录+5 观看+5)`,
         );
         console.log(`- 剩余硬币最多可投: ${config.user.money / 5} 天`);
         return true;
@@ -457,7 +457,7 @@ async function me() {
     (reason) => {
       $notify(name, "- 获得用户信息失败", reason.error);
       return false;
-    }
+    },
   );
 }
 
@@ -623,7 +623,7 @@ function Env(t, e) {
                 Object(t[s]) === t[s]
                   ? t[s]
                   : (t[s] = Math.abs(e[i + 1]) >> 0 == +e[i + 1] ? [] : {}),
-              t
+              t,
             )[e[e.length - 1]] = s),
           t);
     }
@@ -716,7 +716,7 @@ function Env(t, e) {
               const { statusCode: s, statusCode: i, headers: r, body: o } = t;
               e(null, { status: s, statusCode: i, headers: r, body: o }, o);
             },
-            (t) => e((t && t.error) || "UndefinedError")
+            (t) => e((t && t.error) || "UndefinedError"),
           );
       else if (this.isNode()) {
         let s = require("iconv-lite");
@@ -747,13 +747,13 @@ function Env(t, e) {
                 e(
                   null,
                   { status: i, statusCode: r, headers: o, rawBody: n, body: a },
-                  a
+                  a,
                 );
               },
               (t) => {
                 const { message: i, response: r } = t;
                 e(i, r, r && s.decode(r.rawBody, this.encoding));
-              }
+              },
             );
       }
     }
@@ -788,7 +788,7 @@ function Env(t, e) {
               const { statusCode: s, statusCode: i, headers: r, body: o } = t;
               e(null, { status: s, statusCode: i, headers: r, body: o }, o);
             },
-            (t) => e((t && t.error) || "UndefinedError")
+            (t) => e((t && t.error) || "UndefinedError"),
           );
       else if (this.isNode()) {
         let i = require("iconv-lite");
@@ -801,13 +801,13 @@ function Env(t, e) {
             e(
               null,
               { status: s, statusCode: r, headers: o, rawBody: n, body: a },
-              a
+              a,
             );
           },
           (t) => {
             const { message: s, response: r } = t;
             e(s, r, r && i.decode(r.rawBody, this.encoding));
-          }
+          },
         );
       }
     }
@@ -825,7 +825,7 @@ function Env(t, e) {
       /(y+)/.test(t) &&
         (t = t.replace(
           RegExp.$1,
-          (s.getFullYear() + "").substr(4 - RegExp.$1.length)
+          (s.getFullYear() + "").substr(4 - RegExp.$1.length),
         ));
       for (let e in i)
         new RegExp("(" + e + ")").test(t) &&
@@ -833,7 +833,7 @@ function Env(t, e) {
             RegExp.$1,
             1 == RegExp.$1.length
               ? i[e]
-              : ("00" + i[e]).substr(("" + i[e]).length)
+              : ("00" + i[e]).substr(("" + i[e]).length),
           ));
       return t;
     }
