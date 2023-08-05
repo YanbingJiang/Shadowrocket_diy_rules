@@ -147,7 +147,7 @@ function modifiedUserCenter(e) {
       0 !== e.data.length &&
       e.data.cards &&
       (e.data.cards = Object.values(e.data.cards).filter(
-        (e) => "personal_vip" != e.items[0].type
+        (e) => "personal_vip" != e.items[0].type,
       )),
     e
   );
@@ -204,7 +204,7 @@ function removeMain(e) {
           (e) =>
             e?.data?.itemid?.includes("mine_topics") ||
             e?.data?.itemid?.includes("search_input") ||
-            e?.data?.card_type == 202
+            e?.data?.card_type == 202,
         )),
           (o.items[0].data.hotwords = [{ word: "搜索超话", tip: "" }]),
           t.push(o);
@@ -216,7 +216,7 @@ function removeMain(e) {
           continue;
         o.items.length > 0 &&
           (o.items = Object.values(o.items).filter(
-            (e) => "feed" == e.category || "card" == e.category
+            (e) => "feed" == e.category || "card" == e.category,
           )),
           t.push(o);
       }
@@ -258,7 +258,7 @@ function topicHandler(e) {
           for (let s of n)
             -1 ==
               ["chaohua_discovery_banner_1", "bottom_mix_activity"].indexOf(
-                s.itemid
+                s.itemid,
               ) && d.push(s);
           i.card_group = d;
         }
@@ -329,7 +329,7 @@ function removePage(e) {
             e?.actionlog?.ext?.includes("ads_word") ||
             e?.itemid?.includes("t:51") ||
             e?.itemid?.includes("ads_word")
-          )
+          ),
       )),
     e
   );
@@ -417,7 +417,7 @@ function itemExtendHandler(e) {
     e.page_alerts && (e.page_alerts = null);
   try {
     e.trend.extra_struct.extBtnInfo.btn_picurl.indexOf(
-      "timeline_icon_ad_delete"
+      "timeline_icon_ad_delete",
     ) > -1 && delete e.trend;
   } catch (o) {}
   if (mainConfig.modifyMenus && e.custom_action_list) {
@@ -441,7 +441,7 @@ function updateFollowOrder(e) {
         let o = t.click.modules[0].scheme;
         (t.click.modules[0].scheme = o.replace(
           "231093_-_selfrecomm",
-          "231093_-_selffollowed"
+          "231093_-_selffollowed",
         )),
           log("updateFollowOrder success");
         return;
@@ -495,7 +495,7 @@ function removeHome(e) {
         (o.images = o.images.filter(
           (e) =>
             "100505_-_chaohua" == e.itemId ||
-            "100505_-_recentlyuser" == e.itemId
+            "100505_-_recentlyuser" == e.itemId,
         )),
         t.push(o);
     }
