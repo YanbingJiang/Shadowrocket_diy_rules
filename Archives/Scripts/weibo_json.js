@@ -1,8 +1,8 @@
 // SOURCE: https://raw.githubusercontent.com/ddgksf2013/Scripts/master/weibo_json.js
 // Author: @ddgksf2013 @Zmqcherish
-// Update: 2023-08-05
+// Update: 2023-08-11
 
-const version = "V2.0.115";
+const version = "V2.0.116";
 
 const mainConfig = {
     isDebug: !1,
@@ -153,7 +153,7 @@ function modifiedUserCenter(e) {
   );
 }
 function removeTopics(e) {
-  return e.data && (e.data.order = ["search_topic", "native_content"]), e;
+  return e.data && (e.data.order = ["search_topic"]), e;
 }
 function isAd(e) {
   return (
