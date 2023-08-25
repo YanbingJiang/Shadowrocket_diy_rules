@@ -1,7 +1,7 @@
 #!name=Weibo Ad Blocker
 #!desc=Weibo app removes ads
-#!source @ddgksf2013
-#!originURL: https://github.com/ddgksf2013/Rewrite/raw/master/AdBlock/Weibo.conf
+#!source=@ddgksf2013
+#!originURL=https://github.com/ddgksf2013/Rewrite/raw/master/AdBlock/Weibo.conf
 #!system=ios
 
 [Url Rewrite]
