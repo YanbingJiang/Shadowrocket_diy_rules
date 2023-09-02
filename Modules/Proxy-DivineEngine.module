@@ -1,0 +1,22 @@
+#!name=Proxy-DivineEngine
+#!desc=Proxy Flow from DivineEngine
+#!author=refined by @w37fhy
+
+[Rule]
+# 后续规则修正
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Unbreak.list,DIRECT
+# 轻量广告拦截
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Guard/Advertising.list,REJECT
+# 隐私追踪
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Guard/Privacy.list,REJECT
+# 运营商劫持或恶意网站
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Guard/Hijacking.list,REJECT
+# 流媒体服务
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/StreamingMedia/Streaming.list,PROXY
+# 国际网络分流
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/Global.list,PROXY
+# 国内网络分流
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Filter/China.list,DIRECT
+#规则之外
+GEOIP,CN,DIRECT
+FINAL,PROXY
