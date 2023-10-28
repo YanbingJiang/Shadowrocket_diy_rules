@@ -1,8 +1,8 @@
 // SOURCE: https://raw.githubusercontent.com/ddgksf2013/Scripts/master/weibo_json.js
 // Author: @ddgksf2013 @Zmqcherish
-// Update: 2023-08-11
+// Update: 2023-09-28
 
-const version = "V2.0.116";
+const version = "V2.0.120";
 
 const mainConfig = {
     isDebug: !1,
@@ -95,6 +95,8 @@ const mainConfig = {
     "php?a=search_topic": "removeSearchTopic",
     "v1/ad/realtime": "removeRealtimeAd",
     "v1/ad/preload": "removeAdPreload",
+    "php?a=open_app": "removeAdBanner",
+    "groups/allgroups": "removeGroup",
   };
 function getModifyMethod(e) {
   for (let t of modifyCardsUrls) if (e.indexOf(t) > -1) return "removeCards";
@@ -105,6 +107,22 @@ function getModifyMethod(e) {
 }
 function removeRealtimeAd(e) {
   return delete e.ads, (e.code = 4016), e;
+}
+function removeGroup(e) {
+  return (
+    e.pageDatas &&
+      (e.pageDatas = Object.values(e.pageDatas).filter(
+        (e) => "homeExtend" != e.pageDataType,
+      )),
+    e
+  );
+}
+function removeAdBanner(e) {
+  return (
+    e.data.close_ad_setting && delete e.data.close_ad_setting,
+    e.data.detail_banner_ad && (e.data.detail_banner_ad = []),
+    e
+  );
 }
 function removeAdPreload(e) {
   if (!e.ads) return e;
