@@ -1,0 +1,120 @@
+# Credit: https://github.com/deezertidal/shadowrocket-rules/blob/main/shadowrocket_basic.conf
+# Shadowrocket小火箭配置文件
+# 模块安装地址https://yfamily.ml/
+
+[General]
+bypass-system = true
+skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local
+tun-excluded-routes = 10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12, 192.0.0.0/24, 192.0.2.0/24, 192.88.99.0/24, 192.168.0.0/16, 198.51.100.0/24, 203.0.113.0/24, 224.0.0.0/4, 255.255.255.255/32, 239.255.255.250/32
+dns-server = 119.29.29.29,114.114.114.114,223.5.5.5,system
+fallback-dns-server = system
+ipv6 = false
+prefer-ipv6 = false
+dns-fallback-system = false
+dns-direct-system = false
+icmp-auto-reply = true
+always-reject-url-rewrite = false
+private-ip-answer = false
+
+[Proxy Group]
+# 该配置策略组可实现特定规则走指定策略或节点；如想让netflix走新加坡节点 那么可以在相应代理分组里勾选新加坡节点；
+# 更改代理分组策略的步骤(以🎥 Netflix策略为例)：点击界面底部配置--点击配置文件"ⓘ"符号---代理分组---点击🎥 Netflix策略的"ⓘ"符号---勾选🇸🇬 新加坡节点--保存
+
+# ♻️ ALL策略表示对所有节点进行测速并选择延迟最低的节点；测速间隔600秒，容差100ms；
+# 若不想用某些特定节点 可以通过正则排除 例：♻️ ALL = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=100,timeout=5,policy-regex-filter=^(?!.*?(国内|限速|试用)).*$
+# 也可以让指定机场参与♻️ ALL策略里的测速（根据你设置的机场订阅名称而定 这里不举例）
+
+
+🚀 策略选择 = select,♻️ ALL,🇨🇳 台湾节点,🇬🇧 英国节点,🇯🇵 日本节点,🇭🇰 香港节点,🇸🇬 新加坡节点,🇺🇸 美国节点,🇰🇷 韩国节点,🇷🇺 俄罗斯节点,🇮🇳 印度,🇩🇪 德国,🇨🇦 加拿大,interval=600,timeout=5,select=0,url=http://www.gstatic.com/generate_204
+♻️ ALL = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=100,timeout=5,policy-regex-filter=.*
+🤖️ 人工智能 = select,🇺🇸 美国节点,🇬🇧 英国节点,🇩🇪 德国,🇨🇦 加拿大, select=0
+📲 Telegram = select,🚀 策略选择,🇭🇰 香港节点,🇺🇲 美国节点,🇸🇬 新加坡节点,🇯🇵 日本节点,🇨🇳 台湾节点,🇬🇧 英国节点,🇰🇷 韩国节点, select=0
+📹 YouTube = select,🚀 策略选择,🇭🇰 香港节点,🇺🇲 美国节点,🇸🇬 新加坡节点,🇯🇵 日本节点,🇨🇳 台湾节点,🇬🇧 英国节点, 🇰🇷 韩国节点,select=0
+🎥 Netflix = select,🚀 策略选择,🇭🇰 香港节点,🇺🇲 美国节点,🇸🇬 新加坡节点,🇯🇵 日本节点,🇨🇳 台湾节点,🇬🇧 英国节点,🇰🇷 韩国节点,select=0
+🎬 Disney+ = select,🚀 策略选择,🇭🇰 香港节点,🇺🇲 美国节点,🇸🇬 新加坡节点,🇯🇵 日本节点,🇨🇳 台湾节点,🇬🇧 英国节点,🇰🇷 韩国节点, select=0
+🎻 Spotify = select,🚀 策略选择,🇭🇰 香港节点,🇺🇲 美国节点,🇸🇬 新加坡节点,🇯🇵 日本节点,🇨🇳 台湾节点,🇬🇧 英国节点,🇰🇷 韩国节点, select=0
+📄 Twitter = select,🚀 策略选择,🇭🇰 香港节点,🇺🇲 美国节点,🇸🇬 新加坡节点,🇯🇵 日本节点,🇨🇳 台湾节点,🇬🇧 英国节点,🇰🇷 韩国节点, select=0
+🪙 Paypal = select,🚀 策略选择,🇭🇰 香港节点,🇺🇲 美国节点,🇸🇬 新加坡节点,🇯🇵 日本节点,🇨🇳 台湾节点,🇬🇧 英国节点,🇰🇷 韩国节点, select=0
+👤 Facebook = select,🚀 策略选择,🇭🇰 香港节点,🇺🇲 美国节点,🇸🇬 新加坡节点,🇯🇵 日本节点,🇨🇳 台湾节点,🇬🇧 英国节点,🇰🇷 韩国节点, select=0
+📖 Reddit = select,🚀 策略选择,🇭🇰 香港节点,🇺🇲 美国节点,🇸🇬 新加坡节点,🇯🇵 日本节点,🇨🇳 台湾节点,🇬🇧 英国节点,🇰🇷 韩国节点, select=0
+🐦 Discord = select,🚀 策略选择,🇭🇰 香港节点,🇺🇲 美国节点,🇸🇬 新加坡节点,🇯🇵 日本节点,🇨🇳 台湾节点,🇬🇧 英国节点,🇰🇷 韩国节点, select=0
+📽 哔哩哔哩 = select, 🌐 全球直连, 🇭🇰 香港节点, 🇨🇳 台湾节点, select=0
+🍿 国外媒体 = select,🚀 策略选择,🇭🇰 香港节点,🇺🇲 美国节点,🇸🇬 新加坡节点,🇯🇵 日本节点,🇨🇳 台湾节点,🇬🇧 英国节点,🇰🇷 韩国节点, select=0
+🍔 国内媒体 = select, 🌐 全球直连, 🇭🇰 香港节点, 🇺🇲 美国节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, 🇬🇧 英国节点, select=0
+🍟 新浪微博 = select, 🌐 全球直连, 🚀 策略选择, 🇭🇰 香港节点, 🇺🇲 美国节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, 🇬🇧 英国节点,🇰🇷 韩国节点, select=0
+Ⓜ️ 微软服务 = select, 🌐 全球直连, 🚀 策略选择, 🇭🇰 香港节点, 🇺🇲 美国节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, 🇬🇧 英国节点,🇰🇷 韩国节点, select=0
+🍎 苹果服务 = select, 🌐 全球直连, 🚀 策略选择, 🇭🇰 香港节点, 🇺🇲 美国节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, 🇬🇧 英国节点,🇰🇷 韩国节点, select=0
+🎮 游戏平台 = select, 🌐 全球直连, 🚀 策略选择, 🇭🇰 香港节点, 🇺🇲 美国节点, 🇸🇬 新加坡节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, 🇬🇧 英国节点,🇰🇷 韩国节点, select=0
+
+
+# 以下国家地区节点筛选 请自行根据机场节点名称修改正则
+
+🇭🇰 香港节点 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=100,timeout=5,policy-regex-filter=(?=.*(港|HK|(?i)Hong))^((?!(台湾|日本|新加坡|美国|韩国|狮城|南朝鲜|US|SG|JP|KR|TW|台灣|美國|韓國|獅城)).)*$
+🇨🇳 台湾节点 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=100,timeout=5,policy-regex-filter=(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$
+🇺🇸 美国节点 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=100,timeout=5,policy-regex-filter=(?=.*(美国|美國|US|洛杉矶|西雅图|(?i)States|American))^((?!(香港|台湾|日本|新加坡|韩国|狮城|南朝鲜|SG|JP|KR|HK|TW|台灣|韓國|獅城)).)*$
+🇰🇷 韩国节点 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=100,timeout=5,policy-regex-filter=(?=.*(KR|Korea|KOR|首尔|韩|韓|(?i)Korea))^((?!(香港|台湾|新加坡|美国|狮城|南朝鲜|US|SG|HK|TW|台灣|美國|獅城)).)*$
+🇷🇺 俄罗斯节点 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=100,timeout=5,policy-regex-filter=🇷🇺|俄罗斯|RU|莫斯科|圣彼得堡|喀山|哈尔科夫|乌法|新西伯利亚|下诺夫哥罗德|沃罗涅什
+🇬🇧 英国节点 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=100,timeout=5,policy-regex-filter=🇬🇧|英国|UK|伦敦|英格兰|伯明翰|泰恩河畔纽卡斯尔|利兹|爱丁堡|格拉斯哥|苏格兰
+🇯🇵 日本节点 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=100,timeout=5,policy-regex-filter=(?=.*(日本|JP|(?i)Japan))^((?!(香港|台湾|新加坡|美国|韩国|狮城|南朝鲜|US|SG|KR|HK|TW|台灣|美國|韓國|獅城)).)*$
+🇸🇬 新加坡节点 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=100,timeout=5,policy-regex-filter=(?=.*(新加坡|狮城|SG|(?i)Singapore))^((?!(香港|台湾|日本|美国|韩国|南朝鲜|US|JP|KR|HK|TW|台灣|美國|韓國)).)*$
+🇮🇳 印度 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=100,timeout=5,policy-regex-filter=🇮🇳|印度|IN|IND|孟买|新德里|高知|Republic of India|India
+🇩🇪 德国 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=100,timeout=5,policy-regex-filter=🇩🇪|德国|DEU|DE|柏林|慕尼黑|汉堡|科隆|Germany
+🇨🇦 加拿大 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=100,timeout=5,policy-regex-filter=🇨🇦|加拿大|CA|渥太华
+🌐 全球直连 = select, DIRECT
+
+[Rule]
+# 🤖️ 人工智能规则（包含google bard,new bing,chatgpt）是个人建立的简略规则 自用 可能不适合所有人
+
+RULE-SET,https://raw.githubusercontent.com/deezertidal/shadowrocket-rules/main/js/ai.list,🤖️ 人工智能
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Lan/Lan.list,🌐 全球直连
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingLite/AdvertisingLite.list,REJECT
+DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingLite/AdvertisingLite_Domain.list,REJECT
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Microsoft/Microsoft.list,Ⓜ️ 微软服务
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Apple/Apple.list,🍎 苹果服务
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AppStore/AppStore.list,🍎 苹果服务
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AppleProxy/AppleProxy.list,🚀 策略选择
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Telegram/Telegram.list,📲 TELEGRAM
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Weibo/Weibo.list,🍟 新浪微博
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/WeChat/WeChat.list,🌐 全球直连
+DOMAIN-KEYWORD,weibo,🍟 新浪微博
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Twitter/Twitter.list,📄 TWITTER
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/PlayStation/PlayStation.list,🎮 游戏平台
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Epic/Epic.list,🎮 游戏平台
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Sony/Sony.list,🎮 游戏平台
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Steam/Steam.list,🎮 游戏平台
+DOMAIN-KEYWORD,ubisoft,🎮 游戏平台
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Nintendo/Nintendo.list,🎮 游戏平台
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/WanMeiShiJie/WanMeiShiJie.list,🎮 游戏平台
+DOMAIN-KEYWORD,steam,🎮 游戏平台
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Blizzard/Blizzard.list,🎮 游戏平台
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Spotify/Spotify.list,🎻 SPOTIFY
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/PayPal/PayPal.list,🪙 PAYPAL
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Facebook/Facebook.list,👤 FACEBOOK
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Reddit/Reddit.list,📖 REDDIT
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Discord/Discord.list,🐦 DISCORD
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/YouTube/YouTube.list,📹 YOUTUBE
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/YouTubeMusic/YouTubeMusic.list,📹 YOUTUBE
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Netflix/Netflix.list,🎥 NETFLIX
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Disney/Disney.list,🎬 DISNEY+
+DOMAIN-SUFFIX,api.bilibili.com,📽 哔哩哔哩
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/BiliBili/BiliBili.list,📽 哔哩哔哩
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/ChinaMedia/ChinaMedia.list,🍔 国内媒体
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list,🍿 国外媒体
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Twitch/Twitch.list,🚀 策略选择
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Douyu/Douyu.list,🌐 全球直连
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Google/Google.list,🚀 策略选择
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Proxy/Proxy.list,🚀 策略选择
+DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Proxy/Proxy_Domain.list,🚀 策略选择
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/China/China.list,🌐 全球直连
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/ChinaIPs/ChinaIPs.list,🌐 全球直连
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Download/Download.list,🌐 全球直连
+GEOIP,CN,🌐 全球直连
+FINAL,🚀 策略选择
+
+[URL Rewrite]
+^https?://(www.)?g.cn https://www.google.com 302
+^https?://(www.)?google.cn https://www.google.com 302
+
+[MITM]
+enable = true
+hostname = 

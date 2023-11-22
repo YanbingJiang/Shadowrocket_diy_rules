@@ -1,0 +1,6 @@
+# > BBC iPlayer
+USER-AGENT,BBCiPlayer*,BBC iPlayer
+DOMAIN-SUFFIX,bbc.co.uk,BBC iPlayer
+DOMAIN-SUFFIX,bbci.co.uk,BBC iPlayer
+DOMAIN-KEYWORD,bbcfmt,BBC iPlayer
+DOMAIN-KEYWORD,uk-live,BBC iPlayer

@@ -1,0 +1,8 @@
+#!name=DNS DoQ Adguard
+#!desc=DNS DoQ Oversea
+
+# quic://dns.adguard-dns.com
+# quic://family.adguard-dns.com
+# quic://unfiltered.adguard-dns.com
+[General]
+dns-server = quic://dns.adguard-dns.com
