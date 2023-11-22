@@ -1,0 +1,6 @@
+#!name=DNS DoH CN
+#!desc=DNS DoH China
+# alibaba, tencent, tecent-sm2, 360,rubyfish
+
+[General]
+dns-server = https://dns.alidns.com/dns-query,https://doh.pub/dns-query,https://sm2.doh.pub/dns-query,https://doh.360.cn/dns-query,https://rubyfish.cn/dns-query
