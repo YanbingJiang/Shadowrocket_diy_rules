@@ -6,9 +6,12 @@
 
 [Script]
 # This module is comprehensive enough that no other rules are mixed in to prevent rewrite rules from being broken
-youtube-proto = type=http-response,pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence),requires-body=1,binary-body-mode=1,max-size=3145728,script-path=https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.js
+youtube-proto = type=http-response,pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence),requires-body=1,binary-body-mode=1,max-size=3145728,script-path=https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/dist/youtube.js
 # Use the script to directly return the status code instead of reject to improve the video loading speed.
-youtube-fake = type=http-response,pattern=^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad,requires-body=0,script-path=https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube-fake.js
+# youtube-fake = type=http-response,pattern=^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad,requires-body=0,script-path=https://raw.githubusercontent.com/YanbingJiang/Shadowrocket_diy_rules/main/Archives/Scripts/youtube-fake.js
+
+[URL Rewrite]
+^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad - REJECT-IMG
 
 [MITM]
 hostname = %APPEND% *.googlevideo.com, youtubei.googleapis.com
