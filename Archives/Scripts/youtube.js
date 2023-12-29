@@ -1,4 +1,4 @@
-// https://github.com/Maasea/sgmodule/blob/master/Script/Youtube/youtube.js
+// https://github.com/Maasea/sgmodule/blob/2cfa9c75d4e5d1ff9d6a52d00fc3584f45922293/Script/Youtube/youtube.js
 !(function (i) {
   "use strict";
   function _(n, e, i) {
