@@ -19,8 +19,9 @@ Shadowrocket 脚本配置:
 B站每日任务 = type=cron,cronexp=30 7 * * *,script-path=https://raw.githubusercontent.com/YanbingJiang/Shadowrocket_diy_rules/main/Archives/Scripts/bilibili_checkin.js
 
 #以下cookie获取方式二选其一即可
-B站获取Cookie(APP) = type=http-request,pattern=^https:\/\/app\.bilibili\.com\/x\/resource\/domain\?,script-path=https://raw.githubusercontent.com/ClydeTime/Quantumult/main/Script/Task/BiliBili.js
-#B站获取Cookie(网页) = type=http-request,pattern=^https:\/\/m.bilibili.com/$,script-path=https://raw.githubusercontent.com/ClydeTime/Quantumult/main/Script/Task/BiliBili.js
+!! Not sure since which version but at least from v7.65 Bilibili has changed is apikey URL -> domain to fingerprint
+B站获取Cookie(APP) = type=http-request,pattern=^https:\/\/app\.bilibili\.com\/x\/resource\/fingerprint\?,script-path=https://raw.githubusercontent.com/ClydeTime/Quantumult/main/Script/Task/BiliBili.js
+B站获取Cookie(网页) = type=http-request,pattern=^https:\/\/m.bilibili.com/$,script-path=https://raw.githubusercontent.com/ClydeTime/Quantumult/main/Script/Task/BiliBili.js
 */
 
 const format = (ts, fmt = "yyyy-MM-dd HH:mm:ss") => {
