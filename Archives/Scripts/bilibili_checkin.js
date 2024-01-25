@@ -43,6 +43,35 @@ const cookie2object = (cookie) => {
   return obj;
 };
 
+const setCookieToLocalStore = async (config, times) => {
+  if (config.cookie.DedeUserID) {
+    var url = $request.url;
+    config.key = url.match(/.*access_key=(.*?)&build/)?.[1];
+    config.cookieStr = `DedeUserID=${config.cookie.DedeUserID}; DedeUserID__ckMd5=${config.cookie.DedeUserID__ckMd5}; SESSDATA=${config.cookie.SESSDATA}; bili_jct=${config.cookie.bili_jct}; sid=${config.cookie.sid}`;
+    if (!config.key) {
+      let confirm_uri = await getConfirm_uri();
+      let envType = $.getEnv();
+      if (envType === "Surge") {
+        await captureAccess_key(confirm_uri);
+        await getRecentRequests();
+      } else if (envType === "Quantumult X") {
+        await getAccess_key(confirm_uri);
+      } //'Loon need to do'
+    }
+    if (times === 1) {
+      $.setdata($.toStr(config), $.name + "_daily_bonus")
+        ? $.msg($.name, "首次获取cookie", "🎉获取 cookie 成功")
+        : $.msg($.name, "首次获取cookie", "🤒获取 cookie 失败");
+    } else {
+      $.setdata($.toStr(config), $.name + "_daily_bonus")
+        ? $.msg($.name, "检测到cookie已更新", "🎉更新 cookie 成功")
+        : $.msg($.name, "检测到cookie已更新", "🤒更新 cookie 失败");
+    }
+  } else {
+    $.msg($.name, "- 尚未登录, 请登录后重新获取cookie");
+  }
+};
+
 const $ = new Env("bilibili");
 const extra = false; // For share and coin 分享投币 👀
 const startTime = format();
@@ -78,19 +107,130 @@ function getCookie() {
     } else if (typeof $request.headers.Cookie != "undefined") {
       Cookie = $request.headers.Cookie;
     }
-    config.cookie = cookie2object(Cookie);
-    if (config.cookie.DedeUserID) {
-      $.log("- cookie获取成功");
-      let url = $request.url;
-      config.key = url.match(/.*access_key=(.*?)&build/)?.[1];
-      config.cookieStr = `DedeUserID=${config.cookie.DedeUserID}; DedeUserID__ckMd5=${config.cookie.DedeUserID__ckMd5}; SESSDATA=${config.cookie.SESSDATA}; bili_jct=${config.cookie.bili_jct}; sid=${config.cookie.sid}`;
-      $.setdata($.toStr(config), $.name + "_daily_bonus")
-        ? $.msg($.name, "cookie catch success", "🎉获得 cookie 成功")
-        : $.msg($.name, "cookie catch failed", "🤒获得 cookie 失败");
+    if (Boolean(Cookie)) {
+      config.cookie = cookie2object(Cookie);
+      original_config = $.getjson($.name + "_daily_bonus", {});
+      if (Boolean(original_config.cookie)) {
+        if (original_config.cookie.bili_jct === config.cookie.bili_jct) {
+          $.log("- cookie未失效,无需更新");
+        } else {
+          setCookieToLocalStore(config, 2);
+        }
+      } else {
+        setCookieToLocalStore(config, 1);
+      }
     } else {
-      $.log("- 尚未登录, 请登录后再重新获取cookie");
+      $.msg($.name, "- 尚未登录, 请登录后重新获取cookie");
     }
   }
+}
+
+async function getConfirm_uri() {
+  var sign = md5(
+    "api=http://link.acg.tv/forum.php" + "c2ed53a74eeefe3cf99fbd01d8c9c375",
+  );
+  const myRequest = {
+    url:
+      "https://passport.bilibili.com/login/app/third?appkey=27eb53fc9058f8c3&api=http://link.acg.tv/forum.php&sign=" +
+      sign,
+    headers: {
+      cookie: config.cookieStr,
+    },
+  };
+  return await $.http.get(myRequest).then(
+    (response) => {
+      try {
+        const body = $.toObj(response.body);
+        if (body?.code === 0) {
+          return body?.data?.confirm_uri;
+        } else {
+          $.log("- 查询失败");
+          $.log("- 失败原因 " + body?.message);
+        }
+      } catch (e) {
+        $.logErr(e, response);
+      }
+    },
+    (reason) => {
+      $.log("- 失败原因 " + $.toStr(reason));
+      return "error";
+    },
+  );
+}
+
+function captureAccess_key(confirm_uri) {
+  return new Promise((resolve, reject) => {
+    const myRequest = {
+      url: confirm_uri,
+      headers: {
+        cookie: config.cookieStr,
+      },
+    };
+    $.get(myRequest, (err, resp, data) => {
+      if (err) reject(err);
+      else {
+        try {
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve();
+        }
+      }
+    });
+  });
+}
+
+function getAccess_key(confirm_uri) {
+  return new Promise((resolve, reject) => {
+    $.log("- 正在获取access_key, 请稍后");
+    const myRequest = {
+      url: confirm_uri,
+      headers: {
+        cookie: config.cookieStr,
+      },
+      opts: {
+        redirection: false,
+      },
+    };
+    $.get(myRequest, (err, resp, data) => {
+      if (err) reject(err);
+      else {
+        try {
+          const url = resp.headers.Location;
+          if (url) {
+            config.key = url.match(/.*access_key=(.*?)&mid/)?.[1];
+          }
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve();
+        }
+      }
+    });
+  });
+}
+
+function getRecentRequests() {
+  return new Promise((resolve, reject) => {
+    $.log("- 正在获取最近请求列表, 请稍后");
+    $httpAPI("GET", "/v1/requests/recent", null, (result) => {
+      if (!result) reject(result);
+      else {
+        try {
+          const url = result.requests.find((request) =>
+            request.URL.includes("access_key"),
+          )?.URL;
+          if (url) {
+            config.key = url.match(/.*access_key=(.*?)&mid/)?.[1];
+          }
+        } catch (e) {
+          $.logErr(e, result);
+        } finally {
+          resolve();
+        }
+      }
+    });
+  });
 }
 
 async function signBiliBili() {
