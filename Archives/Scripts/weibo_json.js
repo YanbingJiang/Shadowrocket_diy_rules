@@ -1,8 +1,8 @@
 // SOURCE: https://raw.githubusercontent.com/ddgksf2013/Scripts/master/weibo_json.js
 // Author: @ddgksf2013 @Zmqcherish
-// Update: 2024-01-05
+// Update: 2024-01-25
 
-const version = "V2.0.122";
+const version = "V2.0.125";
 
 const mainConfig = {
     isDebug: !1,
@@ -55,7 +55,7 @@ const mainConfig = {
     mblog_menus_apeal: !0,
     mblog_menus_home: !0,
   },
-  modifyCardsUrls = ["/cardlist", "video/community_tab", "/searchall"],
+  modifyCardsUrls = ["/cardlist", "video/community_tab", "searchall"],
   modifyStatusesUrls = [
     "statuses/friends/timeline",
     "statuses_unread_hot_timeline",
@@ -288,6 +288,7 @@ function checkSearchWindow(e) {
     !!mainConfig.removeSearchWindow &&
     "card" == e.category &&
     (e.data?.itemid == "finder_window" ||
+      e.data?.itemid == "discover_gallery" ||
       e.data?.itemid == "more_frame" ||
       e.data?.card_type == 208 ||
       e.data?.card_type == 247 ||
@@ -306,7 +307,9 @@ function removeSearch(e) {
         (o.data?.page_info?.video_limit && delete o.data.page_info.video_limit,
         t.push(o))
       : "group" == o.category
-      ? ((o.items = o.items.filter((e) => e.data?.card_type === 17)),
+      ? ((o.items = o.items.filter(
+          (e) => e.data?.card_type == void 0 || e.data?.card_type === 17,
+        )),
         o.items.length > 0 && t.push(o))
       : checkSearchWindow(o) || t.push(o);
   return (
@@ -344,31 +347,33 @@ function removePage(e) {
   );
 }
 function removeCards(e) {
-  if ((e.hotwords && (e.hotwords = []), !e.cards)) return;
-  let t = [];
-  for (let o of e.cards) {
-    e.cardlistInfo?.containerid == "232082type=1" &&
-      (17 == o.card_type || 58 == o.card_type || 11 == o.card_type) &&
-      (o = { card_type: o.card_type + 1 });
-    let i = o.card_group;
-    if (i && i.length > 0) {
-      let a = [];
-      for (let r of i)
-        118 == r.card_type ||
-          isAd(r.mblog) ||
-          -1 != JSON.stringify(r).indexOf("res_from:ads") ||
-          a.push(r);
-      (o.card_group = a), t.push(o);
-    } else {
-      let n = o.card_type;
-      if ([9, 165].indexOf(n) > -1) isAd(o.mblog) || t.push(o);
-      else {
-        if ([1007, 180].indexOf(n) > -1) continue;
-        t.push(o);
+  if ((e.hotwords && (e.hotwords = []), e.cards)) {
+    let t = [];
+    for (let o of e.cards) {
+      e.cardlistInfo?.containerid == "232082type=1" &&
+        (17 == o.card_type || 58 == o.card_type || 11 == o.card_type) &&
+        (o = { card_type: o.card_type + 1 });
+      let i = o.card_group;
+      if (i && i.length > 0) {
+        let a = [];
+        for (let r of i)
+          118 == r.card_type ||
+            isAd(r.mblog) ||
+            -1 != JSON.stringify(r).indexOf("res_from:ads") ||
+            a.push(r);
+        (o.card_group = a), t.push(o);
+      } else {
+        let n = o.card_type;
+        if ([9, 165].indexOf(n) > -1) isAd(o.mblog) || t.push(o);
+        else {
+          if ([1007, 180].indexOf(n) > -1) continue;
+          t.push(o);
+        }
       }
     }
+    e.cards = t;
   }
-  e.cards = t;
+  e.items && (log("data.items"), removeSearch(e));
 }
 function lvZhouHandler(e) {
   if (!mainConfig.removeLvZhou || !e) return;
