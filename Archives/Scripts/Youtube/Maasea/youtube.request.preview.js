@@ -1,3 +1,4 @@
+// https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/dist/youtube.request.preview.js
 // Build: 2024/2/27 19:14:32
 (() => {
   var at = Object.defineProperty;
