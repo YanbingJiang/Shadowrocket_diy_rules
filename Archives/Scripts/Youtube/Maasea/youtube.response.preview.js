@@ -1,5 +1,5 @@
 // https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/dist/youtube.response.preview.js
-// Build: 2024/3/10 08:46:17
+// Build: 2024/3/20 16:24:03
 (() => {
   var Vt = Object.defineProperty;
   var Jt = (t, e, n) =>
@@ -3042,7 +3042,7 @@ ${c[0][g][0]}`;
         return (
           this.message.adPlacements?.length &&
             (this.message.adPlacements.length = 0),
-          delete this.message.playbackTracking.pageadViewthroughconversion,
+          delete this.message?.playbackTracking?.pageadViewthroughconversion,
           this.addPlayAbility(),
           this.addTranslateCaption(),
           (this.needProcess = !0),
