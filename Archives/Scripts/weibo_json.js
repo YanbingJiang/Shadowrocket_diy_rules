@@ -1,8 +1,8 @@
 // SOURCE: https://raw.githubusercontent.com/ddgksf2013/Scripts/master/weibo_json.js
 // Author: @ddgksf2013 @Zmqcherish
-// Update: 2024-01-25
+// Update: 2024-04-22
 
-const version = "V2.0.125";
+const version = "V2.0.126";
 
 const mainConfig = {
     isDebug: !1,
@@ -291,6 +291,7 @@ function checkSearchWindow(e) {
       e.data?.itemid == "discover_gallery" ||
       e.data?.itemid == "more_frame" ||
       e.data?.card_type == 208 ||
+      e.data?.card_type == 236 ||
       e.data?.card_type == 247 ||
       e.data?.card_type == 217 ||
       e.data?.card_type == 101 ||
@@ -308,7 +309,10 @@ function removeSearch(e) {
         t.push(o))
       : "group" == o.category
       ? ((o.items = o.items.filter(
-          (e) => e.data?.card_type == void 0 || e.data?.card_type === 17,
+          (e) =>
+            e.data?.card_type == void 0 ||
+            e.data?.card_type === 17 ||
+            e.data?.card_type === 10,
         )),
         o.items.length > 0 && t.push(o))
       : checkSearchWindow(o) || t.push(o);
