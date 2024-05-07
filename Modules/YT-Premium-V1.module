@@ -1,10 +1,16 @@
-#!name=YouTube premium
+#!name=YouTube Premium
 #!desc=Youtube Ad Full blocker with PIP player
 # Origin Author: @DivineEngine, @app2smile, @Maasea, @VirgilClyne
+# Other hints: @Choler, @bai1zi
 # Merged and released by @ddgksf2013 in form of qx
-# Translated by @bai1zi in form of ShadowRocket
+
+[Rule]
+AND,((DOMAIN-SUFFIX,googlevideo.com), (PROTOCOL,UDP)),REJECT
+AND,((DOMAIN,youtubei.googleapis.com), (PROTOCOL,UDP)),REJECT
 
 [Url Rewrite]
+# /Modules/YT-Adblocker.module
+# ^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad - reject-img
 ^https?:\/\/[\w-]+\.googlevideo\.com\/(?!(dclk_video_ads|videoplayback\?)).+&oad - reject-200
 # ======= Universal Ad Request ======= #
 ^https?:\/\/(www|s)\.youtube\.com\/api\/stats\/ads - reject-200 
@@ -15,7 +21,7 @@
 
 [Script]
 # ======= Search|Play Page|Short Video ||| PiP|Background Play ======= #
-youtube = type=http-response,pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/dist/youtube.response.beta.js
+youtube = type=http-response,pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting),requires-body=1,binary-body-mode=1,script-path=https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/dist/youtube.response.beta.js
 
 [MITM]
 hostname = %APPEND% -redirector*.googlevideo.com,*.googlevideo.com,www.youtube.com,s.youtube.com,youtubei.googleapis.com
