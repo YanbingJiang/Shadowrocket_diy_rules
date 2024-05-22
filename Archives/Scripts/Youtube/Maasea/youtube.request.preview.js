@@ -1,5 +1,5 @@
 // https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/dist/youtube.request.preview.js
-// Build: 2024/4/5 17:15:24
+// Build: 2024/5/12 16:01:11
 (() => {
   var ct = Object.defineProperty;
   var ft = (t, e, n) =>
@@ -2124,7 +2124,6 @@
   }
   var at = q.makeMessageType("youtube.request.common.Request", () => [
       { no: 1, name: "context", kind: "message", T: Ut },
-      { no: 2, name: "browseId", kind: "scalar", T: 9 },
     ]),
     Ut = q.makeMessageType("youtube.request.common.Context", () => [
       { no: 9, name: "adSignalsInfo", kind: "message", T: At },
