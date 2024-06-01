@@ -1,7 +1,7 @@
 // SOURCE: https://raw.githubusercontent.com/zmqcherish/proxy-script/main/weibo_main.js
 // Author: @Zmqcherish
 
-const version = "v0717.1";
+const version = "v0515.1";
 
 const $ = new Env("微博去广告");
 let storeMainConfig = $.getdata("mainConfig");
@@ -72,7 +72,7 @@ const itemMenusConfig = storeItemMenusConfig
       mblog_menus_home: true, //返回首页
     };
 
-const modifyCardsUrls = ["/cardlist", "video/community_tab", "/searchall"];
+const modifyCardsUrls = ["/cardlist", "video/community_tab"];
 const modifyStatusesUrls = [
   "statuses/friends/timeline",
   "statuses/unread_friends_timeline",
@@ -96,11 +96,13 @@ const otherUrls = {
   "/search/finder": "removeSearchMain",
   "/search/container_timeline": "removeSearch",
   "/search/container_discover": "removeSearch",
+  "/2/searchall": "removeSearch", //搜索
   "/2/messageflow": "removeMsgAd",
   "/2/page?": "removePage", //超话签到的按钮 /2/page/button 加?区别
   "/statuses/container_timeline_topic": "topicHandler", //超话tab
   "/statuses/container_timeline?": "removeMain", //首页
   "/statuses/container_timeline_unread": "removeMain", //首页
+  "/statuses/repost_timeline": "removeRepost", //转发流
 };
 
 function getModifyMethod(url) {
@@ -141,11 +143,39 @@ function checkJunkTopic(item) {
     return false;
   }
   try {
-    if (item.items[0]["data"]["title"] == "关注你感兴趣的超话") {
+    if (
+      ["super_topic_recommend_card", "recommend_video_card"].indexOf(
+        item.trend_name,
+      ) > -1
+    ) {
       return true;
     }
   } catch (error) {}
   return false;
+}
+
+function removeRepost(data) {
+  if (data.reposts) {
+    let newItems = [];
+    for (let item of data.reposts) {
+      if (!isAd(item)) {
+        newItems.push(item);
+      }
+    }
+    data.reposts = newItems;
+  }
+
+  if (data.hot_reposts) {
+    let newItems = [];
+    for (let item of data.hot_reposts) {
+      if (!isAd(item)) {
+        newItems.push(item);
+      }
+    }
+    data.hot_reposts = newItems;
+  }
+  log("removeRepost success");
+  return data;
 }
 
 function removeMain(data) {
@@ -222,7 +252,7 @@ function topicHandler(data) {
         let cData = c.data;
         if (cData?.top?.title == "正在活跃") {
           addFlag = false;
-        } else if (cData.card_type == 200 && cData.group) {
+        } else if (cData?.itemid.indexOf("infeed_may_interest_in") > -1) {
           addFlag = false;
         }
       }
