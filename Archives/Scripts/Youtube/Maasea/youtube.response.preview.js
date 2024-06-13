@@ -1,12 +1,12 @@
 // https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/dist/youtube.response.preview.js
-// Build: 2024/5/12 21:31:47
+// Build: 2024/6/11 21:59:22
 (() => {
   var _t = Object.defineProperty;
-  var qt = (t, e, n) =>
+  var Yt = (t, e, n) =>
     e in t
       ? _t(t, e, { enumerable: !0, configurable: !0, writable: !0, value: n })
       : (t[e] = n);
-  var K = (t, e, n) => (qt(t, typeof e != "symbol" ? e + "" : e, n), n);
+  var K = (t, e, n) => (Yt(t, typeof e != "symbol" ? e + "" : e, n), n);
   (function (t) {
     function e() {}
     function n() {}
@@ -44,9 +44,9 @@
           w,
           F = 0,
           J = 0,
-          O,
+          M,
           B = 0,
-          C = -1;
+          O = -1;
         y < T;
 
       ) {
@@ -57,32 +57,32 @@
         ) {
           switch (((w = h[y] & 255), w >> 4)) {
             case 15:
-              if (((O = h[(y = (y + 1) | 0)] & 255), O >> 6 !== 2 || 247 < w)) {
+              if (((M = h[(y = (y + 1) | 0)] & 255), M >> 6 !== 2 || 247 < w)) {
                 y = (y - 1) | 0;
                 break;
               }
-              (F = ((w & 7) << 6) | (O & 63)), (J = 5), (w = 256);
+              (F = ((w & 7) << 6) | (M & 63)), (J = 5), (w = 256);
             case 14:
-              (O = h[(y = (y + 1) | 0)] & 255),
+              (M = h[(y = (y + 1) | 0)] & 255),
                 (F <<= 6),
-                (F |= ((w & 15) << 6) | (O & 63)),
-                (J = O >> 6 === 2 ? (J + 4) | 0 : 24),
+                (F |= ((w & 15) << 6) | (M & 63)),
+                (J = M >> 6 === 2 ? (J + 4) | 0 : 24),
                 (w = (w + 256) & 768);
             case 13:
             case 12:
-              (O = h[(y = (y + 1) | 0)] & 255),
+              (M = h[(y = (y + 1) | 0)] & 255),
                 (F <<= 6),
-                (F |= ((w & 31) << 6) | (O & 63)),
+                (F |= ((w & 31) << 6) | (M & 63)),
                 (J = (J + 7) | 0),
-                y < T && O >> 6 === 2 && F >> J && 1114112 > F
+                y < T && M >> 6 === 2 && F >> J && 1114112 > F
                   ? ((w = F),
                     (F = (F - 65536) | 0),
                     0 <= F &&
-                      ((C = ((F >> 10) + 55296) | 0),
+                      ((O = ((F >> 10) + 55296) | 0),
                       (w = ((F & 1023) + 56320) | 0),
                       31 > B
-                        ? ((p[B] = C), (B = (B + 1) | 0), (C = -1))
-                        : ((O = C), (C = w), (w = O))))
+                        ? ((p[B] = O), (B = (B + 1) | 0), (O = -1))
+                        : ((M = O), (O = w), (w = M))))
                   : ((w >>= 8), (y = (y - w - 1) | 0), (w = 65533)),
                 (F = J = 0),
                 (x = y <= j ? 32 : (T - y) | 0);
@@ -134,9 +134,9 @@
           32 > B && (N = N.slice(0, (B - 32) | 0)),
           y < T)
         ) {
-          if (((p[0] = C), (B = ~C >>> 31), (C = -1), N.length < R.length))
+          if (((p[0] = O), (B = ~O >>> 31), (O = -1), N.length < R.length))
             continue;
-        } else C !== -1 && (N += r(C));
+        } else O !== -1 && (N += r(O));
         (R += N), (N = "");
       }
       return R;
@@ -188,9 +188,9 @@
   function I(t, e) {
     if (!t) throw new Error(e);
   }
-  var Wt = 34028234663852886e22,
-    Xt = -34028234663852886e22,
-    Yt = 4294967295,
+  var qt = 34028234663852886e22,
+    Wt = -34028234663852886e22,
+    Xt = 4294967295,
     jt = 2147483647,
     Kt = -2147483648;
   function _(t) {
@@ -200,12 +200,12 @@
   }
   function z(t) {
     if (typeof t != "number") throw new Error("invalid uint 32: " + typeof t);
-    if (!Number.isInteger(t) || t > Yt || t < 0)
+    if (!Number.isInteger(t) || t > Xt || t < 0)
       throw new Error("invalid uint 32: " + t);
   }
-  function te(t) {
+  function ne(t) {
     if (typeof t != "number") throw new Error("invalid float 32: " + typeof t);
-    if (Number.isFinite(t) && (t > Wt || t < Xt))
+    if (Number.isFinite(t) && (t > qt || t < Wt))
       throw new Error("invalid float 32: " + t);
   }
   var We = Symbol("@bufbuild/protobuf/enum-type");
@@ -213,19 +213,19 @@
     let e = t[We];
     return I(e, "missing enum type on enum object"), e;
   }
-  function Ne(t, e, n, r) {
-    t[We] = Se(
+  function Se(t, e, n, r) {
+    t[We] = Ee(
       e,
       n.map((s) => ({ no: s.no, name: s.name, localName: t[s.no] })),
       r,
     );
   }
-  function Se(t, e, n) {
+  function Ee(t, e, n) {
     let r = Object.create(null),
       s = Object.create(null),
       o = [];
     for (let i of e) {
-      let a = je(i);
+      let a = Ke(i);
       o.push(a), (r[i.name] = a), (s[i.no] = a);
     }
     return {
@@ -239,15 +239,15 @@
       },
     };
   }
-  function Ye(t, e, n) {
+  function je(t, e, n) {
     let r = {};
     for (let s of e) {
-      let o = je(s);
+      let o = Ke(s);
       (r[o.localName] = o.no), (r[o.no] = o.localName);
     }
-    return Ne(r, t, e, n), r;
+    return Se(r, t, e, n), r;
   }
-  function je(t) {
+  function Ke(t) {
     return "localName" in t
       ? t
       : Object.assign(Object.assign({}, t), { localName: t.name });
@@ -313,7 +313,7 @@
       return Object.getPrototypeOf(this).constructor;
     }
   };
-  function Ke(t, e, n, r) {
+  function ze(t, e, n, r) {
     var s;
     let o =
         (s = r?.localName) !== null && s !== void 0
@@ -364,11 +364,11 @@
       (t[(t.SINT32 = 17)] = "SINT32"),
       (t[(t.SINT64 = 18)] = "SINT64");
   })(u || (u = {}));
-  var M;
+  var C;
   (function (t) {
     (t[(t.BIGINT = 0)] = "BIGINT"), (t[(t.STRING = 1)] = "STRING");
-  })(M || (M = {}));
-  function He() {
+  })(C || (C = {}));
+  function Qe() {
     let t = 0,
       e = 0;
     for (let r = 0; r < 28; r += 7) {
@@ -386,7 +386,7 @@
     }
     throw new Error("invalid varint");
   }
-  function re(t, e, n) {
+  function se(t, e, n) {
     for (let o = 0; o < 28; o = o + 7) {
       let i = t >>> o,
         a = !(!(i >>> 7) && e == 0),
@@ -405,8 +405,8 @@
       n.push((e >>> 31) & 1);
     }
   }
-  var ne = 4294967296;
-  function Ee(t) {
+  var re = 4294967296;
+  function Fe(t) {
     let e = t[0] === "-";
     e && (t = t.slice(1));
     let n = 1e6,
@@ -416,20 +416,20 @@
       let c = Number(t.slice(i, a));
       (s *= n),
         (r = r * n + c),
-        r >= ne && ((s = s + ((r / ne) | 0)), (r = r % ne));
+        r >= re && ((s = s + ((r / re) | 0)), (r = r % re));
     }
-    return o(-24, -18), o(-18, -12), o(-12, -6), o(-6), e ? Ze(r, s) : Re(r, s);
+    return o(-24, -18), o(-18, -12), o(-12, -6), o(-6), e ? et(r, s) : Be(r, s);
   }
-  function Qe(t, e) {
-    let n = Re(t, e),
+  function Ze(t, e) {
+    let n = Be(t, e),
       r = n.hi & 2147483648;
-    r && (n = Ze(n.lo, n.hi));
-    let s = Fe(n.lo, n.hi);
+    r && (n = et(n.lo, n.hi));
+    let s = Re(n.lo, n.hi);
     return r ? "-" + s : s;
   }
-  function Fe(t, e) {
+  function Re(t, e) {
     if ((({ lo: t, hi: e } = zt(t, e)), e <= 2097151))
-      return String(ne * e + t);
+      return String(re * e + t);
     let n = t & 16777215,
       r = ((t >>> 24) | (e << 8)) & 16777215,
       s = (e >> 16) & 65535,
@@ -440,23 +440,23 @@
     return (
       o >= c && ((i += Math.floor(o / c)), (o %= c)),
       i >= c && ((a += Math.floor(i / c)), (i %= c)),
-      a.toString() + ze(i) + ze(o)
+      a.toString() + He(i) + He(o)
     );
   }
   function zt(t, e) {
     return { lo: t >>> 0, hi: e >>> 0 };
   }
-  function Re(t, e) {
+  function Be(t, e) {
     return { lo: t | 0, hi: e | 0 };
   }
-  function Ze(t, e) {
-    return (e = ~e), t ? (t = ~t + 1) : (e += 1), Re(t, e);
+  function et(t, e) {
+    return (e = ~e), t ? (t = ~t + 1) : (e += 1), Be(t, e);
   }
-  var ze = (t) => {
+  var He = (t) => {
     let e = String(t);
     return "0000000".slice(e.length) + e;
   };
-  function Be(t, e) {
+  function Me(t, e) {
     if (t >= 0) {
       for (; t > 127; ) e.push((t & 127) | 128), (t = t >>> 7);
       e.push(t);
@@ -465,7 +465,7 @@
       e.push(1);
     }
   }
-  function et() {
+  function tt() {
     let t = this.buf[this.pos++],
       e = t & 127;
     if (!(t & 128)) return this.assertBounds(), e;
@@ -545,16 +545,16 @@
         return typeof s != "string" && (s = s.toString()), r(s), s;
       },
       enc(s) {
-        return typeof s != "string" && (s = s.toString()), n(s), Ee(s);
+        return typeof s != "string" && (s = s.toString()), n(s), Fe(s);
       },
       uEnc(s) {
-        return typeof s != "string" && (s = s.toString()), r(s), Ee(s);
+        return typeof s != "string" && (s = s.toString()), r(s), Fe(s);
       },
       dec(s, o) {
-        return Qe(s, o);
+        return Ze(s, o);
       },
       uDec(s, o) {
-        return Fe(s, o);
+        return Re(s, o);
       },
     };
   }
@@ -568,7 +568,7 @@
       (t[(t.EndGroup = 4)] = "EndGroup"),
       (t[(t.Bit32 = 5)] = "Bit32");
   })(k || (k = {}));
-  var se = class {
+  var oe = class {
       constructor(e) {
         (this.stack = []),
           (this.textEncoder = e ?? new TextEncoder()),
@@ -620,7 +620,7 @@
         return this.buf.push(e), this;
       }
       int32(e) {
-        return _(e), Be(e, this.buf), this;
+        return _(e), Me(e, this.buf), this;
       }
       bool(e) {
         return this.buf.push(e ? 1 : 0), this;
@@ -633,7 +633,7 @@
         return this.uint32(n.byteLength), this.raw(n);
       }
       float(e) {
-        te(e);
+        ne(e);
         let n = new Uint8Array(4);
         return new DataView(n.buffer).setFloat32(0, e, !0), this.raw(n);
       }
@@ -652,7 +652,7 @@
         return new DataView(n.buffer).setInt32(0, e, !0), this.raw(n);
       }
       sint32(e) {
-        return _(e), (e = ((e << 1) ^ (e >> 31)) >>> 0), Be(e, this.buf), this;
+        return _(e), (e = ((e << 1) ^ (e >> 31)) >>> 0), Me(e, this.buf), this;
       }
       sfixed64(e) {
         let n = new Uint8Array(8),
@@ -668,24 +668,24 @@
       }
       int64(e) {
         let n = S.enc(e);
-        return re(n.lo, n.hi, this.buf), this;
+        return se(n.lo, n.hi, this.buf), this;
       }
       sint64(e) {
         let n = S.enc(e),
           r = n.hi >> 31,
           s = (n.lo << 1) ^ r,
           o = ((n.hi << 1) | (n.lo >>> 31)) ^ r;
-        return re(s, o, this.buf), this;
+        return se(s, o, this.buf), this;
       }
       uint64(e) {
         let n = S.uEnc(e);
-        return re(n.lo, n.hi, this.buf), this;
+        return se(n.lo, n.hi, this.buf), this;
       }
     },
-    oe = class {
+    ie = class {
       constructor(e, n) {
-        (this.varint64 = He),
-          (this.uint32 = et),
+        (this.varint64 = Qe),
+          (this.uint32 = tt),
           (this.buf = e),
           (this.len = e.length),
           (this.pos = 0),
@@ -870,7 +870,7 @@
     let o = u[t].toLowerCase();
     return [r, o, n || s];
   }
-  function tt(t, e, n, r) {
+  function nt(t, e, n, r) {
     let s;
     return {
       typeName: e,
@@ -887,7 +887,7 @@
       runtime: t,
     };
   }
-  function ie(t) {
+  function ae(t) {
     let e = t.field.localName,
       n = Object.create(null);
     return (n[e] = Qt(t)), [n, () => n[e]];
@@ -909,7 +909,7 @@
         throw "map fields are not allowed to be extensions";
     }
   }
-  function nt(t, e) {
+  function rt(t, e) {
     if (!e.repeated && (e.kind == "enum" || e.kind == "scalar")) {
       for (let n = t.length - 1; n >= 0; --n)
         if (t[n].no == e.no) return [t[n]];
@@ -917,24 +917,24 @@
     }
     return t.filter((n) => n.no === e.no);
   }
-  function rt(t, e, n, r) {
+  function st(t, e, n, r) {
     return {
       syntax: t,
       json: e,
       bin: n,
       util: r,
       makeMessageType(s, o, i) {
-        return Ke(this, s, o, i);
+        return ze(this, s, o, i);
       },
-      makeEnum: Ye,
-      makeEnumType: Se,
+      makeEnum: je,
+      makeEnumType: Ee,
       getEnumType: Xe,
       makeExtension(s, o, i) {
-        return tt(this, s, o, i);
+        return nt(this, s, o, i);
       },
     };
   }
-  function ae(t, e) {
+  function ce(t, e) {
     return e instanceof E || !t.fieldWrapper ? e : t.fieldWrapper.wrapField(e);
   }
   var Kr = {
@@ -948,34 +948,34 @@
     "google.protobuf.StringValue": u.STRING,
     "google.protobuf.BytesValue": u.BYTES,
   };
-  var q = Symbol("@bufbuild/protobuf/unknown-fields"),
-    st = { readUnknownFields: !0, readerFactory: (t) => new oe(t) },
-    ot = { writeUnknownFields: !0, writerFactory: () => new se() };
+  var Y = Symbol("@bufbuild/protobuf/unknown-fields"),
+    ot = { readUnknownFields: !0, readerFactory: (t) => new ie(t) },
+    it = { writeUnknownFields: !0, writerFactory: () => new oe() };
   function Zt(t) {
-    return t ? Object.assign(Object.assign({}, st), t) : st;
-  }
-  function en(t) {
     return t ? Object.assign(Object.assign({}, ot), t) : ot;
   }
-  function at() {
+  function en(t) {
+    return t ? Object.assign(Object.assign({}, it), t) : it;
+  }
+  function ct() {
     return {
       makeReadOptions: Zt,
       makeWriteOptions: en,
       listUnknownFields(t) {
         var e;
-        return (e = t[q]) !== null && e !== void 0 ? e : [];
+        return (e = t[Y]) !== null && e !== void 0 ? e : [];
       },
       discardUnknownFields(t) {
-        delete t[q];
+        delete t[Y];
       },
       writeUnknownFields(t, e) {
-        let r = t[q];
+        let r = t[Y];
         if (r) for (let s of r) e.tag(s.no, s.wireType).raw(s.data);
       },
       onUnknownField(t, e, n, r) {
         let s = t;
-        Array.isArray(s[q]) || (s[q] = []),
-          s[q].push({ no: e, wireType: n, data: r });
+        Array.isArray(s[Y]) || (s[Y] = []),
+          s[Y].push({ no: e, wireType: n, data: r });
       },
       readMessage(t, e, n, r, s) {
         let o = t.getType(),
@@ -989,15 +989,15 @@
             r.readUnknownFields && this.onUnknownField(t, a, c, m);
             continue;
           }
-          it(t, e, f, c, r);
+          at(t, e, f, c, r);
         }
         if (s && (c != k.EndGroup || a !== n))
           throw new Error("invalid end group tag");
       },
-      readField: it,
+      readField: at,
     };
   }
-  function it(t, e, n, r, s) {
+  function at(t, e, n, r, s) {
     let { repeated: o, localName: i } = n;
     switch (
       (n.oneof &&
@@ -1010,7 +1010,7 @@
       case "scalar":
       case "enum":
         let a = n.kind == "enum" ? u.INT32 : n.T,
-          c = ue;
+          c = fe;
         if ((n.kind == "scalar" && n.L > 0 && (c = nn), o)) {
           let g = t[i];
           if (r == k.LengthDelimited && a != u.STRING && a != u.BYTES) {
@@ -1022,10 +1022,10 @@
       case "message":
         let f = n.T;
         o
-          ? t[i].push(ce(e, new f(), s, n))
+          ? t[i].push(ue(e, new f(), s, n))
           : t[i] instanceof E
-          ? ce(e, t[i], s, n)
-          : ((t[i] = ce(e, new f(), s, n)),
+          ? ue(e, t[i], s, n)
+          : ((t[i] = ue(e, new f(), s, n)),
             f.fieldWrapper &&
               !n.oneof &&
               !n.repeated &&
@@ -1037,7 +1037,7 @@
         break;
     }
   }
-  function ce(t, e, n, r) {
+  function ue(t, e, n, r) {
     let s = e.getType().runtime.bin,
       o = r?.delimited;
     return s.readMessage(e, t, o ? r?.no : t.uint32(), n, o), e;
@@ -1051,25 +1051,25 @@
       let [a] = e.tag();
       switch (a) {
         case 1:
-          o = ue(e, t.K);
+          o = fe(e, t.K);
           break;
         case 2:
           switch (t.V.kind) {
             case "scalar":
-              i = ue(e, t.V.T);
+              i = fe(e, t.V.T);
               break;
             case "enum":
               i = e.int32();
               break;
             case "message":
-              i = ce(e, new t.V.T(), n, void 0);
+              i = ue(e, new t.V.T(), n, void 0);
               break;
           }
           break;
       }
     }
     if (o === void 0) {
-      let a = G(t.K, M.BIGINT);
+      let a = G(t.K, C.BIGINT);
       o = t.K == u.BOOL ? a.toString() : a;
     }
     if (
@@ -1078,7 +1078,7 @@
     )
       switch (t.V.kind) {
         case "scalar":
-          i = G(t.V.T, M.BIGINT);
+          i = G(t.V.T, C.BIGINT);
           break;
         case "enum":
           i = 0;
@@ -1090,10 +1090,10 @@
     return [o, i];
   }
   function nn(t, e) {
-    let n = ue(t, e);
+    let n = fe(t, e);
     return typeof n == "bigint" ? n.toString() : n;
   }
-  function ue(t, e) {
+  function fe(t, e) {
     switch (e) {
       case u.STRING:
         return t.string();
@@ -1127,7 +1127,7 @@
         return t.sint32();
     }
   }
-  function ct(t, e, n, r, s) {
+  function ut(t, e, n, r, s) {
     t.tag(n.no, k.LengthDelimited), t.fork();
     let o = r;
     switch (n.K) {
@@ -1142,12 +1142,12 @@
         I(r == "true" || r == "false"), (o = r == "true");
         break;
     }
-    switch ((W(t, n.K, 1, o, !0), n.V.kind)) {
+    switch ((q(t, n.K, 1, o, !0), n.V.kind)) {
       case "scalar":
-        W(t, n.V.T, 2, s, !0);
+        q(t, n.V.T, 2, s, !0);
         break;
       case "enum":
-        W(t, u.INT32, 2, s, !0);
+        q(t, u.INT32, 2, s, !0);
         break;
       case "message":
         t.tag(2, k.LengthDelimited).bytes(s.toBinary(e));
@@ -1156,25 +1156,25 @@
     t.join();
   }
   function Ce(t, e, n, r) {
-    let s = ae(n.T, r);
+    let s = ce(n.T, r);
     n?.delimited
       ? t.tag(n.no, k.StartGroup).raw(s.toBinary(e)).tag(n.no, k.EndGroup)
       : t.tag(n.no, k.LengthDelimited).bytes(s.toBinary(e));
   }
-  function W(t, e, n, r, s) {
+  function q(t, e, n, r, s) {
     let [o, i, a] = Oe(e, r);
     (!a || s) && t.tag(n, o)[i](r);
   }
-  function ut(t, e, n, r) {
+  function ft(t, e, n, r) {
     if (!r.length) return;
     t.tag(n, k.LengthDelimited).fork();
     let [, s] = Oe(e);
     for (let o = 0; o < r.length; o++) t[s](r[o]);
     t.join();
   }
-  function mt() {
-    return Object.assign(Object.assign({}, at()), {
-      writeField: ft,
+  function dt() {
+    return Object.assign(Object.assign({}, ct()), {
+      writeField: mt,
       writeMessage(t, e, n) {
         let r = t.getType();
         for (let s of r.fields.byNumber()) {
@@ -1185,29 +1185,29 @@
             if (a.case !== i) continue;
             o = a.value;
           } else o = t[i];
-          ft(s, o, e, n);
+          mt(s, o, e, n);
         }
         return n.writeUnknownFields && this.writeUnknownFields(t, e), e;
       },
     });
   }
-  function ft(t, e, n, r) {
+  function mt(t, e, n, r) {
     let s = t.repeated;
     switch (t.kind) {
       case "scalar":
       case "enum":
         let o = t.kind == "enum" ? u.INT32 : t.T;
         if (s)
-          if (t.packed) ut(n, o, t.no, e);
-          else for (let i of e) W(n, o, t.no, i, !0);
-        else e !== void 0 && W(n, o, t.no, e, !!t.oneof || t.opt);
+          if (t.packed) ft(n, o, t.no, e);
+          else for (let i of e) q(n, o, t.no, i, !0);
+        else e !== void 0 && q(n, o, t.no, e, !!t.oneof || t.opt);
         break;
       case "message":
         if (s) for (let i of e) Ce(n, r, t, i);
         else e !== void 0 && Ce(n, r, t, e);
         break;
       case "map":
-        for (let [i, a] of Object.entries(e)) ct(n, r, t, i, a);
+        for (let [i, a] of Object.entries(e)) ut(n, r, t, i, a);
         break;
     }
   }
@@ -1215,11 +1215,11 @@
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split(
         "",
       ),
-    fe = [];
-  for (let t = 0; t < A.length; t++) fe[A[t].charCodeAt(0)] = t;
-  fe["-".charCodeAt(0)] = A.indexOf("+");
-  fe["_".charCodeAt(0)] = A.indexOf("/");
-  var Me = {
+    me = [];
+  for (let t = 0; t < A.length; t++) me[A[t].charCodeAt(0)] = t;
+  me["-".charCodeAt(0)] = A.indexOf("+");
+  me["_".charCodeAt(0)] = A.indexOf("/");
+  var Pe = {
     dec(t) {
       let e = (t.length * 3) / 4;
       t[t.length - 2] == "=" ? (e -= 2) : t[t.length - 1] == "=" && (e -= 1);
@@ -1229,7 +1229,7 @@
         o,
         i = 0;
       for (let a = 0; a < t.length; a++) {
-        if (((o = fe[t.charCodeAt(a)]), o === void 0))
+        if (((o = me[t.charCodeAt(a)]), o === void 0))
           switch (t[a]) {
             case "=":
               s = 0;
@@ -1280,11 +1280,11 @@
       return n && ((e += A[s]), (e += "="), n == 1 && (e += "=")), e;
     },
   };
-  function dt(t, e, n) {
-    pt(e, t);
+  function lt(t, e, n) {
+    gt(e, t);
     let r = e.runtime.bin.makeReadOptions(n),
-      s = nt(t.getType().runtime.bin.listUnknownFields(t), e.field),
-      [o, i] = ie(e);
+      s = rt(t.getType().runtime.bin.listUnknownFields(t), e.field),
+      [o, i] = ae(e);
     for (let a of s)
       e.runtime.bin.readField(
         o,
@@ -1295,11 +1295,11 @@
       );
     return i();
   }
-  function lt(t, e, n, r) {
-    pt(e, t);
+  function pt(t, e, n, r) {
+    gt(e, t);
     let s = e.runtime.bin.makeReadOptions(r),
       o = e.runtime.bin.makeWriteOptions(r);
-    if (Pe(t, e)) {
+    if (Ue(t, e)) {
       let f = t
         .getType()
         .runtime.bin.listUnknownFields(t)
@@ -1322,34 +1322,34 @@
       t.getType().runtime.bin.onUnknownField(t, f, m, l);
     }
   }
-  function Pe(t, e) {
+  function Ue(t, e) {
     let n = t.getType();
     return (
       e.extendee.typeName === n.typeName &&
       !!n.runtime.bin.listUnknownFields(t).find((r) => r.no == e.field.no)
     );
   }
-  function pt(t, e) {
+  function gt(t, e) {
     I(
       t.extendee.typeName == e.getType().typeName,
       `extension ${t.typeName} can only be applied to message ${t.extendee.typeName}`,
     );
   }
-  var gt = { ignoreUnknownFields: !1 },
-    ht = {
+  var ht = { ignoreUnknownFields: !1 },
+    yt = {
       emitDefaultValues: !1,
       enumAsInteger: !1,
       useProtoFieldName: !1,
       prettySpaces: 0,
     };
   function rn(t) {
-    return t ? Object.assign(Object.assign({}, gt), t) : gt;
-  }
-  function sn(t) {
     return t ? Object.assign(Object.assign({}, ht), t) : ht;
   }
-  function kt(t, e) {
-    let n = e(on, bt);
+  function sn(t) {
+    return t ? Object.assign(Object.assign({}, yt), t) : yt;
+  }
+  function Tt(t, e) {
+    let n = e(on, kt);
     return {
       makeReadOptions: rn,
       makeWriteOptions: sn,
@@ -1373,15 +1373,15 @@
                 );
               a.set(l.oneof, f);
             }
-            yt(i, m, l, o, r, t);
+            bt(i, m, l, o, r, t);
           } else {
             let g = !1;
             if (c?.findExtension && f.startsWith("[") && f.endsWith("]")) {
               let p = c.findExtension(f.substring(1, f.length - 1));
               if (p && p.extendee.typeName == r.typeName) {
                 g = !0;
-                let [h, R] = ie(p);
-                yt(h, m, p.field, o, p, !0), lt(i, p, R(), o);
+                let [h, R] = ae(p);
+                bt(h, m, p.field, o, p, !0), pt(i, p, R(), o);
               }
             }
             if (!g && !o.ignoreUnknownFields)
@@ -1412,8 +1412,8 @@
           if (c?.findExtensionFor)
             for (let f of o.runtime.bin.listUnknownFields(r)) {
               let m = c.findExtensionFor(o.typeName, f.no);
-              if (m && Pe(r, m)) {
-                let l = dt(r, m, s),
+              if (m && Ue(r, m)) {
+                let l = lt(r, m, s),
                   g = n(m.field, l, s);
                 g !== void 0 && (i[m.field.jsonName] = g);
               }
@@ -1428,7 +1428,7 @@
         return i;
       },
       readScalar: (r, s, o) => H(r, s, o, t),
-      writeScalar: bt,
+      writeScalar: kt,
       debug: P,
     };
   }
@@ -1443,7 +1443,7 @@
         return String(t);
     }
   }
-  function yt(t, e, n, r, s, o) {
+  function bt(t, e, n, r, s, o) {
     let i = n.localName;
     if (n.oneof) {
       if (e === null && n.kind == "scalar") return;
@@ -1467,7 +1467,7 @@
             f = n.T.fromJson(c, r);
             break;
           case "enum":
-            if (((f = Ue(n.T, c, r.ignoreUnknownFields, !0)), f === void 0))
+            if (((f = Ae(n.T, c, r.ignoreUnknownFields, !0)), f === void 0))
               continue;
             break;
           case "scalar":
@@ -1506,12 +1506,12 @@
             m = n.V.T.fromJson(f, r);
             break;
           case "enum":
-            if (((m = Ue(n.V.T, f, r.ignoreUnknownFields, !0)), m === void 0))
+            if (((m = Ae(n.V.T, f, r.ignoreUnknownFields, !0)), m === void 0))
               continue;
             break;
           case "scalar":
             try {
-              m = H(n.V.T, f, M.BIGINT, !0);
+              m = H(n.V.T, f, C.BIGINT, !0);
             } catch (l) {
               let g = `cannot decode map value for field ${s.typeName}.${
                 n.name
@@ -1530,7 +1530,7 @@
             H(
               n.K,
               n.K == u.BOOL ? (c == "true" ? !0 : c == "false" ? !1 : c) : c,
-              M.BIGINT,
+              C.BIGINT,
               !0,
             ).toString()
           ] = m;
@@ -1565,7 +1565,7 @@
                 (t[i] = a.fieldWrapper.unwrapField(t[i])));
           break;
         case "enum":
-          let c = Ue(n.T, e, r.ignoreUnknownFields, o);
+          let c = Ae(n.T, e, r.ignoreUnknownFields, o);
           c !== void 0 && (t[i] = c);
           break;
         case "scalar":
@@ -1601,7 +1601,7 @@
           break;
         let s = Number(e);
         if (Number.isNaN(s) || !Number.isFinite(s)) break;
-        return t == u.FLOAT && te(s), s;
+        return t == u.FLOAT && ne(s), s;
       case u.INT32:
       case u.FIXED32:
       case u.SFIXED32:
@@ -1650,11 +1650,11 @@
         if (e === null) return r ? new Uint8Array(0) : void 0;
         if (e === "") return new Uint8Array(0);
         if (typeof e != "string") break;
-        return Me.dec(e);
+        return Pe.dec(e);
     }
     throw new Error();
   }
-  function Ue(t, e, n, r) {
+  function Ae(t, e, n, r) {
     if (e === null) return r ? t.values[0].no : void 0;
     switch (typeof e) {
       case "number":
@@ -1676,7 +1676,7 @@
     let o = t.findNumber(e);
     return (s = o?.name) !== null && s !== void 0 ? s : e;
   }
-  function bt(t, e, n) {
+  function kt(t, e, n) {
     if (e !== void 0)
       switch (t) {
         case u.INT32:
@@ -1719,12 +1719,12 @@
         case u.BYTES:
           return (
             I(e instanceof Uint8Array),
-            n || e.byteLength > 0 ? Me.enc(e) : void 0
+            n || e.byteLength > 0 ? Pe.enc(e) : void 0
           );
       }
   }
-  function Tt() {
-    return kt(
+  function wt() {
+    return Tt(
       !0,
       (t, e) =>
         function (r, s, o) {
@@ -1781,15 +1781,15 @@
                   o.enumAsInteger,
                 );
               case "message":
-                return ae(r.T, s).toJson(o);
+                return ce(r.T, s).toJson(o);
             }
           }
         },
     );
   }
-  function wt() {
+  function xt() {
     return {
-      setEnumType: Ne,
+      setEnumType: Se,
       initPartial(t, e) {
         if (t === void 0) return;
         let n = e.getType();
@@ -1911,23 +1911,23 @@
         for (let s of e.fields.byMember()) {
           let o = t[s.localName],
             i;
-          if (s.repeated) i = o.map(me);
+          if (s.repeated) i = o.map(de);
           else if (s.kind == "map") {
             i = r[s.localName];
-            for (let [a, c] of Object.entries(o)) i[a] = me(c);
+            for (let [a, c] of Object.entries(o)) i[a] = de(c);
           } else
             s.kind == "oneof"
               ? (i = s.findField(o.case)
-                  ? { case: o.case, value: me(o.value) }
+                  ? { case: o.case, value: de(o.value) }
                   : { case: void 0 })
-              : (i = me(o));
+              : (i = de(o));
           r[s.localName] = i;
         }
         return n;
       },
     };
   }
-  function me(t) {
+  function de(t) {
     if (t === void 0) return t;
     if (t instanceof E) return t.clone();
     if (t instanceof Uint8Array) {
@@ -1939,7 +1939,7 @@
   function Q(t) {
     return t instanceof Uint8Array ? t : new Uint8Array(t);
   }
-  var de = class {
+  var le = class {
     constructor(e, n) {
       (this._fields = e), (this._normalizer = n);
     }
@@ -1982,15 +1982,15 @@
       return this.members;
     }
   };
-  function Ae(t, e) {
-    let n = Nt(t);
+  function ve(t, e) {
+    let n = St(t);
     return e ? n : fn(un(n));
   }
-  function xt(t) {
-    return Ae(t, !1);
+  function It(t) {
+    return ve(t, !1);
   }
-  var It = Nt;
-  function Nt(t) {
+  var Nt = St;
+  function St(t) {
     let e = !1,
       n = [];
     for (let r = 0; r < t.length; r++) {
@@ -2031,10 +2031,10 @@
       "toJsonString",
       "toObject",
     ]),
-    St = (t) => `${t}$`,
-    un = (t) => (cn.has(t) ? St(t) : t),
-    fn = (t) => (an.has(t) ? St(t) : t);
-  var le = class {
+    Et = (t) => `${t}$`,
+    un = (t) => (cn.has(t) ? Et(t) : t),
+    fn = (t) => (an.has(t) ? Et(t) : t);
+  var pe = class {
     constructor(e) {
       (this.kind = "oneof"),
         (this.repeated = !1),
@@ -2043,7 +2043,7 @@
         (this.default = void 0),
         (this.fields = []),
         (this.name = e),
-        (this.localName = xt(e));
+        (this.localName = It(e));
     }
     addField(e) {
       I(e.oneof === this, `field ${e.name} not one of ${this.name}`),
@@ -2058,13 +2058,13 @@
       return this._lookup[e];
     }
   };
-  var d = rt(
+  var d = st(
     "proto3",
-    Tt(),
-    mt(),
-    Object.assign(Object.assign({}, wt()), {
+    wt(),
+    dt(),
+    Object.assign(Object.assign({}, xt()), {
       newFieldList(t) {
-        return new de(t, mn);
+        return new le(t, mn);
       },
       initFields(t) {
         for (let e of t.getType().fields.byMember()) {
@@ -2102,16 +2102,16 @@
     for (let a of typeof t == "function" ? t() : t) {
       let c = a;
       if (
-        ((c.localName = Ae(a.name, a.oneof !== void 0)),
+        ((c.localName = ve(a.name, a.oneof !== void 0)),
         (c.jsonName =
-          (e = a.jsonName) !== null && e !== void 0 ? e : It(a.name)),
+          (e = a.jsonName) !== null && e !== void 0 ? e : Nt(a.name)),
         (c.repeated = (n = a.repeated) !== null && n !== void 0 ? n : !1),
         a.kind == "scalar" &&
-          (c.L = (r = a.L) !== null && r !== void 0 ? r : M.BIGINT),
+          (c.L = (r = a.L) !== null && r !== void 0 ? r : C.BIGINT),
         a.oneof !== void 0)
       ) {
         let f = typeof a.oneof == "string" ? a.oneof : a.oneof.name;
-        (!i || i.name != f) && (i = new le(f)), (c.oneof = i), i.addField(c);
+        (!i || i.name != f) && (i = new pe(f)), (c.oneof = i), i.addField(c);
       }
       a.kind == "message" && (c.delimited = !1),
         (c.packed =
@@ -2123,10 +2123,10 @@
     }
     return o;
   }
-  var Ft = d.makeMessageType("youtube.response.browse.Browse", () => [
+  var Rt = d.makeMessageType("youtube.response.browse.Browse", () => [
       { no: 1, name: "responseContext", kind: "message", T: dn },
-      { no: 9, name: "contents", kind: "message", T: D },
-      { no: 10, name: "onResponseReceivedActions", kind: "message", T: D },
+      { no: 9, name: "contents", kind: "message", T: $ },
+      { no: 10, name: "onResponseReceivedActions", kind: "message", T: $ },
     ]),
     dn = d.makeMessageType("youtube.response.browse.ResponseContext", () => [
       {
@@ -2148,15 +2148,15 @@
       { no: 1, name: "key", kind: "scalar", T: 9 },
       { no: 2, name: "value", kind: "scalar", T: 9 },
     ]),
-    D = d.makeMessageType("youtube.response.browse.Contents", () => [
+    $ = d.makeMessageType("youtube.response.browse.Contents", () => [
       { no: 58173949, name: "browseResultsRenderer", kind: "message", T: gn },
       {
         no: 153515154,
         name: "videoWithContextRenderer",
         kind: "message",
-        T: Bt,
+        T: Mt,
       },
-      { no: 49399797, name: "richGridRenderer", kind: "message", T: ve },
+      { no: 49399797, name: "richGridRenderer", kind: "message", T: Le },
     ]),
     gn = d.makeMessageType(
       "youtube.response.browse.BrowseResultsRenderer",
@@ -2166,33 +2166,33 @@
       { no: 58174010, name: "tabRenderer", kind: "message", T: yn },
     ]),
     yn = d.makeMessageType("youtube.response.browse.TabRenderer", () => [
-      { no: 4, name: "contents", kind: "message", T: D },
+      { no: 4, name: "contents", kind: "message", T: $ },
     ]),
-    ve = d.makeMessageType("youtube.response.browse.RichGridRenderer", () => [
+    Le = d.makeMessageType("youtube.response.browse.RichGridRenderer", () => [
       { no: 1, name: "richGridContents", kind: "message", T: bn, repeated: !0 },
     ]),
     bn = d.makeMessageType("youtube.response.browse.RichGridContent", () => [
-      { no: 50195462, name: "richItemRenderer", kind: "message", T: Le },
+      { no: 50195462, name: "richItemRenderer", kind: "message", T: De },
       { no: 51845067, name: "richSectionRenderer", kind: "message", T: Fn },
       {
         no: 221496734,
         name: "musicDescriptionShelfRenderer",
         kind: "message",
-        T: On,
+        T: Mn,
       },
     ]),
-    Le = d.makeMessageType("youtube.response.browse.RichItemRenderer", () => [
-      { no: 1, name: "richItemContent", kind: "message", T: Rt, repeated: !0 },
+    De = d.makeMessageType("youtube.response.browse.RichItemRenderer", () => [
+      { no: 1, name: "richItemContent", kind: "message", T: Bt, repeated: !0 },
     ]),
-    Rt = d.makeMessageType("youtube.response.browse.RichItemContent", () => [
+    Bt = d.makeMessageType("youtube.response.browse.RichItemContent", () => [
       {
         no: 153515154,
         name: "videoWithContextRenderer",
         kind: "message",
-        T: Bt,
+        T: Mt,
       },
     ]),
-    Bt = d.makeMessageType(
+    Mt = d.makeMessageType(
       "youtube.response.browse.VideoWithContextRenderer",
       () => [
         { no: 172660663, name: "videoRendererContent", kind: "message", T: kn },
@@ -2235,44 +2235,44 @@
       { no: 51431404, name: "reelShelfRenderer", kind: "message", T: Bn },
     ]),
     Bn = d.makeMessageType("youtube.response.browse.ReelShelfRenderer", () => [
-      { no: 1, name: "richItemContent", kind: "message", T: Rt, repeated: !0 },
+      { no: 1, name: "richItemContent", kind: "message", T: Bt, repeated: !0 },
     ]),
-    On = d.makeMessageType(
+    Mn = d.makeMessageType(
       "youtube.response.browse.MusicDescriptionShelfRenderer",
       () => [
-        { no: 3, name: "description", kind: "message", T: Et },
-        { no: 10, name: "footer", kind: "message", T: Et },
+        { no: 3, name: "description", kind: "message", T: Ft },
+        { no: 10, name: "footer", kind: "message", T: Ft },
       ],
     ),
-    Et = d.makeMessageType("youtube.response.browse.Label", () => [
+    Ft = d.makeMessageType("youtube.response.browse.Label", () => [
       { no: 1, name: "runs", kind: "message", T: Ot, repeated: !0 },
     ]),
     Ot = d.makeMessageType("youtube.response.browse.Run", () => [
       { no: 1, name: "text", kind: "scalar", T: 9 },
     ]);
-  var Ct = d.makeMessageType("youtube.response.next.Next", () => [
-      { no: 7, name: "Contents", kind: "message", T: Cn },
-      { no: 8, name: "onResponseReceivedActions", kind: "message", T: D },
+  var ge = d.makeMessageType("youtube.response.next.Next", () => [
+      { no: 7, name: "Contents", kind: "message", T: On },
+      { no: 8, name: "onResponseReceivedActions", kind: "message", T: $ },
     ]),
-    Cn = d.makeMessageType("youtube.response.next.Contents", () => [
-      { no: 51779735, name: "NextResults", kind: "message", T: Mn },
+    On = d.makeMessageType("youtube.response.next.Contents", () => [
+      { no: 51779735, name: "NextResults", kind: "message", T: Cn },
     ]),
-    Mn = d.makeMessageType("youtube.response.next.NextResults", () => [
-      { no: 1, name: "Contents", kind: "message", T: D },
+    Cn = d.makeMessageType("youtube.response.next.NextResults", () => [
+      { no: 1, name: "Contents", kind: "message", T: $ },
     ]);
-  var Mt = d.makeMessageType("youtube.response.search.Search", () => [
-      { no: 4, name: "contents", kind: "message", T: D },
+  var Ct = d.makeMessageType("youtube.response.search.Search", () => [
+      { no: 4, name: "contents", kind: "message", T: $ },
       { no: 7, name: "onResponseReceivedCommands", kind: "message", T: Pn },
     ]),
     Pn = d.makeMessageType(
       "youtube.response.search.OnResponseReceivedCommands",
       () => [
-        { no: 50195462, name: "richItemRenderer", kind: "message", T: Le },
+        { no: 50195462, name: "richItemRenderer", kind: "message", T: De },
         {
           no: 49399797,
           name: "appendContinuationItemsAction",
           kind: "message",
-          T: ve,
+          T: Le,
         },
       ],
     );
@@ -2320,10 +2320,10 @@
     At = d.makeMessageType("youtube.response.browse.guideEntryRenderer", () => [
       { no: 1, name: "browseId", kind: "scalar", T: 9 },
     ]);
-  var pe = d.makeMessageType("youtube.response.player.Player", () => [
+  var he = d.makeMessageType("youtube.response.player.Player", () => [
       { no: 7, name: "adPlacements", kind: "message", T: Jn, repeated: !0 },
       { no: 2, name: "playabilityStatus", kind: "message", T: _n },
-      { no: 9, name: "playbackTracking", kind: "message", T: Yn },
+      { no: 9, name: "playbackTracking", kind: "message", T: Xn },
       { no: 10, name: "captions", kind: "message", T: jn },
     ]),
     Jn = d.makeMessageType("youtube.response.player.AdPlacement", () => [
@@ -2334,33 +2334,33 @@
       () => [{ no: 4, name: "params", kind: "scalar", T: 9 }],
     ),
     _n = d.makeMessageType("youtube.response.player.PlayabilityStatus", () => [
-      { no: 21, name: "miniPlayer", kind: "message", T: qn },
-      { no: 11, name: "backgroundPlayer", kind: "message", T: De },
+      { no: 21, name: "miniPlayer", kind: "message", T: Yn },
+      { no: 11, name: "backgroundPlayer", kind: "message", T: $e },
     ]),
-    qn = d.makeMessageType("youtube.response.player.MiniPlayer", () => [
-      { no: 151635310, name: "miniPlayerRender", kind: "message", T: Wn },
+    Yn = d.makeMessageType("youtube.response.player.MiniPlayer", () => [
+      { no: 151635310, name: "miniPlayerRender", kind: "message", T: qn },
     ]),
-    De = d.makeMessageType("youtube.response.player.BackgroundPlayer", () => [
-      { no: 64657230, name: "backgroundPlayerRender", kind: "message", T: Xn },
+    $e = d.makeMessageType("youtube.response.player.BackgroundPlayer", () => [
+      { no: 64657230, name: "backgroundPlayerRender", kind: "message", T: Wn },
     ]),
-    Wn = d.makeMessageType("youtube.response.player.MiniPlayerRender", () => [
+    qn = d.makeMessageType("youtube.response.player.MiniPlayerRender", () => [
       { no: 1, name: "active", kind: "scalar", T: 8 },
     ]),
-    Xn = d.makeMessageType(
+    Wn = d.makeMessageType(
       "youtube.response.player.BackgroundPlayerRender",
       () => [{ no: 1, name: "active", kind: "scalar", T: 8 }],
     ),
-    Yn = d.makeMessageType("youtube.response.player.PlaybackTracking", () => [
-      { no: 1, name: "videostatsPlaybackUrl", kind: "message", T: $ },
-      { no: 2, name: "videostatsDelayplayUrl", kind: "message", T: $ },
-      { no: 3, name: "videostatsWatchtimeUrl", kind: "message", T: $ },
-      { no: 4, name: "ptrackingUrl", kind: "message", T: $ },
-      { no: 5, name: "qoeUrl", kind: "message", T: $ },
-      { no: 13, name: "atrUrl", kind: "message", T: $ },
-      { no: 15, name: "videostatsEngageUrl", kind: "message", T: $ },
-      { no: 18, name: "pageadViewthroughconversion", kind: "message", T: $ },
+    Xn = d.makeMessageType("youtube.response.player.PlaybackTracking", () => [
+      { no: 1, name: "videostatsPlaybackUrl", kind: "message", T: V },
+      { no: 2, name: "videostatsDelayplayUrl", kind: "message", T: V },
+      { no: 3, name: "videostatsWatchtimeUrl", kind: "message", T: V },
+      { no: 4, name: "ptrackingUrl", kind: "message", T: V },
+      { no: 5, name: "qoeUrl", kind: "message", T: V },
+      { no: 13, name: "atrUrl", kind: "message", T: V },
+      { no: 15, name: "videostatsEngageUrl", kind: "message", T: V },
+      { no: 18, name: "pageadViewthroughconversion", kind: "message", T: V },
     ]),
-    $ = d.makeMessageType("youtube.response.player.Tracking", () => [
+    V = d.makeMessageType("youtube.response.player.Tracking", () => [
       { no: 1, name: "baseUrl", kind: "scalar", T: 9 },
     ]),
     jn = d.makeMessageType("youtube.response.player.Captions", () => [
@@ -2375,13 +2375,13 @@
     Kn = d.makeMessageType(
       "youtube.response.player.PlayerCaptionsTrackListRenderer",
       () => [
-        { no: 1, name: "captionTracks", kind: "message", T: $e, repeated: !0 },
+        { no: 1, name: "captionTracks", kind: "message", T: Ve, repeated: !0 },
         { no: 2, name: "audioTracks", kind: "message", T: zn, repeated: !0 },
         {
           no: 3,
           name: "translationLanguages",
           kind: "message",
-          T: Ve,
+          T: Je,
           repeated: !0,
         },
         {
@@ -2400,7 +2400,7 @@
         },
       ],
     ),
-    $e = d.makeMessageType("youtube.response.player.CaptionTrack", () => [
+    Ve = d.makeMessageType("youtube.response.player.CaptionTrack", () => [
       { no: 1, name: "baseUrl", kind: "scalar", T: 9 },
       { no: 2, name: "name", kind: "message", T: Lt },
       { no: 3, name: "vssId", kind: "scalar", T: 9 },
@@ -2432,7 +2432,7 @@
       { no: 8, name: "audioTrackId", kind: "scalar", T: 9, opt: !0 },
       { no: 11, name: "captionsInitialState", kind: "scalar", T: 5, opt: !0 },
     ]),
-    Ve = d.makeMessageType(
+    Je = d.makeMessageType(
       "youtube.response.player.TranslationLanguage",
       () => [
         { no: 1, name: "languageCode", kind: "scalar", T: 9 },
@@ -2448,10 +2448,10 @@
       { localName: "Name_Run" },
     );
   var $t = d.makeMessageType("youtube.response.setting.Setting", () => [
-      { no: 6, name: "settingItems", kind: "message", T: Je, repeated: !0 },
-      { no: 10, name: "trackingParams", kind: "message", T: ge },
+      { no: 6, name: "settingItems", kind: "message", T: Ge, repeated: !0 },
+      { no: 10, name: "trackingParams", kind: "message", T: ye },
     ]),
-    Je = d.makeMessageType("youtube.response.setting.SettingItem", () => [
+    Ge = d.makeMessageType("youtube.response.setting.SettingItem", () => [
       {
         no: 88478200,
         name: "settingCategoryEntryRenderer",
@@ -2465,7 +2465,7 @@
         T: er,
       },
     ]),
-    ge = d.makeMessageType("youtube.response.setting.TrackingParams", () => [
+    ye = d.makeMessageType("youtube.response.setting.TrackingParams", () => [
       { no: 1, name: "f1", kind: "scalar", T: 5 },
       { no: 2, name: "f2", kind: "scalar", T: 5 },
       { no: 3, name: "f3", kind: "scalar", T: 5 },
@@ -2481,7 +2481,7 @@
       () => [
         { no: 2, name: "f2", kind: "scalar", T: 5 },
         { no: 3, name: "f3", kind: "scalar", T: 5 },
-        { no: 5, name: "trackingParams", kind: "message", T: ge },
+        { no: 5, name: "trackingParams", kind: "message", T: ye },
         { no: 6, name: "f6", kind: "scalar", T: 5 },
         { no: 7, name: "f7", kind: "scalar", T: 5 },
         { no: 8, name: "f8", kind: "scalar", T: 5 },
@@ -2493,11 +2493,11 @@
     er = d.makeMessageType(
       "youtube.response.setting.SettingCategoryCollectionRenderer",
       () => [
-        { no: 3, name: "subSettings", kind: "message", T: Ge, repeated: !0 },
+        { no: 3, name: "subSettings", kind: "message", T: _e, repeated: !0 },
         { no: 4, name: "categoryId", kind: "scalar", T: 5 },
       ],
     ),
-    Ge = d.makeMessageType("youtube.response.setting.SubSetting", () => [
+    _e = d.makeMessageType("youtube.response.setting.SubSetting", () => [
       { no: 61331416, name: "settingBooleanRenderer", kind: "message", T: tr },
     ]),
     tr = d.makeMessageType(
@@ -2505,12 +2505,12 @@
       () => [
         { no: 5, name: "enableServiceEndpoint", kind: "message", T: Dt },
         { no: 6, name: "disableServiceEndpoint", kind: "message", T: Dt },
-        { no: 13, name: "clickTrackingParams", kind: "message", T: ge },
+        { no: 13, name: "clickTrackingParams", kind: "message", T: ye },
         { no: 15, name: "itemId", kind: "scalar", T: 5 },
       ],
     ),
     Dt = d.makeMessageType("youtube.response.setting.ServiceEndpoint", () => [
-      { no: 2, name: "trackingParams", kind: "message", T: ge },
+      { no: 2, name: "trackingParams", kind: "message", T: ye },
       {
         no: 81212182,
         name: "setClientSettingEndpoint",
@@ -2530,12 +2530,13 @@
       { no: 1, name: "item", kind: "scalar", T: 5 },
     ]);
   var Vt = d.makeMessageType("youtube.response.watch.Watch", () => [
-      { no: 1, name: "content", kind: "message", T: or, repeated: !0 },
+      { no: 1, name: "contents", kind: "message", T: or, repeated: !0 },
     ]),
     or = d.makeMessageType("youtube.response.watch.Content", () => [
-      { no: 2, name: "player", kind: "message", T: pe },
+      { no: 2, name: "player", kind: "message", T: he },
+      { no: 3, name: "next", kind: "message", T: ge },
     ]);
-  var X = class {
+  var W = class {
       _times = new Map();
       name;
       isDebug;
@@ -2555,8 +2556,8 @@
           typeof $loon < "u"
             ? (r = "Loon")
             : typeof $task < "u" && (r = "QuanX"),
-          X.instances[r] || (X.instances[r] = X.classNames[r](e, r, n)),
-          X.instances[r]
+          W.instances[r] || (W.instances[r] = W.classNames[r](e, r, n)),
+          W.instances[r]
         );
       }
       createProxy(e) {
@@ -2603,20 +2604,20 @@
         return e;
       }
     },
-    L = X;
+    L = W;
   K(L, "instances", {}),
     K(L, "classNames", {
-      QuanX: (e, n, r) => new he(e, n, r),
+      QuanX: (e, n, r) => new be(e, n, r),
       Surge: (e, n, r) => new Z(e, n, r),
-      Loon: (e, n, r) => new _e(e, n, r),
+      Loon: (e, n, r) => new Ye(e, n, r),
     });
-  var ye = class extends L {
+  var ke = class extends L {
       getFn(e, n, r) {
-        let s = ye.clientAdapter[n] || n;
+        let s = ke.clientAdapter[n] || n;
         return super.getFn(e, s, r);
       }
       setFn(e, n, r, s) {
-        let o = ye.clientAdapter[n] || n;
+        let o = ke.clientAdapter[n] || n;
         return super.setFn(e, o, r, s);
       }
       init() {
@@ -2676,7 +2677,7 @@
         );
       }
     },
-    Z = ye;
+    Z = ke;
   K(Z, "clientAdapter", { bodyBytes: "body" });
   var v = class extends L {
       static transferBodyBytes(e, n) {
@@ -2756,9 +2757,9 @@
         $done(r);
       }
     },
-    he = v;
-  K(he, "clientAdapter", { id: "sessionIndex", status: "statusCode" });
-  var _e = class extends Z {
+    be = v;
+  K(be, "clientAdapter", { id: "sessionIndex", status: "statusCode" });
+  var Ye = class extends Z {
     decodeParams(e, n) {
       let r = {};
       for (let [s, o] of Object.entries(e)) {
@@ -2777,7 +2778,7 @@
     }
   };
   var b = L.getInstance("YouTube");
-  var V = class {
+  var D = class {
     name;
     needProcess;
     needSave;
@@ -2975,8 +2976,8 @@
       t,
     )}&q=${encodeURIComponent(t)}`;
   }
-  var Y = class extends V {
-      constructor(e = Ft, n = "Browse") {
+  var X = class extends D {
+      constructor(e = Rt, n = "Browse") {
         super(e, n);
       }
       async pure() {
@@ -3063,8 +3064,8 @@ ${c[0][g][0]}`;
         }
       }
     },
-    be = class extends Y {
-      constructor(e = Ct, n = "Next") {
+    ee = class extends X {
+      constructor(e = ge, n = "Next") {
         super(e, n);
       }
       addTranslateTab() {
@@ -3078,8 +3079,8 @@ ${c[0][g][0]}`;
         });
       }
     },
-    ee = class extends V {
-      constructor(e = pe, n = "Player") {
+    te = class extends D {
+      constructor(e = he, n = "Player") {
         super(e, n);
       }
       pure() {
@@ -3097,7 +3098,7 @@ ${c[0][g][0]}`;
         let e = this.message?.playabilityStatus?.miniPlayer?.miniPlayerRender;
         typeof e == "object" && (e.active = !0),
           typeof this.message.playabilityStatus == "object" &&
-            (this.message.playabilityStatus.backgroundPlayer = new De({
+            (this.message.playabilityStatus.backgroundPlayer = new $e({
               backgroundPlayerRender: { active: !0 },
             }));
       }
@@ -3117,7 +3118,7 @@ ${c[0][g][0]}`;
                 g && g > c && ((c = g), (f = m)), (l.isTranslatable = !0);
               }
               if (c !== 2) {
-                let m = new $e({
+                let m = new Ve({
                   baseUrl: s[f].baseUrl + `&tlang=${e}`,
                   name: { runs: [{ text: `@Enhance (${e})` }] },
                   vssId: `.${e}`,
@@ -3149,7 +3150,7 @@ ${c[0][g][0]}`;
             };
             (n.translationLanguages = Object.entries(i).map(
               ([a, c]) =>
-                new Ve({
+                new Je({
                   languageCode: a,
                   languageName: { runs: [{ text: c }] },
                 }),
@@ -3158,12 +3159,12 @@ ${c[0][g][0]}`;
           });
       }
     },
-    ke = class extends Y {
-      constructor(e = Mt, n = "Search") {
+    Te = class extends X {
+      constructor(e = Ct, n = "Search") {
         super(e, n);
       }
     },
-    Te = class extends V {
+    we = class extends D {
       constructor(e = Pt, n = "Shorts") {
         super(e, n);
       }
@@ -3176,7 +3177,7 @@ ${c[0][g][0]}`;
         return this;
       }
     },
-    we = class extends V {
+    xe = class extends D {
       constructor(e = vt, n = "Guide") {
         super(e, n);
       }
@@ -3198,7 +3199,7 @@ ${c[0][g][0]}`;
         );
       }
     },
-    xe = class extends V {
+    Ie = class extends D {
       constructor(e = $t, n = "Setting") {
         super(e, n);
       }
@@ -3211,7 +3212,7 @@ ${c[0][g][0]}`;
                 f3: 2,
                 timeInfo: this.message.trackingParams.timeInfo,
               },
-              s = new Ge({
+              s = new _e({
                 settingBooleanRenderer: {
                   itemId: 0,
                   enableServiceEndpoint: {
@@ -3238,7 +3239,7 @@ ${c[0][g][0]}`;
             n.subSettings.push(s);
           }
         });
-        let e = new Je({
+        let e = new Ge({
           settingCategoryEntryRenderer: {
             f2: 1,
             f3: 1,
@@ -3259,31 +3260,30 @@ ${c[0][g][0]}`;
         return this.message.settingItems.push(e), (this.needProcess = !0), this;
       }
     },
-    Ie = class extends ee {
+    Ne = class extends D {
+      player;
+      next;
       constructor(e = Vt, n = "Watch") {
-        super(e, n);
+        super(e, n), (this.player = new te()), (this.next = new ee());
       }
-      pure() {
-        let e = this.message;
-        return (
-          this.iterate(this.message, "player", (n, r) => {
-            (this.message = n.player), (r.length = 0);
-          }),
-          super.pure(),
-          (this.message = e),
-          this
-        );
+      async pure() {
+        for (let e of this.message.contents)
+          e.player &&
+            ((this.player.message = e.player), await this.player.pure()),
+            e.next && ((this.next.message = e.next), await this.next.pure()),
+            (this.needProcess = !0);
+        return this;
       }
     };
   var ar = new Map([
-    ["browse", Y],
-    ["next", be],
-    ["player", ee],
-    ["search", ke],
-    ["reel_watch_sequence", Te],
-    ["guide", we],
-    ["get_setting", xe],
-    ["get_watch", Ie],
+    ["browse", X],
+    ["next", ee],
+    ["player", te],
+    ["search", Te],
+    ["reel_watch_sequence", we],
+    ["guide", xe],
+    ["get_setting", Ie],
+    ["get_watch", Ne],
   ]);
   function qe(t) {
     for (let [e, n] of ar.entries()) if (t.includes(e)) return new n();

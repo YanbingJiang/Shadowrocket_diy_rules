@@ -1,5 +1,5 @@
 // https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/dist/youtube.request.preview.js
-// Build: 2024/5/12 16:01:11
+// Build: 2024/6/11 21:59:22
 (() => {
   var ct = Object.defineProperty;
   var ft = (t, e, n) =>
