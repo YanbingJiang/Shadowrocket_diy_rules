@@ -1,8 +1,8 @@
 // SOURCE: https://raw.githubusercontent.com/ddgksf2013/Scripts/master/weibo_json.js
 // Author: @ddgksf2013 @Zmqcherish
-// Update: 2024-04-22
+// Update: 2024-07-14
 
-const version = "V2.0.126";
+const version = "V2.0.127";
 
 const mainConfig = {
     isDebug: !1,
@@ -89,7 +89,7 @@ const mainConfig = {
     "/statuses/container_timeline": "removeMainTab",
     "wbapplua/wbpullad.lua": "removeLuaScreenAds",
     "interface/sdk/sdkad.php": "removePhpScreenAds",
-    "ct=feed&a=trends": "removeTopics",
+    "a=trends": "removeTopics",
     user_center: "modifiedUserCenter",
     "a=get_coopen_ads": "removeIntlOpenAds",
     "php?a=search_topic": "removeSearchTopic",
