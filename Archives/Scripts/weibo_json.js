@@ -1,8 +1,8 @@
 // SOURCE: https://raw.githubusercontent.com/ddgksf2013/Scripts/master/weibo_json.js
 // Author: @ddgksf2013 @Zmqcherish
-// Update: 2024-07-14
+// Update: 2024-08-17
 
-const version = "V2.0.127";
+const version = "V2.0.129";
 
 const mainConfig = {
     isDebug: !1,
@@ -144,8 +144,11 @@ function removeIntlOpenAds(e) {
 function removeSearchTopic(e) {
   return (
     e.data &&
-      0 !== e.data.length &&
-      (e.data = Object.values(e.data).filter((e) => "searchtop" != e.type)),
+      0 !== e.data.search_topic?.cards.length &&
+      ((e.data.search_topic.cards = Object.values(
+        e.data.search_topic.cards,
+      ).filter((e) => "searchtop" != e.type)),
+      e.data.trending_topic && delete e.data.trending_topic),
     e
   );
 }
