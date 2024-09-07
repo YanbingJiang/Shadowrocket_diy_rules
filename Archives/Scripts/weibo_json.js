@@ -2,7 +2,7 @@
 // Author: @ddgksf2013 @Zmqcherish
 // Update: 2024-08-17
 
-const version = "V2.0.129";
+const version = "V2.0.130";
 
 const mainConfig = {
     isDebug: !1,
@@ -93,8 +93,8 @@ const mainConfig = {
     user_center: "modifiedUserCenter",
     "a=get_coopen_ads": "removeIntlOpenAds",
     "php?a=search_topic": "removeSearchTopic",
-    "v1/ad/realtime": "removeRealtimeAd",
-    "v1/ad/preload": "removeAdPreload",
+    "ad/realtime": "removeRealtimeAd",
+    "ad/preload": "removeAdPreload",
     "php?a=open_app": "removeAdBanner",
   };
 function getModifyMethod(e) {
