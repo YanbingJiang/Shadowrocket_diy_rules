@@ -1,4 +1,4 @@
-// Source: https://github.com/ddgksf2013/Scripts/blob/master/bilibili_json.js
+// Source: https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/bilibili_json.js
 // author: @ddgksf2013
 // Update: 2024-05-10
 
