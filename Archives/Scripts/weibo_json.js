@@ -1,8 +1,8 @@
 // SOURCE: https://raw.githubusercontent.com/ddgksf2013/Scripts/master/weibo_json.js
 // Author: @ddgksf2013 @Zmqcherish
-// Update: 2024-08-17
+// Update: 2024-10-01
 
-const version = "V2.0.130";
+const version = "V2.0.132";
 
 const mainConfig = {
     isDebug: !1,
@@ -125,21 +125,7 @@ function removeAdPreload(e) {
   return e;
 }
 function removeIntlOpenAds(e) {
-  return (
-    e.data &&
-      0 !== e.data.length &&
-      ((e.data.ad_list = []),
-      (e.data.gdt_video_ad_ios = []),
-      (e.data.display_ad = 0),
-      (e.data.ad_ios_id = null),
-      (e.data.app_ad_ios_id = null),
-      (e.data.reserve_ad_ios_id = ""),
-      (e.data.reserve_app_ad_ios_id = ""),
-      (e.data.ad_duration = 604800),
-      (e.data.ad_cd_interval = 604800),
-      (e.data.pic_ad = [])),
-    e
-  );
+  return e.data && (e.data = { display_ad: 1 }), e;
 }
 function removeSearchTopic(e) {
   return (
