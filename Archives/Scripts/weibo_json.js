@@ -1,8 +1,8 @@
 // SOURCE: https://raw.githubusercontent.com/ddgksf2013/Scripts/master/weibo_json.js
 // Author: @ddgksf2013 @Zmqcherish
-// Update: 2024-10-01
+// Update: 2024-10-30
 
-const version = "V2.0.132";
+const version = "V2.0.133";
 
 const mainConfig = {
     isDebug: !1,
@@ -285,7 +285,8 @@ function checkSearchWindow(e) {
       e.data?.card_type == 217 ||
       e.data?.card_type == 101 ||
       e.data?.card_type == 19 ||
-      e.data?.mblog?.page_info?.actionlog?.source?.includes("ad"))
+      e.data?.mblog?.page_info?.actionlog?.source?.includes("ad") ||
+      e.data?.pic?.includes("ads"))
   );
 }
 function removeSearch(e) {
