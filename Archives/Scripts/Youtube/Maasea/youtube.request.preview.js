@@ -1,45 +1,45 @@
 // https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/dist/youtube.request.preview.js
-// Build: 2024/6/11 21:59:22
+// Build: 2024/11/12 23:57:15
 (() => {
   var ct = Object.defineProperty;
   var ft = (t, e, n) =>
     e in t
       ? ct(t, e, { enumerable: !0, configurable: !0, writable: !0, value: n })
       : (t[e] = n);
-  var _ = (t, e, n) => (ft(t, typeof e != "symbol" ? e + "" : e, n), n);
+  var G = (t, e, n) => (ft(t, typeof e != "symbol" ? e + "" : e, n), n);
   (function (t) {
     function e() {}
     function n() {}
     var r = String.fromCharCode,
       s = {}.toString,
-      o = s.call(t.SharedArrayBuffer),
-      i = s(),
+      i = s.call(t.SharedArrayBuffer),
+      o = s(),
       a = t.Uint8Array,
       c = a || Array,
       u = a ? ArrayBuffer : c,
       l =
         u.isView ||
-        function (h) {
-          return h && "length" in h;
+        function (p) {
+          return p && "length" in p;
         },
       m = s.call(u.prototype);
     u = n.prototype;
-    var p = t.TextEncoder,
+    var h = t.TextEncoder,
       d = new (a ? Uint16Array : c)(32);
-    (e.prototype.decode = function (h) {
-      if (!l(h)) {
-        var B = s.call(h);
-        if (B !== m && B !== o && B !== i)
+    (e.prototype.decode = function (p) {
+      if (!l(p)) {
+        var B = s.call(p);
+        if (B !== m && B !== i && B !== o)
           throw TypeError(
             "Failed to execute 'decode' on 'TextDecoder': The provided value is not of type '(ArrayBuffer or ArrayBufferView)'",
           );
-        h = a ? new c(h) : h || [];
+        p = a ? new c(p) : p || [];
       }
       for (
-        var N = (B = ""),
+        var I = (B = ""),
           g = 0,
-          b = h.length | 0,
-          G = (b - 32) | 0,
+          b = p.length | 0,
+          _ = (b - 32) | 0,
           k,
           w,
           E = 0,
@@ -51,26 +51,26 @@
 
       ) {
         for (
-          k = g <= G ? 32 : (b - g) | 0;
+          k = g <= _ ? 32 : (b - g) | 0;
           S < k;
           g = (g + 1) | 0, S = (S + 1) | 0
         ) {
-          switch (((w = h[g] & 255), w >> 4)) {
+          switch (((w = p[g] & 255), w >> 4)) {
             case 15:
-              if (((O = h[(g = (g + 1) | 0)] & 255), O >> 6 !== 2 || 247 < w)) {
+              if (((O = p[(g = (g + 1) | 0)] & 255), O >> 6 !== 2 || 247 < w)) {
                 g = (g - 1) | 0;
                 break;
               }
               (E = ((w & 7) << 6) | (O & 63)), (M = 5), (w = 256);
             case 14:
-              (O = h[(g = (g + 1) | 0)] & 255),
+              (O = p[(g = (g + 1) | 0)] & 255),
                 (E <<= 6),
                 (E |= ((w & 15) << 6) | (O & 63)),
                 (M = O >> 6 === 2 ? (M + 4) | 0 : 24),
                 (w = (w + 256) & 768);
             case 13:
             case 12:
-              (O = h[(g = (g + 1) | 0)] & 255),
+              (O = p[(g = (g + 1) | 0)] & 255),
                 (E <<= 6),
                 (E |= ((w & 31) << 6) | (O & 63)),
                 (M = (M + 7) | 0),
@@ -85,7 +85,7 @@
                         : ((O = U), (U = w), (w = O))))
                   : ((w >>= 8), (g = (g - w - 1) | 0), (w = 65533)),
                 (E = M = 0),
-                (k = g <= G ? 32 : (b - g) | 0);
+                (k = g <= _ ? 32 : (b - g) | 0);
             default:
               d[S] = w;
               continue;
@@ -97,7 +97,7 @@
           d[S] = 65533;
         }
         if (
-          ((N += r(
+          ((I += r(
             d[0],
             d[1],
             d[2],
@@ -131,74 +131,74 @@
             d[30],
             d[31],
           )),
-          32 > S && (N = N.slice(0, (S - 32) | 0)),
+          32 > S && (I = I.slice(0, (S - 32) | 0)),
           g < b)
         ) {
-          if (((d[0] = U), (S = ~U >>> 31), (U = -1), N.length < B.length))
+          if (((d[0] = U), (S = ~U >>> 31), (U = -1), I.length < B.length))
             continue;
-        } else U !== -1 && (N += r(U));
-        (B += N), (N = "");
+        } else U !== -1 && (I += r(U));
+        (B += I), (I = "");
       }
       return B;
     }),
-      (u.encode = function (h) {
-        h = h === void 0 ? "" : "" + h;
-        var B = h.length | 0,
-          N = new c(((B << 1) + 8) | 0),
+      (u.encode = function (p) {
+        p = p === void 0 ? "" : "" + p;
+        var B = p.length | 0,
+          I = new c(((B << 1) + 8) | 0),
           g,
           b = 0,
-          G = !a;
+          _ = !a;
         for (g = 0; g < B; g = (g + 1) | 0, b = (b + 1) | 0) {
-          var k = h.charCodeAt(g) | 0;
-          if (127 >= k) N[b] = k;
+          var k = p.charCodeAt(g) | 0;
+          if (127 >= k) I[b] = k;
           else {
-            if (2047 >= k) N[b] = 192 | (k >> 6);
+            if (2047 >= k) I[b] = 192 | (k >> 6);
             else {
               e: {
                 if (55296 <= k)
                   if (56319 >= k) {
-                    var w = h.charCodeAt((g = (g + 1) | 0)) | 0;
+                    var w = p.charCodeAt((g = (g + 1) | 0)) | 0;
                     if (56320 <= w && 57343 >= w) {
                       if (((k = ((k << 10) + w - 56613888) | 0), 65535 < k)) {
-                        (N[b] = 240 | (k >> 18)),
-                          (N[(b = (b + 1) | 0)] = 128 | ((k >> 12) & 63)),
-                          (N[(b = (b + 1) | 0)] = 128 | ((k >> 6) & 63)),
-                          (N[(b = (b + 1) | 0)] = 128 | (k & 63));
+                        (I[b] = 240 | (k >> 18)),
+                          (I[(b = (b + 1) | 0)] = 128 | ((k >> 12) & 63)),
+                          (I[(b = (b + 1) | 0)] = 128 | ((k >> 6) & 63)),
+                          (I[(b = (b + 1) | 0)] = 128 | (k & 63));
                         continue;
                       }
                       break e;
                     }
                     k = 65533;
                   } else 57343 >= k && (k = 65533);
-                !G &&
+                !_ &&
                   g << 1 < b &&
                   g << 1 < ((b - 7) | 0) &&
-                  ((G = !0), (w = new c(3 * B)), w.set(N), (N = w));
+                  ((_ = !0), (w = new c(3 * B)), w.set(I), (I = w));
               }
-              (N[b] = 224 | (k >> 12)),
-                (N[(b = (b + 1) | 0)] = 128 | ((k >> 6) & 63));
+              (I[b] = 224 | (k >> 12)),
+                (I[(b = (b + 1) | 0)] = 128 | ((k >> 6) & 63));
             }
-            N[(b = (b + 1) | 0)] = 128 | (k & 63);
+            I[(b = (b + 1) | 0)] = 128 | (k & 63);
           }
         }
-        return a ? N.subarray(0, b) : N.slice(0, b);
+        return a ? I.subarray(0, b) : I.slice(0, b);
       }),
-      p || ((t.TextDecoder = e), (t.TextEncoder = n));
+      h || ((t.TextDecoder = e), (t.TextEncoder = n));
   })(globalThis);
-  function T(t, e) {
+  function N(t, e) {
     if (!t) throw new Error(e);
   }
   var ut = 34028234663852886e22,
     lt = -34028234663852886e22,
     dt = 4294967295,
     mt = 2147483647,
-    pt = -2147483648;
+    ht = -2147483648;
   function J(t) {
     if (typeof t != "number") throw new Error("invalid int 32: " + typeof t);
-    if (!Number.isInteger(t) || t > mt || t < pt)
+    if (!Number.isInteger(t) || t > mt || t < ht)
       throw new Error("invalid int 32: " + t);
   }
-  function j(t) {
+  function Y(t) {
     if (typeof t != "number") throw new Error("invalid uint 32: " + typeof t);
     if (!Number.isInteger(t) || t > dt || t < 0)
       throw new Error("invalid uint 32: " + t);
@@ -211,39 +211,39 @@
   var Ee = Symbol("@bufbuild/protobuf/enum-type");
   function Be(t) {
     let e = t[Ee];
-    return T(e, "missing enum type on enum object"), e;
+    return N(e, "missing enum type on enum object"), e;
   }
   function me(t, e, n, r) {
-    t[Ee] = pe(
+    t[Ee] = he(
       e,
       n.map((s) => ({ no: s.no, name: s.name, localName: t[s.no] })),
       r,
     );
   }
-  function pe(t, e, n) {
+  function he(t, e, n) {
     let r = Object.create(null),
       s = Object.create(null),
-      o = [];
-    for (let i of e) {
-      let a = Oe(i);
-      o.push(a), (r[i.name] = a), (s[i.no] = a);
+      i = [];
+    for (let o of e) {
+      let a = Oe(o);
+      i.push(a), (r[o.name] = a), (s[o.no] = a);
     }
     return {
       typeName: t,
-      values: o,
-      findName(i) {
-        return r[i];
+      values: i,
+      findName(o) {
+        return r[o];
       },
-      findNumber(i) {
-        return s[i];
+      findNumber(o) {
+        return s[o];
       },
     };
   }
   function Se(t, e, n) {
     let r = {};
     for (let s of e) {
-      let o = Oe(s);
-      (r[o.localName] = o.no), (r[o.no] = o.localName);
+      let i = Oe(s);
+      (r[i.localName] = i.no), (r[i.no] = i.localName);
     }
     return me(r, t, e, n), r;
   }
@@ -262,14 +262,14 @@
     fromBinary(e, n) {
       let r = this.getType(),
         s = r.runtime.bin,
-        o = s.makeReadOptions(n);
-      return s.readMessage(this, o.readerFactory(e), e.byteLength, o), this;
+        i = s.makeReadOptions(n);
+      return s.readMessage(this, i.readerFactory(e), e.byteLength, i), this;
     }
     fromJson(e, n) {
       let r = this.getType(),
         s = r.runtime.json,
-        o = s.makeReadOptions(n);
-      return s.readMessage(r, e, o, this), this;
+        i = s.makeReadOptions(n);
+      return s.readMessage(r, e, i, this), this;
     }
     fromJsonString(e, n) {
       let r;
@@ -288,8 +288,8 @@
       let n = this.getType(),
         r = n.runtime.bin,
         s = r.makeWriteOptions(e),
-        o = s.writerFactory();
-      return r.writeMessage(this, o, s), o.finish();
+        i = s.writerFactory();
+      return r.writeMessage(this, i, s), i.finish();
     }
     toJson(e) {
       let n = this.getType(),
@@ -315,35 +315,35 @@
   };
   function Ue(t, e, n, r) {
     var s;
-    let o =
+    let i =
         (s = r?.localName) !== null && s !== void 0
           ? s
           : e.substring(e.lastIndexOf(".") + 1),
-      i = {
-        [o]: function (a) {
+      o = {
+        [i]: function (a) {
           t.util.initFields(this), t.util.initPartial(a, this);
         },
-      }[o];
+      }[i];
     return (
-      Object.setPrototypeOf(i.prototype, new F()),
-      Object.assign(i, {
+      Object.setPrototypeOf(o.prototype, new F()),
+      Object.assign(o, {
         runtime: t,
         typeName: e,
         fields: t.util.newFieldList(n),
         fromBinary(a, c) {
-          return new i().fromBinary(a, c);
+          return new o().fromBinary(a, c);
         },
         fromJson(a, c) {
-          return new i().fromJson(a, c);
+          return new o().fromJson(a, c);
         },
         fromJsonString(a, c) {
-          return new i().fromJsonString(a, c);
+          return new o().fromJsonString(a, c);
         },
         equals(a, c) {
-          return t.util.equals(i, a, c);
+          return t.util.equals(o, a, c);
         },
       }),
-      i
+      o
     );
   }
   var f;
@@ -387,68 +387,68 @@
     throw new Error("invalid varint");
   }
   function Z(t, e, n) {
-    for (let o = 0; o < 28; o = o + 7) {
-      let i = t >>> o,
-        a = !(!(i >>> 7) && e == 0),
-        c = (a ? i | 128 : i) & 255;
+    for (let i = 0; i < 28; i = i + 7) {
+      let o = t >>> i,
+        a = !(!(o >>> 7) && e == 0),
+        c = (a ? o | 128 : o) & 255;
       if ((n.push(c), !a)) return;
     }
     let r = ((t >>> 28) & 15) | ((e & 7) << 4),
       s = !!(e >> 3);
     if ((n.push((s ? r | 128 : r) & 255), !!s)) {
-      for (let o = 3; o < 31; o = o + 7) {
-        let i = e >>> o,
-          a = !!(i >>> 7),
-          c = (a ? i | 128 : i) & 255;
+      for (let i = 3; i < 31; i = i + 7) {
+        let o = e >>> i,
+          a = !!(o >>> 7),
+          c = (a ? o | 128 : o) & 255;
         if ((n.push(c), !a)) return;
       }
       n.push((e >>> 31) & 1);
     }
   }
   var H = 4294967296;
-  function he(t) {
+  function pe(t) {
     let e = t[0] === "-";
     e && (t = t.slice(1));
     let n = 1e6,
       r = 0,
       s = 0;
-    function o(i, a) {
-      let c = Number(t.slice(i, a));
+    function i(o, a) {
+      let c = Number(t.slice(o, a));
       (s *= n),
         (r = r * n + c),
         r >= H && ((s = s + ((r / H) | 0)), (r = r % H));
     }
-    return o(-24, -18), o(-18, -12), o(-12, -6), o(-6), e ? Le(r, s) : ye(r, s);
+    return i(-24, -18), i(-18, -12), i(-12, -6), i(-6), e ? ve(r, s) : ye(r, s);
   }
   function $e(t, e) {
     let n = ye(t, e),
       r = n.hi & 2147483648;
-    r && (n = Le(n.lo, n.hi));
+    r && (n = ve(n.lo, n.hi));
     let s = ge(n.lo, n.hi);
     return r ? "-" + s : s;
   }
   function ge(t, e) {
-    if ((({ lo: t, hi: e } = ht(t, e)), e <= 2097151)) return String(H * e + t);
+    if ((({ lo: t, hi: e } = pt(t, e)), e <= 2097151)) return String(H * e + t);
     let n = t & 16777215,
       r = ((t >>> 24) | (e << 8)) & 16777215,
       s = (e >> 16) & 65535,
-      o = n + r * 6777216 + s * 6710656,
-      i = r + s * 8147497,
+      i = n + r * 6777216 + s * 6710656,
+      o = r + s * 8147497,
       a = s * 2,
       c = 1e7;
     return (
-      o >= c && ((i += Math.floor(o / c)), (o %= c)),
-      i >= c && ((a += Math.floor(i / c)), (i %= c)),
-      a.toString() + Ae(i) + Ae(o)
+      i >= c && ((o += Math.floor(i / c)), (i %= c)),
+      o >= c && ((a += Math.floor(o / c)), (o %= c)),
+      a.toString() + Ae(o) + Ae(i)
     );
   }
-  function ht(t, e) {
+  function pt(t, e) {
     return { lo: t >>> 0, hi: e >>> 0 };
   }
   function ye(t, e) {
     return { lo: t | 0, hi: e | 0 };
   }
-  function Le(t, e) {
+  function ve(t, e) {
     return (e = ~e), t ? (t = ~t + 1) : (e += 1), ye(t, e);
   }
   var Ae = (t) => {
@@ -464,7 +464,7 @@
       e.push(1);
     }
   }
-  function Re() {
+  function Le() {
     let t = this.buf[this.pos++],
       e = t & 127;
     if (!(t & 128)) return this.assertBounds(), e;
@@ -492,20 +492,20 @@
         process.env.BUF_BIGINT_DISABLE !== "1")
     ) {
       let s = BigInt("-9223372036854775808"),
-        o = BigInt("9223372036854775807"),
-        i = BigInt("0"),
+        i = BigInt("9223372036854775807"),
+        o = BigInt("0"),
         a = BigInt("18446744073709551615");
       return {
         zero: BigInt(0),
         supported: !0,
         parse(c) {
           let u = typeof c == "bigint" ? c : BigInt(c);
-          if (u > o || u < s) throw new Error(`int64 invalid: ${c}`);
+          if (u > i || u < s) throw new Error(`int64 invalid: ${c}`);
           return u;
         },
         uParse(c) {
           let u = typeof c == "bigint" ? c : BigInt(c);
-          if (u > a || u < i) throw new Error(`uint64 invalid: ${c}`);
+          if (u > a || u < o) throw new Error(`uint64 invalid: ${c}`);
           return u;
         },
         enc(c) {
@@ -532,8 +532,8 @@
         },
       };
     }
-    let n = (s) => T(/^-?[0-9]+$/.test(s), `int64 invalid: ${s}`),
-      r = (s) => T(/^[0-9]+$/.test(s), `uint64 invalid: ${s}`);
+    let n = (s) => N(/^-?[0-9]+$/.test(s), `int64 invalid: ${s}`),
+      r = (s) => N(/^[0-9]+$/.test(s), `uint64 invalid: ${s}`);
     return {
       zero: "0",
       supported: !1,
@@ -544,20 +544,20 @@
         return typeof s != "string" && (s = s.toString()), r(s), s;
       },
       enc(s) {
-        return typeof s != "string" && (s = s.toString()), n(s), he(s);
+        return typeof s != "string" && (s = s.toString()), n(s), pe(s);
       },
       uEnc(s) {
-        return typeof s != "string" && (s = s.toString()), r(s), he(s);
+        return typeof s != "string" && (s = s.toString()), r(s), pe(s);
       },
-      dec(s, o) {
-        return $e(s, o);
+      dec(s, i) {
+        return $e(s, i);
       },
-      uDec(s, o) {
-        return ge(s, o);
+      uDec(s, i) {
+        return ge(s, i);
       },
     };
   }
-  var I = gt();
+  var x = gt();
   var y;
   (function (t) {
     (t[(t.Varint = 0)] = "Varint"),
@@ -615,7 +615,7 @@
         );
       }
       uint32(e) {
-        for (j(e); e > 127; ) this.buf.push((e & 127) | 128), (e = e >>> 7);
+        for (Y(e); e > 127; ) this.buf.push((e & 127) | 128), (e = e >>> 7);
         return this.buf.push(e), this;
       }
       int32(e) {
@@ -641,7 +641,7 @@
         return new DataView(n.buffer).setFloat64(0, e, !0), this.raw(n);
       }
       fixed32(e) {
-        j(e);
+        Y(e);
         let n = new Uint8Array(4);
         return new DataView(n.buffer).setUint32(0, e, !0), this.raw(n);
       }
@@ -656,35 +656,35 @@
       sfixed64(e) {
         let n = new Uint8Array(8),
           r = new DataView(n.buffer),
-          s = I.enc(e);
+          s = x.enc(e);
         return r.setInt32(0, s.lo, !0), r.setInt32(4, s.hi, !0), this.raw(n);
       }
       fixed64(e) {
         let n = new Uint8Array(8),
           r = new DataView(n.buffer),
-          s = I.uEnc(e);
+          s = x.uEnc(e);
         return r.setInt32(0, s.lo, !0), r.setInt32(4, s.hi, !0), this.raw(n);
       }
       int64(e) {
-        let n = I.enc(e);
+        let n = x.enc(e);
         return Z(n.lo, n.hi, this.buf), this;
       }
       sint64(e) {
-        let n = I.enc(e),
+        let n = x.enc(e),
           r = n.hi >> 31,
           s = (n.lo << 1) ^ r,
-          o = ((n.hi << 1) | (n.lo >>> 31)) ^ r;
-        return Z(s, o, this.buf), this;
+          i = ((n.hi << 1) | (n.lo >>> 31)) ^ r;
+        return Z(s, i, this.buf), this;
       }
       uint64(e) {
-        let n = I.uEnc(e);
+        let n = x.uEnc(e);
         return Z(n.lo, n.hi, this.buf), this;
       }
     },
     te = class {
       constructor(e, n) {
         (this.varint64 = De),
-          (this.uint32 = Re),
+          (this.uint32 = Le),
           (this.buf = e),
           (this.len = e.length),
           (this.pos = 0),
@@ -734,10 +734,10 @@
         return (e >>> 1) ^ -(e & 1);
       }
       int64() {
-        return I.dec(...this.varint64());
+        return x.dec(...this.varint64());
       }
       uint64() {
-        return I.uDec(...this.varint64());
+        return x.uDec(...this.varint64());
       }
       sint64() {
         let [e, n] = this.varint64(),
@@ -745,7 +745,7 @@
         return (
           (e = ((e >>> 1) | ((n & 1) << 31)) ^ r),
           (n = (n >>> 1) ^ r),
-          I.dec(e, n)
+          x.dec(e, n)
         );
       }
       bool() {
@@ -759,10 +759,10 @@
         return this.view.getInt32((this.pos += 4) - 4, !0);
       }
       fixed64() {
-        return I.uDec(this.sfixed32(), this.sfixed32());
+        return x.uDec(this.sfixed32(), this.sfixed32());
       }
       sfixed64() {
-        return I.dec(this.sfixed32(), this.sfixed32());
+        return x.dec(this.sfixed32(), this.sfixed32());
       }
       float() {
         return this.view.getFloat32((this.pos += 4) - 4, !0);
@@ -812,7 +812,7 @@
       case f.INT64:
       case f.SFIXED64:
       case f.SINT64:
-        return e == 0 ? I.zero : "0";
+        return e == 0 ? x.zero : "0";
       case f.DOUBLE:
       case f.FLOAT:
         return 0;
@@ -866,20 +866,20 @@
         s = n || e == 0;
         break;
     }
-    let o = f[t].toLowerCase();
-    return [r, o, n || s];
+    let i = f[t].toLowerCase();
+    return [r, i, n || s];
   }
-  function ve(t, e, n, r) {
+  function Re(t, e, n, r) {
     let s;
     return {
       typeName: e,
       extendee: n,
       get field() {
         if (!s) {
-          let o = typeof r == "function" ? r() : r;
-          (o.name = e.split(".").pop()),
-            (o.jsonName = `[${e}]`),
-            (s = t.util.newFieldList([o]).list()[0]);
+          let i = typeof r == "function" ? r() : r;
+          (i.name = e.split(".").pop()),
+            (i.jsonName = `[${e}]`),
+            (s = t.util.newFieldList([i]).list()[0]);
         }
         return s;
       },
@@ -922,14 +922,14 @@
       json: e,
       bin: n,
       util: r,
-      makeMessageType(s, o, i) {
-        return Ue(this, s, o, i);
+      makeMessageType(s, i, o) {
+        return Ue(this, s, i, o);
       },
       makeEnum: Se,
-      makeEnumType: pe,
+      makeEnumType: he,
       getEnumType: Be,
-      makeExtension(s, o, i) {
-        return ve(this, s, o, i);
+      makeExtension(s, i, o) {
+        return Re(this, s, i, o);
       },
     };
   }
@@ -947,14 +947,14 @@
     "google.protobuf.StringValue": f.STRING,
     "google.protobuf.BytesValue": f.BYTES,
   };
-  var C = Symbol("@bufbuild/protobuf/unknown-fields"),
+  var V = Symbol("@bufbuild/protobuf/unknown-fields"),
     Je = { readUnknownFields: !0, readerFactory: (t) => new te(t) },
-    Ce = { writeUnknownFields: !0, writerFactory: () => new ee() };
+    Ve = { writeUnknownFields: !0, writerFactory: () => new ee() };
   function bt(t) {
     return t ? Object.assign(Object.assign({}, Je), t) : Je;
   }
   function wt(t) {
-    return t ? Object.assign(Object.assign({}, Ce), t) : Ce;
+    return t ? Object.assign(Object.assign({}, Ve), t) : Ve;
   }
   function qe() {
     return {
@@ -962,137 +962,137 @@
       makeWriteOptions: wt,
       listUnknownFields(t) {
         var e;
-        return (e = t[C]) !== null && e !== void 0 ? e : [];
+        return (e = t[V]) !== null && e !== void 0 ? e : [];
       },
       discardUnknownFields(t) {
-        delete t[C];
+        delete t[V];
       },
       writeUnknownFields(t, e) {
-        let r = t[C];
+        let r = t[V];
         if (r) for (let s of r) e.tag(s.no, s.wireType).raw(s.data);
       },
       onUnknownField(t, e, n, r) {
         let s = t;
-        Array.isArray(s[C]) || (s[C] = []),
-          s[C].push({ no: e, wireType: n, data: r });
+        Array.isArray(s[V]) || (s[V] = []),
+          s[V].push({ no: e, wireType: n, data: r });
       },
       readMessage(t, e, n, r, s) {
-        let o = t.getType(),
-          i = s ? e.len : e.pos + n,
+        let i = t.getType(),
+          o = s ? e.len : e.pos + n,
           a,
           c;
-        for (; e.pos < i && (([a, c] = e.tag()), c != y.EndGroup); ) {
-          let u = o.fields.find(a);
+        for (; e.pos < o && (([a, c] = e.tag()), c != y.EndGroup); ) {
+          let u = i.fields.find(a);
           if (!u) {
             let l = e.skip(c);
             r.readUnknownFields && this.onUnknownField(t, a, c, l);
             continue;
           }
-          Ve(t, e, u, c, r);
+          Ce(t, e, u, c, r);
         }
         if (s && (c != y.EndGroup || a !== n))
           throw new Error("invalid end group tag");
       },
-      readField: Ve,
+      readField: Ce,
     };
   }
-  function Ve(t, e, n, r, s) {
-    let { repeated: o, localName: i } = n;
+  function Ce(t, e, n, r, s) {
+    let { repeated: i, localName: o } = n;
     switch (
       (n.oneof &&
         ((t = t[n.oneof.localName]),
-        t.case != i && delete t.value,
-        (t.case = i),
-        (i = "value")),
+        t.case != o && delete t.value,
+        (t.case = o),
+        (o = "value")),
       n.kind)
     ) {
       case "scalar":
       case "enum":
         let a = n.kind == "enum" ? f.INT32 : n.T,
-          c = oe;
-        if ((n.kind == "scalar" && n.L > 0 && (c = Tt), o)) {
-          let p = t[i];
+          c = ie;
+        if ((n.kind == "scalar" && n.L > 0 && (c = Tt), i)) {
+          let h = t[o];
           if (r == y.LengthDelimited && a != f.STRING && a != f.BYTES) {
-            let h = e.uint32() + e.pos;
-            for (; e.pos < h; ) p.push(c(e, a));
-          } else p.push(c(e, a));
-        } else t[i] = c(e, a);
+            let p = e.uint32() + e.pos;
+            for (; e.pos < p; ) h.push(c(e, a));
+          } else h.push(c(e, a));
+        } else t[o] = c(e, a);
         break;
       case "message":
         let u = n.T;
-        o
-          ? t[i].push(se(e, new u(), s, n))
-          : t[i] instanceof F
-          ? se(e, t[i], s, n)
-          : ((t[i] = se(e, new u(), s, n)),
+        i
+          ? t[o].push(se(e, new u(), s, n))
+          : t[o] instanceof F
+          ? se(e, t[o], s, n)
+          : ((t[o] = se(e, new u(), s, n)),
             u.fieldWrapper &&
               !n.oneof &&
               !n.repeated &&
-              (t[i] = u.fieldWrapper.unwrapField(t[i])));
+              (t[o] = u.fieldWrapper.unwrapField(t[o])));
         break;
       case "map":
         let [l, m] = kt(n, e, s);
-        t[i][l] = m;
+        t[o][l] = m;
         break;
     }
   }
   function se(t, e, n, r) {
     let s = e.getType().runtime.bin,
-      o = r?.delimited;
-    return s.readMessage(e, t, o ? r?.no : t.uint32(), n, o), e;
+      i = r?.delimited;
+    return s.readMessage(e, t, i ? r?.no : t.uint32(), n, i), e;
   }
   function kt(t, e, n) {
     let r = e.uint32(),
       s = e.pos + r,
-      o,
-      i;
+      i,
+      o;
     for (; e.pos < s; ) {
       let [a] = e.tag();
       switch (a) {
         case 1:
-          o = oe(e, t.K);
+          i = ie(e, t.K);
           break;
         case 2:
           switch (t.V.kind) {
             case "scalar":
-              i = oe(e, t.V.T);
+              o = ie(e, t.V.T);
               break;
             case "enum":
-              i = e.int32();
+              o = e.int32();
               break;
             case "message":
-              i = se(e, new t.V.T(), n, void 0);
+              o = se(e, new t.V.T(), n, void 0);
               break;
           }
           break;
       }
     }
-    if (o === void 0) {
+    if (i === void 0) {
       let a = P(t.K, A.BIGINT);
-      o = t.K == f.BOOL ? a.toString() : a;
+      i = t.K == f.BOOL ? a.toString() : a;
     }
     if (
-      (typeof o != "string" && typeof o != "number" && (o = o.toString()),
-      i === void 0)
+      (typeof i != "string" && typeof i != "number" && (i = i.toString()),
+      o === void 0)
     )
       switch (t.V.kind) {
         case "scalar":
-          i = P(t.V.T, A.BIGINT);
+          o = P(t.V.T, A.BIGINT);
           break;
         case "enum":
-          i = 0;
+          o = 0;
           break;
         case "message":
-          i = new t.V.T();
+          o = new t.V.T();
           break;
       }
-    return [o, i];
+    return [i, o];
   }
   function Tt(t, e) {
-    let n = oe(t, e);
+    let n = ie(t, e);
     return typeof n == "bigint" ? n.toString() : n;
   }
-  function oe(t, e) {
+  function ie(t, e) {
     switch (e) {
       case f.STRING:
         return t.string();
@@ -1128,25 +1128,25 @@
   }
   function Xe(t, e, n, r, s) {
     t.tag(n.no, y.LengthDelimited), t.fork();
-    let o = r;
+    let i = r;
     switch (n.K) {
       case f.INT32:
       case f.FIXED32:
       case f.UINT32:
       case f.SFIXED32:
       case f.SINT32:
-        o = Number.parseInt(r);
+        i = Number.parseInt(r);
         break;
       case f.BOOL:
-        T(r == "true" || r == "false"), (o = r == "true");
+        N(r == "true" || r == "false"), (i = r == "true");
         break;
     }
-    switch ((V(t, n.K, 1, o, !0), n.V.kind)) {
+    switch ((C(t, n.K, 1, i, !0), n.V.kind)) {
       case "scalar":
-        V(t, n.V.T, 2, s, !0);
+        C(t, n.V.T, 2, s, !0);
         break;
       case "enum":
-        V(t, f.INT32, 2, s, !0);
+        C(t, f.INT32, 2, s, !0);
         break;
       case "message":
         t.tag(2, y.LengthDelimited).bytes(s.toBinary(e));
@@ -1160,64 +1160,64 @@
       ? t.tag(n.no, y.StartGroup).raw(s.toBinary(e)).tag(n.no, y.EndGroup)
       : t.tag(n.no, y.LengthDelimited).bytes(s.toBinary(e));
   }
-  function V(t, e, n, r, s) {
-    let [o, i, a] = we(e, r);
-    (!a || s) && t.tag(n, o)[i](r);
+  function C(t, e, n, r, s) {
+    let [i, o, a] = we(e, r);
+    (!a || s) && t.tag(n, i)[o](r);
   }
-  function Ge(t, e, n, r) {
+  function _e(t, e, n, r) {
     if (!r.length) return;
     t.tag(n, y.LengthDelimited).fork();
     let [, s] = we(e);
-    for (let o = 0; o < r.length; o++) t[s](r[o]);
+    for (let i = 0; i < r.length; i++) t[s](r[i]);
     t.join();
   }
-  function je() {
+  function Ye() {
     return Object.assign(Object.assign({}, qe()), {
-      writeField: _e,
+      writeField: Ge,
       writeMessage(t, e, n) {
         let r = t.getType();
         for (let s of r.fields.byNumber()) {
-          let o,
-            i = s.localName;
+          let i,
+            o = s.localName;
           if (s.oneof) {
             let a = t[s.oneof.localName];
-            if (a.case !== i) continue;
-            o = a.value;
-          } else o = t[i];
-          _e(s, o, e, n);
+            if (a.case !== o) continue;
+            i = a.value;
+          } else i = t[o];
+          Ge(s, i, e, n);
         }
         return n.writeUnknownFields && this.writeUnknownFields(t, e), e;
       },
     });
   }
-  function _e(t, e, n, r) {
+  function Ge(t, e, n, r) {
     let s = t.repeated;
     switch (t.kind) {
       case "scalar":
       case "enum":
-        let o = t.kind == "enum" ? f.INT32 : t.T;
+        let i = t.kind == "enum" ? f.INT32 : t.T;
         if (s)
-          if (t.packed) Ge(n, o, t.no, e);
-          else for (let i of e) V(n, o, t.no, i, !0);
-        else e !== void 0 && V(n, o, t.no, e, !!t.oneof || t.opt);
+          if (t.packed) _e(n, i, t.no, e);
+          else for (let o of e) C(n, i, t.no, o, !0);
+        else e !== void 0 && C(n, i, t.no, e, !!t.oneof || t.opt);
         break;
       case "message":
-        if (s) for (let i of e) ke(n, r, t, i);
+        if (s) for (let o of e) ke(n, r, t, o);
         else e !== void 0 && ke(n, r, t, e);
         break;
       case "map":
-        for (let [i, a] of Object.entries(e)) Xe(n, r, t, i, a);
+        for (let [o, a] of Object.entries(e)) Xe(n, r, t, o, a);
         break;
     }
   }
-  var L =
+  var v =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split(
         "",
       ),
-    ie = [];
-  for (let t = 0; t < L.length; t++) ie[L[t].charCodeAt(0)] = t;
-  ie["-".charCodeAt(0)] = L.indexOf("+");
-  ie["_".charCodeAt(0)] = L.indexOf("/");
+    oe = [];
+  for (let t = 0; t < v.length; t++) oe[v[t].charCodeAt(0)] = t;
+  oe["-".charCodeAt(0)] = v.indexOf("+");
+  oe["_".charCodeAt(0)] = v.indexOf("/");
   var Te = {
     dec(t) {
       let e = (t.length * 3) / 4;
@@ -1225,10 +1225,10 @@
       let n = new Uint8Array(e),
         r = 0,
         s = 0,
-        o,
-        i = 0;
+        i,
+        o = 0;
       for (let a = 0; a < t.length; a++) {
-        if (((o = ie[t.charCodeAt(a)]), o === void 0))
+        if (((i = oe[t.charCodeAt(a)]), i === void 0))
           switch (t[a]) {
             case "=":
               s = 0;
@@ -1243,16 +1243,16 @@
           }
         switch (s) {
           case 0:
-            (i = o), (s = 1);
+            (o = i), (s = 1);
             break;
           case 1:
-            (n[r++] = (i << 2) | ((o & 48) >> 4)), (i = o), (s = 2);
+            (n[r++] = (o << 2) | ((i & 48) >> 4)), (o = i), (s = 2);
             break;
           case 2:
-            (n[r++] = ((i & 15) << 4) | ((o & 60) >> 2)), (i = o), (s = 3);
+            (n[r++] = ((o & 15) << 4) | ((i & 60) >> 2)), (o = i), (s = 3);
             break;
           case 3:
-            (n[r++] = ((i & 3) << 6) | o), (s = 0);
+            (n[r++] = ((o & 3) << 6) | i), (s = 0);
             break;
         }
       }
@@ -1264,40 +1264,40 @@
         n = 0,
         r,
         s = 0;
-      for (let o = 0; o < t.length; o++)
-        switch (((r = t[o]), n)) {
+      for (let i = 0; i < t.length; i++)
+        switch (((r = t[i]), n)) {
           case 0:
-            (e += L[r >> 2]), (s = (r & 3) << 4), (n = 1);
+            (e += v[r >> 2]), (s = (r & 3) << 4), (n = 1);
             break;
           case 1:
-            (e += L[s | (r >> 4)]), (s = (r & 15) << 2), (n = 2);
+            (e += v[s | (r >> 4)]), (s = (r & 15) << 2), (n = 2);
             break;
           case 2:
-            (e += L[s | (r >> 6)]), (e += L[r & 63]), (n = 0);
+            (e += v[s | (r >> 6)]), (e += v[r & 63]), (n = 0);
             break;
         }
-      return n && ((e += L[s]), (e += "="), n == 1 && (e += "=")), e;
+      return n && ((e += v[s]), (e += "="), n == 1 && (e += "=")), e;
     },
   };
-  function Ye(t, e, n) {
+  function je(t, e, n) {
     Ke(e, t);
     let r = e.runtime.bin.makeReadOptions(n),
       s = Me(t.getType().runtime.bin.listUnknownFields(t), e.field),
-      [o, i] = ne(e);
+      [i, o] = ne(e);
     for (let a of s)
       e.runtime.bin.readField(
-        o,
+        i,
         r.readerFactory(a.data),
         e.field,
         a.wireType,
         r,
       );
-    return i();
+    return o();
   }
   function We(t, e, n, r) {
     Ke(e, t);
     let s = e.runtime.bin.makeReadOptions(r),
-      o = e.runtime.bin.makeWriteOptions(r);
+      i = e.runtime.bin.makeWriteOptions(r);
     if (Ne(t, e)) {
       let u = t
         .getType()
@@ -1307,14 +1307,14 @@
       for (let l of u)
         t.getType().runtime.bin.onUnknownField(t, l.no, l.wireType, l.data);
     }
-    let i = o.writerFactory(),
+    let o = i.writerFactory(),
       a = e.field;
     !a.opt &&
       !a.repeated &&
       (a.kind == "enum" || a.kind == "scalar") &&
       (a = Object.assign(Object.assign({}, e.field), { opt: !0 })),
-      e.runtime.bin.writeField(a, n, i, o);
-    let c = s.readerFactory(i.finish());
+      e.runtime.bin.writeField(a, n, o, i);
+    let c = s.readerFactory(o.finish());
     for (; c.pos < c.len; ) {
       let [u, l] = c.tag(),
         m = c.skip(l);
@@ -1329,7 +1329,7 @@
     );
   }
   function Ke(t, e) {
-    T(
+    N(
       t.extendee.typeName == e.getType().typeName,
       `extension ${t.typeName} can only be applied to message ${t.extendee.typeName}`,
     );
@@ -1344,59 +1344,59 @@
   function Nt(t) {
     return t ? Object.assign(Object.assign({}, ze), t) : ze;
   }
-  function xt(t) {
+  function It(t) {
     return t ? Object.assign(Object.assign({}, Qe), t) : Qe;
   }
   function et(t, e) {
-    let n = e(It, Ze);
+    let n = e(xt, Ze);
     return {
       makeReadOptions: Nt,
-      makeWriteOptions: xt,
-      readMessage(r, s, o, i) {
+      makeWriteOptions: It,
+      readMessage(r, s, i, o) {
         if (s == null || Array.isArray(s) || typeof s != "object")
           throw new Error(
             `cannot decode message ${r.typeName} from JSON: ${D(s)}`,
           );
-        i = i ?? new r();
+        o = o ?? new r();
         let a = new Map(),
-          c = o.typeRegistry;
+          c = i.typeRegistry;
         for (let [u, l] of Object.entries(s)) {
           let m = r.fields.findJsonName(u);
           if (m) {
             if (m.oneof) {
               if (l === null && m.kind == "scalar") continue;
-              let p = a.get(m.oneof);
-              if (p !== void 0)
+              let h = a.get(m.oneof);
+              if (h !== void 0)
                 throw new Error(
-                  `cannot decode message ${r.typeName} from JSON: multiple keys for oneof "${m.oneof.name}" present: "${p}", "${u}"`,
+                  `cannot decode message ${r.typeName} from JSON: multiple keys for oneof "${m.oneof.name}" present: "${h}", "${u}"`,
                 );
               a.set(m.oneof, u);
             }
-            He(i, l, m, o, r, t);
+            He(o, l, m, i, r, t);
           } else {
-            let p = !1;
+            let h = !1;
             if (c?.findExtension && u.startsWith("[") && u.endsWith("]")) {
               let d = c.findExtension(u.substring(1, u.length - 1));
               if (d && d.extendee.typeName == r.typeName) {
-                p = !0;
-                let [h, B] = ne(d);
-                He(h, l, d.field, o, d, !0), We(i, d, B(), o);
+                h = !0;
+                let [p, B] = ne(d);
+                He(p, l, d.field, i, d, !0), We(o, d, B(), i);
               }
             }
-            if (!p && !o.ignoreUnknownFields)
+            if (!h && !i.ignoreUnknownFields)
               throw new Error(
                 `cannot decode message ${r.typeName} from JSON: key "${u}" is unknown`,
               );
           }
         }
-        return i;
+        return o;
       },
       writeMessage(r, s) {
-        let o = r.getType(),
-          i = {},
+        let i = r.getType(),
+          o = {},
           a;
         try {
-          for (let u of o.fields.byMember()) {
+          for (let u of i.fields.byMember()) {
             let l;
             if (u.kind == "oneof") {
               let m = r[u.localName];
@@ -1405,28 +1405,28 @@
                 throw "oneof case not found: " + m.case;
               l = n(a, m.value, s);
             } else (a = u), (l = n(a, r[a.localName], s));
-            l !== void 0 && (i[s.useProtoFieldName ? a.name : a.jsonName] = l);
+            l !== void 0 && (o[s.useProtoFieldName ? a.name : a.jsonName] = l);
           }
           let c = s.typeRegistry;
           if (c?.findExtensionFor)
-            for (let u of o.runtime.bin.listUnknownFields(r)) {
-              let l = c.findExtensionFor(o.typeName, u.no);
+            for (let u of i.runtime.bin.listUnknownFields(r)) {
+              let l = c.findExtensionFor(i.typeName, u.no);
               if (l && Ne(r, l)) {
-                let m = Ye(r, l, s),
-                  p = n(l.field, m, s);
-                p !== void 0 && (i[l.field.jsonName] = p);
+                let m = je(r, l, s),
+                  h = n(l.field, m, s);
+                h !== void 0 && (o[l.field.jsonName] = h);
               }
             }
         } catch (c) {
           let u = a
-              ? `cannot encode field ${o.typeName}.${a.name} to JSON`
-              : `cannot encode message ${o.typeName} to JSON`,
+              ? `cannot encode field ${i.typeName}.${a.name} to JSON`
+              : `cannot encode message ${i.typeName} to JSON`,
             l = c instanceof Error ? c.message : String(c);
           throw new Error(u + (l.length > 0 ? `: ${l}` : ""));
         }
-        return i;
+        return o;
       },
-      readScalar: (r, s, o) => Y(r, s, o, t),
+      readScalar: (r, s, i) => j(r, s, i, t),
       writeScalar: Ze,
       debug: D,
     };
@@ -1442,11 +1442,11 @@
         return String(t);
     }
   }
-  function He(t, e, n, r, s, o) {
-    let i = n.localName;
+  function He(t, e, n, r, s, i) {
+    let o = n.localName;
     if (n.oneof) {
       if (e === null && n.kind == "scalar") return;
-      (t = t[n.oneof.localName] = { case: i }), (i = "value");
+      (t = t[n.oneof.localName] = { case: o }), (o = "value");
     }
     if (n.repeated) {
       if (e === null) return;
@@ -1454,7 +1454,7 @@
         throw new Error(
           `cannot decode field ${s.typeName}.${n.name} from JSON: ${D(e)}`,
         );
-      let a = t[i];
+      let a = t[o];
       for (let c of e) {
         if (c === null)
           throw new Error(
@@ -1466,12 +1466,12 @@
             u = n.T.fromJson(c, r);
             break;
           case "enum":
-            if (((u = xe(n.T, c, r.ignoreUnknownFields, !0)), u === void 0))
+            if (((u = Ie(n.T, c, r.ignoreUnknownFields, !0)), u === void 0))
               continue;
             break;
           case "scalar":
             try {
-              u = Y(n.T, c, n.L, !0);
+              u = j(n.T, c, n.L, !0);
             } catch (l) {
               let m = `cannot decode field ${s.typeName}.${
                 n.name
@@ -1493,7 +1493,7 @@
         throw new Error(
           `cannot decode field ${s.typeName}.${n.name} from JSON: ${D(e)}`,
         );
-      let a = t[i];
+      let a = t[o];
       for (let [c, u] of Object.entries(e)) {
         if (u === null)
           throw new Error(
@@ -1505,28 +1505,28 @@
             l = n.V.T.fromJson(u, r);
             break;
           case "enum":
-            if (((l = xe(n.V.T, u, r.ignoreUnknownFields, !0)), l === void 0))
+            if (((l = Ie(n.V.T, u, r.ignoreUnknownFields, !0)), l === void 0))
               continue;
             break;
           case "scalar":
             try {
-              l = Y(n.V.T, u, A.BIGINT, !0);
+              l = j(n.V.T, u, A.BIGINT, !0);
             } catch (m) {
-              let p = `cannot decode map value for field ${s.typeName}.${
+              let h = `cannot decode map value for field ${s.typeName}.${
                 n.name
               } from JSON: ${D(e)}`;
               throw (
                 (m instanceof Error &&
                   m.message.length > 0 &&
-                  (p += `: ${m.message}`),
-                new Error(p))
+                  (h += `: ${m.message}`),
+                new Error(h))
               );
             }
             break;
         }
         try {
           a[
-            Y(
+            j(
               n.K,
               n.K == f.BOOL ? (c == "true" ? !0 : c == "false" ? !1 : c) : c,
               A.BIGINT,
@@ -1534,14 +1534,14 @@
             ).toString()
           ] = l;
         } catch (m) {
-          let p = `cannot decode map key for field ${s.typeName}.${
+          let h = `cannot decode map key for field ${s.typeName}.${
             n.name
           } from JSON: ${D(e)}`;
           throw (
             (m instanceof Error &&
               m.message.length > 0 &&
-              (p += `: ${m.message}`),
-            new Error(p))
+              (h += `: ${m.message}`),
+            new Error(h))
           );
         }
       }
@@ -1556,20 +1556,20 @@
               );
             return;
           }
-          t[i] instanceof F
-            ? t[i].fromJson(e, r)
-            : ((t[i] = a.fromJson(e, r)),
+          t[o] instanceof F
+            ? t[o].fromJson(e, r)
+            : ((t[o] = a.fromJson(e, r)),
               a.fieldWrapper &&
                 !n.oneof &&
-                (t[i] = a.fieldWrapper.unwrapField(t[i])));
+                (t[o] = a.fieldWrapper.unwrapField(t[o])));
           break;
         case "enum":
-          let c = xe(n.T, e, r.ignoreUnknownFields, o);
-          c !== void 0 && (t[i] = c);
+          let c = Ie(n.T, e, r.ignoreUnknownFields, i);
+          c !== void 0 && (t[o] = c);
           break;
         case "scalar":
           try {
-            t[i] = Y(n.T, e, n.L, o);
+            t[o] = j(n.T, e, n.L, i);
           } catch (u) {
             let l = `cannot decode field ${s.typeName}.${n.name} from JSON: ${D(
               e,
@@ -1584,7 +1584,7 @@
           break;
       }
   }
-  function Y(t, e, n, r) {
+  function j(t, e, n, r) {
     switch (t) {
       case f.DOUBLE:
       case f.FLOAT:
@@ -1607,30 +1607,30 @@
       case f.SINT32:
       case f.UINT32:
         if (e === null) return r ? 0 : void 0;
-        let o;
+        let i;
         if (
           (typeof e == "number"
-            ? (o = e)
+            ? (i = e)
             : typeof e == "string" &&
               e.length > 0 &&
               e.trim().length === e.length &&
-              (o = Number(e)),
-          o === void 0)
+              (i = Number(e)),
+          i === void 0)
         )
           break;
-        return t == f.UINT32 ? j(o) : J(o), o;
+        return t == f.UINT32 ? Y(i) : J(i), i;
       case f.INT64:
       case f.SFIXED64:
       case f.SINT64:
-        if (e === null) return r ? I.zero : void 0;
+        if (e === null) return r ? x.zero : void 0;
         if (typeof e != "number" && typeof e != "string") break;
-        let i = I.parse(e);
-        return n ? i.toString() : i;
+        let o = x.parse(e);
+        return n ? o.toString() : o;
       case f.FIXED64:
       case f.UINT64:
-        if (e === null) return r ? I.zero : void 0;
+        if (e === null) return r ? x.zero : void 0;
         if (typeof e != "number" && typeof e != "string") break;
-        let a = I.uParse(e);
+        let a = x.uParse(e);
         return n ? a.toString() : a;
       case f.BOOL:
         if (e === null) return r ? !1 : void 0;
@@ -1653,7 +1653,7 @@
     }
     throw new Error();
   }
-  function xe(t, e, n, r) {
+  function Ie(t, e, n, r) {
     if (e === null) return r ? t.values[0].no : void 0;
     switch (typeof e) {
       case "number":
@@ -1666,14 +1666,14 @@
     }
     throw new Error(`cannot decode enum ${t.typeName} from JSON: ${D(e)}`);
   }
-  function It(t, e, n, r) {
+  function xt(t, e, n, r) {
     var s;
     if (e === void 0) return e;
     if (!n && t.values[0].no === e) return;
     if (r) return e;
     if (t.typeName == "google.protobuf.NullValue") return null;
-    let o = t.findNumber(e);
-    return (s = o?.name) !== null && s !== void 0 ? s : e;
+    let i = t.findNumber(e);
+    return (s = i?.name) !== null && s !== void 0 ? s : e;
   }
   function Ze(t, e, n) {
     if (e !== void 0)
@@ -1683,11 +1683,11 @@
         case f.SINT32:
         case f.FIXED32:
         case f.UINT32:
-          return T(typeof e == "number"), e != 0 || n ? e : void 0;
+          return N(typeof e == "number"), e != 0 || n ? e : void 0;
         case f.FLOAT:
         case f.DOUBLE:
           return (
-            T(typeof e == "number"),
+            N(typeof e == "number"),
             Number.isNaN(e)
               ? "NaN"
               : e === Number.POSITIVE_INFINITY
@@ -1699,16 +1699,16 @@
               : void 0
           );
         case f.STRING:
-          return T(typeof e == "string"), e.length > 0 || n ? e : void 0;
+          return N(typeof e == "string"), e.length > 0 || n ? e : void 0;
         case f.BOOL:
-          return T(typeof e == "boolean"), e || n ? e : void 0;
+          return N(typeof e == "boolean"), e || n ? e : void 0;
         case f.UINT64:
         case f.FIXED64:
         case f.INT64:
         case f.SFIXED64:
         case f.SINT64:
           return (
-            T(
+            N(
               typeof e == "bigint" ||
                 typeof e == "string" ||
                 typeof e == "number",
@@ -1717,7 +1717,7 @@
           );
         case f.BYTES:
           return (
-            T(e instanceof Uint8Array),
+            N(e instanceof Uint8Array),
             n || e.byteLength > 0 ? Te.enc(e) : void 0
           );
       }
@@ -1726,61 +1726,61 @@
     return et(
       !0,
       (t, e) =>
-        function (r, s, o) {
+        function (r, s, i) {
           if (r.kind == "map") {
-            let i = {};
+            let o = {};
             switch (r.V.kind) {
               case "scalar":
                 for (let [c, u] of Object.entries(s)) {
                   let l = e(r.V.T, u, !0);
-                  T(l !== void 0), (i[c.toString()] = l);
+                  N(l !== void 0), (o[c.toString()] = l);
                 }
                 break;
               case "message":
                 for (let [c, u] of Object.entries(s))
-                  i[c.toString()] = u.toJson(o);
+                  o[c.toString()] = u.toJson(i);
                 break;
               case "enum":
                 let a = r.V.T;
                 for (let [c, u] of Object.entries(s)) {
-                  T(u === void 0 || typeof u == "number");
-                  let l = t(a, u, !0, o.enumAsInteger);
-                  T(l !== void 0), (i[c.toString()] = l);
+                  N(u === void 0 || typeof u == "number");
+                  let l = t(a, u, !0, i.enumAsInteger);
+                  N(l !== void 0), (o[c.toString()] = l);
                 }
                 break;
             }
-            return o.emitDefaultValues || Object.keys(i).length > 0
-              ? i
+            return i.emitDefaultValues || Object.keys(o).length > 0
+              ? o
               : void 0;
           } else if (r.repeated) {
-            let i = [];
+            let o = [];
             switch (r.kind) {
               case "scalar":
-                for (let a = 0; a < s.length; a++) i.push(e(r.T, s[a], !0));
+                for (let a = 0; a < s.length; a++) o.push(e(r.T, s[a], !0));
                 break;
               case "enum":
                 for (let a = 0; a < s.length; a++)
-                  i.push(t(r.T, s[a], !0, o.enumAsInteger));
+                  o.push(t(r.T, s[a], !0, i.enumAsInteger));
                 break;
               case "message":
-                for (let a = 0; a < s.length; a++) i.push(s[a].toJson(o));
+                for (let a = 0; a < s.length; a++) o.push(s[a].toJson(i));
                 break;
             }
-            return o.emitDefaultValues || i.length > 0 ? i : void 0;
+            return i.emitDefaultValues || o.length > 0 ? o : void 0;
           } else {
             if (s === void 0) return;
             switch (r.kind) {
               case "scalar":
-                return e(r.T, s, !!r.oneof || r.opt || o.emitDefaultValues);
+                return e(r.T, s, !!r.oneof || r.opt || i.emitDefaultValues);
               case "enum":
                 return t(
                   r.T,
                   s,
-                  !!r.oneof || r.opt || o.emitDefaultValues,
-                  o.enumAsInteger,
+                  !!r.oneof || r.opt || i.emitDefaultValues,
+                  i.enumAsInteger,
                 );
               case "message":
-                return re(r.T, s).toJson(o);
+                return re(r.T, s).toJson(i);
             }
           }
         },
@@ -1794,39 +1794,39 @@
         let n = e.getType();
         for (let r of n.fields.byMember()) {
           let s = r.localName,
-            o = e,
-            i = t;
-          if (i[s] !== void 0)
+            i = e,
+            o = t;
+          if (o[s] !== void 0)
             switch (r.kind) {
               case "oneof":
-                let a = i[s].case;
+                let a = o[s].case;
                 if (a === void 0) continue;
                 let c = r.findField(a),
-                  u = i[s].value;
+                  u = o[s].value;
                 c && c.kind == "message" && !(u instanceof c.T)
                   ? (u = new c.T(u))
                   : c && c.kind === "scalar" && c.T === f.BYTES && (u = W(u)),
-                  (o[s] = { case: a, value: u });
+                  (i[s] = { case: a, value: u });
                 break;
               case "scalar":
               case "enum":
-                let l = i[s];
+                let l = o[s];
                 r.T === f.BYTES && (l = r.repeated ? l.map(W) : W(l)),
-                  (o[s] = l);
+                  (i[s] = l);
                 break;
               case "map":
                 switch (r.V.kind) {
                   case "scalar":
                   case "enum":
                     if (r.V.T === f.BYTES)
-                      for (let [d, h] of Object.entries(i[s])) o[s][d] = W(h);
-                    else Object.assign(o[s], i[s]);
+                      for (let [d, p] of Object.entries(o[s])) i[s][d] = W(p);
+                    else Object.assign(i[s], o[s]);
                     break;
                   case "message":
-                    let p = r.V.T;
-                    for (let d of Object.keys(i[s])) {
-                      let h = i[s][d];
-                      p.fieldWrapper || (h = new p(h)), (o[s][d] = h);
+                    let h = r.V.T;
+                    for (let d of Object.keys(o[s])) {
+                      let p = o[s][d];
+                      h.fieldWrapper || (p = new h(p)), (i[s][d] = p);
                     }
                     break;
                 }
@@ -1834,14 +1834,14 @@
               case "message":
                 let m = r.T;
                 if (r.repeated)
-                  o[s] = i[s].map((p) => (p instanceof m ? p : new m(p)));
-                else if (i[s] !== void 0) {
-                  let p = i[s];
+                  i[s] = o[s].map((h) => (h instanceof m ? h : new m(h)));
+                else if (o[s] !== void 0) {
+                  let h = o[s];
                   m.fieldWrapper
                     ? m.typeName === "google.protobuf.BytesValue"
-                      ? (o[s] = W(p))
-                      : (o[s] = p)
-                    : (o[s] = p instanceof m ? p : new m(p));
+                      ? (i[s] = W(h))
+                      : (i[s] = h)
+                    : (i[s] = h instanceof m ? h : new m(h));
                 }
                 break;
             }
@@ -1854,50 +1854,50 @@
           ? !1
           : t.fields.byMember().every((r) => {
               let s = e[r.localName],
-                o = n[r.localName];
+                i = n[r.localName];
               if (r.repeated) {
-                if (s.length !== o.length) return !1;
+                if (s.length !== i.length) return !1;
                 switch (r.kind) {
                   case "message":
-                    return s.every((i, a) => r.T.equals(i, o[a]));
+                    return s.every((o, a) => r.T.equals(o, i[a]));
                   case "scalar":
-                    return s.every((i, a) => $(r.T, i, o[a]));
+                    return s.every((o, a) => $(r.T, o, i[a]));
                   case "enum":
-                    return s.every((i, a) => $(f.INT32, i, o[a]));
+                    return s.every((o, a) => $(f.INT32, o, i[a]));
                 }
                 throw new Error(`repeated cannot contain ${r.kind}`);
               }
               switch (r.kind) {
                 case "message":
-                  return r.T.equals(s, o);
+                  return r.T.equals(s, i);
                 case "enum":
-                  return $(f.INT32, s, o);
+                  return $(f.INT32, s, i);
                 case "scalar":
-                  return $(r.T, s, o);
+                  return $(r.T, s, i);
                 case "oneof":
-                  if (s.case !== o.case) return !1;
-                  let i = r.findField(s.case);
-                  if (i === void 0) return !0;
-                  switch (i.kind) {
+                  if (s.case !== i.case) return !1;
+                  let o = r.findField(s.case);
+                  if (o === void 0) return !0;
+                  switch (o.kind) {
                     case "message":
-                      return i.T.equals(s.value, o.value);
+                      return o.T.equals(s.value, i.value);
                     case "enum":
-                      return $(f.INT32, s.value, o.value);
+                      return $(f.INT32, s.value, i.value);
                     case "scalar":
-                      return $(i.T, s.value, o.value);
+                      return $(o.T, s.value, i.value);
                   }
-                  throw new Error(`oneof cannot contain ${i.kind}`);
+                  throw new Error(`oneof cannot contain ${o.kind}`);
                 case "map":
-                  let a = Object.keys(s).concat(Object.keys(o));
+                  let a = Object.keys(s).concat(Object.keys(i));
                   switch (r.V.kind) {
                     case "message":
                       let c = r.V.T;
-                      return a.every((l) => c.equals(s[l], o[l]));
+                      return a.every((l) => c.equals(s[l], i[l]));
                     case "enum":
-                      return a.every((l) => $(f.INT32, s[l], o[l]));
+                      return a.every((l) => $(f.INT32, s[l], i[l]));
                     case "scalar":
                       let u = r.V.T;
-                      return a.every((l) => $(u, s[l], o[l]));
+                      return a.every((l) => $(u, s[l], i[l]));
                   }
                   break;
               }
@@ -1908,19 +1908,19 @@
           n = new e(),
           r = n;
         for (let s of e.fields.byMember()) {
-          let o = t[s.localName],
-            i;
-          if (s.repeated) i = o.map(ae);
+          let i = t[s.localName],
+            o;
+          if (s.repeated) o = i.map(ae);
           else if (s.kind == "map") {
-            i = r[s.localName];
-            for (let [a, c] of Object.entries(o)) i[a] = ae(c);
+            o = r[s.localName];
+            for (let [a, c] of Object.entries(i)) o[a] = ae(c);
           } else
             s.kind == "oneof"
-              ? (i = s.findField(o.case)
-                  ? { case: o.case, value: ae(o.value) }
+              ? (o = s.findField(i.case)
+                  ? { case: i.case, value: ae(i.value) }
                   : { case: void 0 })
-              : (i = ae(o));
-          r[s.localName] = i;
+              : (o = ae(i));
+          r[s.localName] = o;
         }
         return n;
       },
@@ -1981,15 +1981,15 @@
       return this.members;
     }
   };
-  function Ie(t, e) {
-    let n = ot(t);
+  function xe(t, e) {
+    let n = it(t);
     return e ? n : St(Bt(n));
   }
   function rt(t) {
-    return Ie(t, !1);
+    return xe(t, !1);
   }
-  var st = ot;
-  function ot(t) {
+  var st = it;
+  function it(t) {
     let e = !1,
       n = [];
     for (let r = 0; r < t.length; r++) {
@@ -2030,9 +2030,9 @@
       "toJsonString",
       "toObject",
     ]),
-    it = (t) => `${t}$`,
-    Bt = (t) => (Et.has(t) ? it(t) : t),
-    St = (t) => (Ft.has(t) ? it(t) : t);
+    ot = (t) => `${t}$`,
+    Bt = (t) => (Et.has(t) ? ot(t) : t),
+    St = (t) => (Ft.has(t) ? ot(t) : t);
   var fe = class {
     constructor(e) {
       (this.kind = "oneof"),
@@ -2045,7 +2045,7 @@
         (this.localName = rt(e));
     }
     addField(e) {
-      T(e.oneof === this, `field ${e.name} not one of ${this.name}`),
+      N(e.oneof === this, `field ${e.name} not one of ${this.name}`),
         this.fields.push(e);
     }
     findField(e) {
@@ -2060,7 +2060,7 @@
   var q = Pe(
     "proto3",
     tt(),
-    je(),
+    Ye(),
     Object.assign(Object.assign({}, nt()), {
       newFieldList(t) {
         return new ce(t, Ot);
@@ -2096,12 +2096,12 @@
   );
   function Ot(t) {
     var e, n, r, s;
-    let o = [],
-      i;
+    let i = [],
+      o;
     for (let a of typeof t == "function" ? t() : t) {
       let c = a;
       if (
-        ((c.localName = Ie(a.name, a.oneof !== void 0)),
+        ((c.localName = xe(a.name, a.oneof !== void 0)),
         (c.jsonName =
           (e = a.jsonName) !== null && e !== void 0 ? e : st(a.name)),
         (c.repeated = (n = a.repeated) !== null && n !== void 0 ? n : !1),
@@ -2110,7 +2110,7 @@
         a.oneof !== void 0)
       ) {
         let u = typeof a.oneof == "string" ? a.oneof : a.oneof.name;
-        (!i || i.name != u) && (i = new fe(u)), (c.oneof = i), i.addField(c);
+        (!o || o.name != u) && (o = new fe(u)), (c.oneof = o), o.addField(c);
       }
       a.kind == "message" && (c.delimited = !1),
         (c.packed =
@@ -2118,9 +2118,9 @@
             ? s
             : a.kind == "enum" ||
               (a.kind == "scalar" && a.T != f.BYTES && a.T != f.STRING)),
-        o.push(c);
+        i.push(c);
     }
-    return o;
+    return i;
   }
   var at = q.makeMessageType("youtube.request.common.Request", () => [
       { no: 1, name: "context", kind: "message", T: Ut },
@@ -2199,25 +2199,25 @@
       reject() {
         $done();
       }
-      decodeParams(e, n) {
+      decodeParams(e) {
         return e;
       }
     },
-    v = X;
-  _(v, "instances", {}),
-    _(v, "classNames", {
+    R = X;
+  G(R, "instances", {}),
+    G(R, "classNames", {
       QuanX: (e, n, r) => new ue(e, n, r),
       Surge: (e, n, r) => new K(e, n, r),
       Loon: (e, n, r) => new Fe(e, n, r),
     });
-  var le = class extends v {
+  var le = class extends R {
       getFn(e, n, r) {
         let s = le.clientAdapter[n] || n;
         return super.getFn(e, s, r);
       }
       setFn(e, n, r, s) {
-        let o = le.clientAdapter[n] || n;
-        return super.setFn(e, o, r, s);
+        let i = le.clientAdapter[n] || n;
+        return super.setFn(e, i, r, s);
       }
       init() {
         try {
@@ -2238,18 +2238,18 @@
       }
       async fetch(e) {
         return await new Promise((n, r) => {
-          let { method: s, body: o, bodyBytes: i, ...a } = e,
-            c = i ?? o,
+          let { method: s, body: i, bodyBytes: o, ...a } = e,
+            c = o ?? i,
             u = c instanceof Uint8Array;
           $httpClient[s.toLowerCase()](
             { ...a, body: c, "binary-mode": u },
-            (l, m, p) => {
+            (l, m, h) => {
               l && r(l);
               let d = u ? "bodyBytes" : "body";
               n({
                 status: m.status || m.statusCode,
                 headers: m.headers,
-                [d]: p,
+                [d]: h,
               });
             },
           );
@@ -2267,7 +2267,7 @@
           : (s = e),
           $done(s);
       }
-      decodeParams(e, n) {
+      decodeParams(e) {
         return (
           typeof $argument == "string" &&
             !$argument.includes("{{{") &&
@@ -2277,8 +2277,8 @@
       }
     },
     K = le;
-  _(K, "clientAdapter", { bodyBytes: "body" });
-  var R = class extends v {
+  G(K, "clientAdapter", { bodyBytes: "body" });
+  var L = class extends R {
       static transferBodyBytes(e, n) {
         return e instanceof ArrayBuffer
           ? n === "Uint8Array"
@@ -2297,18 +2297,18 @@
         }
       }
       getFn(e, n, r) {
-        let s = R.clientAdapter[n] || n,
-          o = super.getFn(e, s, r);
+        let s = L.clientAdapter[n] || n,
+          i = super.getFn(e, s, r);
         return (
-          n === "bodyBytes" && (o = R.transferBodyBytes(o, "Uint8Array")), o
+          n === "bodyBytes" && (i = L.transferBodyBytes(i, "Uint8Array")), i
         );
       }
       setFn(e, n, r, s) {
-        let o = R.clientAdapter[n] || n,
-          i = r;
+        let i = L.clientAdapter[n] || n,
+          o = r;
         return (
-          n === "bodyBytes" && (i = R.transferBodyBytes(i, "Uint8Array")),
-          super.setFn(e, o, i, s)
+          n === "bodyBytes" && (o = L.transferBodyBytes(o, "Uint8Array")),
+          super.setFn(e, i, o, s)
         );
       }
       getVal(e) {
@@ -2323,69 +2323,62 @@
       async fetch(e) {
         return await new Promise((n) => {
           let r = { url: "", method: "GET" };
-          for (let [s, o] of Object.entries(e))
+          for (let [s, i] of Object.entries(e))
             s === "id"
-              ? (r.sessionIndex = o)
+              ? (r.sessionIndex = i)
               : s === "bodyBytes"
-              ? (r.bodyBytes = R.transferBodyBytes(o, "ArrayBuffer"))
-              : (r[s] = o);
+              ? (r.bodyBytes = L.transferBodyBytes(i, "ArrayBuffer"))
+              : (r[s] = i);
           e.bodyBytes && delete r.body,
             $task.fetch(r).then((s) => {
-              let o = { status: 200, headers: {} };
-              for (let [i, a] of Object.entries(s))
-                i === "sessionIndex"
-                  ? (o.id = a)
-                  : i === "bodyBytes"
-                  ? (o.bodyBytes = R.transferBodyBytes(a, "Uint8Array"))
-                  : i === "statusCode"
-                  ? (o.status = a)
-                  : (o[i] = a);
-              n(o);
+              let i = { status: 200, headers: {} };
+              for (let [o, a] of Object.entries(s))
+                o === "sessionIndex"
+                  ? (i.id = a)
+                  : o === "bodyBytes"
+                  ? (i.bodyBytes = L.transferBodyBytes(a, "Uint8Array"))
+                  : o === "statusCode"
+                  ? (i.status = a)
+                  : (i[o] = a);
+              n(i);
             });
         });
       }
       done(e) {
         let n = e.response ?? e,
           r = {};
-        for (let [s, o] of Object.entries(n))
+        for (let [s, i] of Object.entries(n))
           s === "status"
-            ? (r.status = `HTTP/1.1 ${o}`)
+            ? (r.status = `HTTP/1.1 ${i}`)
             : s === "bodyBytes"
-            ? (r.bodyBytes = R.transferBodyBytes(o, "ArrayBuffer"))
-            : (r[s] = o);
+            ? (r.bodyBytes = L.transferBodyBytes(i, "ArrayBuffer"))
+            : (r[s] = i);
         $done(r);
       }
     },
-    ue = R;
-  _(ue, "clientAdapter", { id: "sessionIndex", status: "statusCode" });
+    ue = L;
+  G(ue, "clientAdapter", { id: "sessionIndex", status: "statusCode" });
   var Fe = class extends K {
-    decodeParams(e, n) {
-      let r = {};
-      for (let [s, o] of Object.entries(e)) {
-        let i = n?.[s] ?? s,
-          a = this.getVal(i);
-        a && (r[s] = this.transferType(o, a));
-      }
-      return Object.assign(e, r), e;
-    }
-    transferType(e, n) {
-      return typeof e == "boolean"
-        ? n === "true"
-        : typeof e == "number"
-        ? Number(n)
-        : n;
+    decodeParams(e) {
+      if (typeof $argument < "u")
+        for (let n of Object.keys(e)) {
+          let r = $argument?.[n];
+          r !== void 0 && (e[n] = r);
+        }
+      return e;
     }
   };
-  var x = v.getInstance("YouTube");
+  var T = R.getInstance("YouTube");
   var de = class {
     name;
     needProcess;
     needSave;
     message;
-    whiteNo;
-    blackNo;
-    whiteEml;
-    blackEml;
+    version = "1.0";
+    whiteNo = [];
+    blackNo = [];
+    whiteEml = [];
+    blackEml = ["inline_injection_entrypoint_layout.eml"];
     msgType;
     argument;
     decoder = new TextDecoder("utf-8", { fatal: !1, ignoreBOM: !0 });
@@ -2393,41 +2386,29 @@
       (this.name = n),
         (this.msgType = e),
         (this.argument = this.decodeArgument()),
-        (x.isDebug = Boolean(this.argument.debug)),
-        x.debug(this.name),
-        Object.assign(
-          this,
-          x.getJSON("YouTubeAdvertiseInfo", {
-            whiteNo: [],
-            blackNo: [],
-            whiteEml: [],
-            blackEml: [],
-          }),
-        );
+        (T.isDebug = Boolean(this.argument.debug)),
+        T.debug(this.name);
+      let r = T.getJSON("YouTubeAdvertiseInfo");
+      T.debug(`currentVersion:  ${this.version}`),
+        T.debug(`storedVersion:  ${r.version}`),
+        r?.version === this.version && Object.assign(this, r);
     }
     decodeArgument() {
       let e = {
-          lyricLang: "\u6B4C\u8BCD\u7FFB\u8BD1\u8BED\u8A00",
-          captionLang: "\u5B57\u5E55\u7FFB\u8BD1\u8BED\u8A00",
-          blockUpload: "\u5C4F\u853D\u4E0A\u4F20\u6309\u94AE",
-          blockImmersive: "\u5C4F\u853D\u9009\u6BB5\u6309\u94AE",
-          debug: "\u542F\u52A8\u8C03\u8BD5\u6A21\u5F0F",
-        },
-        n = {
-          lyricLang: "zh-Hans",
-          captionLang: "zh-Hans",
-          blockUpload: !0,
-          blockImmersive: !0,
-          debug: !1,
-        };
-      return x.decodeParams(n, e);
+        lyricLang: "zh-Hans",
+        captionLang: "zh-Hans",
+        blockUpload: !0,
+        blockImmersive: !0,
+        debug: !1,
+      };
+      return T.decodeParams(e);
     }
     fromBinary(e) {
       return e instanceof Uint8Array
         ? ((this.message = this.msgType.fromBinary(e)),
-          x.debug(`raw: ${Math.floor(e.length / 1024)} kb`),
+          T.debug(`raw: ${Math.floor(e.length / 1024)} kb`),
           this)
-        : (x.log("YouTube can not get binaryBody"), x.exit(), this);
+        : (T.log("YouTube can not get binaryBody"), T.exit(), this);
     }
     async modify() {
       let e = this.pure();
@@ -2441,40 +2422,34 @@
     }
     save() {
       if (this.needSave) {
-        x.debug("Update Config");
+        T.debug("Update Config");
         let e = {
+          version: this.version,
           whiteNo: this.whiteNo,
           blackNo: this.blackNo,
           whiteEml: this.whiteEml,
           blackEml: this.blackEml,
         };
-        x.setJSON(e, "YouTubeAdvertiseInfo");
+        T.debug(e), T.setJSON(e, "YouTubeAdvertiseInfo");
       }
     }
     done() {
       if ((this.save(), this.needProcess)) {
-        x.timeStart("toBinary");
+        T.timeStart("toBinary");
         let e = this.toBinary();
-        x.timeEnd("toBinary"),
-          x.debug(`modify: ${Math.floor(e.length / 1024)} kb`),
-          x.done({ bodyBytes: e });
+        T.timeEnd("toBinary"),
+          T.debug(`modify: ${Math.floor(e.length / 1024)} kb`),
+          T.done({ bodyBytes: e });
       }
-      x.debug("use $done({})"), x.exit();
+      T.debug("use $done({})"), T.exit();
     }
     iterate(e = {}, n, r) {
       let s = typeof e == "object" ? [e] : [];
       for (; s.length; ) {
-        let o = s.pop(),
-          i = Object.keys(o);
-        if (typeof n == "symbol") {
-          for (let a of Object.getOwnPropertySymbols(o))
-            if (a.description === n.description) {
-              r(o, s);
-              break;
-            }
-        }
-        for (let a of i)
-          a === n ? r(o, s) : typeof o[a] == "object" && s.push(o[a]);
+        let i = s.pop(),
+          o = Object.keys(i);
+        for (let a of o)
+          a === n ? r(i, s) : typeof i[a] == "object" && s.push(i[a]);
       }
     }
     isAdvertise(e) {
@@ -2485,16 +2460,16 @@
       let n = e.no;
       if (this.whiteNo.includes(n)) return !1;
       if (this.blackNo.includes(n)) return !0;
-      let s = this.decoder.decode(e.data).includes("pagead");
+      let r = this.checkBufferIsAd(e);
       return (
-        s ? this.blackNo.push(n) : this.whiteNo.push(n), (this.needSave = !0), s
+        r ? this.blackNo.push(n) : this.whiteNo.push(n), (this.needSave = !0), r
       );
     }
     handleFieldEml(e) {
       let n = !1,
         r = "";
       return (
-        this.iterate(e, "renderInfo", (s, o) => {
+        this.iterate(e, "renderInfo", (s, i) => {
           if (
             ((r = s.renderInfo.layoutRender.eml.split("|")[0]),
             this.whiteEml.includes(r))
@@ -2503,18 +2478,26 @@
           else if (this.blackEml.includes(r) || /shorts(?!_pivot_item)/.test(r))
             n = !0;
           else {
-            let i = s?.videoInfo?.videoContext?.videoContent;
-            if (i) {
-              let a = this.listUnknownFields(i)[0];
-              (n = this.decoder.decode(a.data).includes("pagead")),
-                n ? this.blackEml.push(r) : this.whiteEml.push(r),
-                (this.needSave = !0);
-            }
+            let o = s?.videoInfo?.videoContext?.videoContent;
+            o &&
+              ((n = this.checkUnknownFiled(o)),
+              n ? this.blackEml.push(r) : this.whiteEml.push(r),
+              (this.needSave = !0));
           }
-          o.length = 0;
+          i.length = 0;
         }),
         n
       );
+    }
+    checkBufferIsAd(e) {
+      return !e || e.data.length < 1e3
+        ? !1
+        : this.decoder.decode(e.data).includes("pagead");
+    }
+    checkUnknownFiled(e) {
+      return e
+        ? this.listUnknownFields(e)?.some((r) => this.checkBufferIsAd(r)) ?? !1
+        : !1;
     }
     isShorts(e) {
       let n = !1;
@@ -2540,13 +2523,13 @@
   };
   async function $t() {
     let t = new z();
-    await t.fromBinary(x.request.bodyBytes).pure(), t.done();
+    await t.fromBinary(T.request.bodyBytes).pure(), t.done();
   }
   $t()
     .catch((t) => {
-      x.log(t.toString());
+      T.log(t.toString());
     })
     .finally(() => {
-      x.exit();
+      T.exit();
     });
 })();
