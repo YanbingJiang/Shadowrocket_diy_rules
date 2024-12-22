@@ -1,8 +1,8 @@
 // SOURCE: https://raw.githubusercontent.com/ddgksf2013/Scripts/master/weibo_json.js
 // Author: @ddgksf2013 @Zmqcherish
-// Update: 2024-10-30
+// Update: 2024-12-22
 
-const version = "V2.0.133";
+const version = "V2.0.135";
 
 const mainConfig = {
     isDebug: !1,
@@ -298,7 +298,8 @@ function removeSearch(e) {
         (o.data?.page_info?.video_limit && delete o.data.page_info.video_limit,
         t.push(o))
       : "group" == o.category
-      ? ((o.items = o.items.filter(
+      ? o.header?.type !== "guess" &&
+        ((o.items = o.items.filter(
           (e) =>
             e.data?.card_type == void 0 ||
             e.data?.card_type === 17 ||
