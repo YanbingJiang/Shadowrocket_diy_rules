@@ -8,7 +8,7 @@
 # 微博_每日一次的开屏广告请求
 ^https?:\/\/boot.*weibo\.com\/v\d\/ad\/realtime - reject-200
 # 微博_去除底部超话栏表层浮icon及tips
-^https?:\/\/api\.weibo\.cn\/\d\/!\/huati\/discovery_home_bottom_getdotinfo - reject-dict
+^https?:\/\/api\.weibo\.cn\/.*discovery_home_bottom_getdotinfo - reject-dict
 # 微博_屏蔽首页左上角每日的弹窗tips
 ^https?:\/\/m?api\.weibo\.c(n|om)\/\d/push/daily - reject-dict
 # 微博_应用内弹窗广告
