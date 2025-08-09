@@ -1,6 +1,6 @@
 #!name=YouTube Premium
 #!desc=Youtube Ad Full blocker with PIP player
-#!arguments=captionLang:off,lyricLang:off,blockUpload:true,blockImmersive:false,blockShorts:true,debug:false
+#!arguments=captionLang:off, lyricLang:off, blockUpload:true, blockImmersive:false, blockShorts:true, debug:false
 # Origin Author: @DivineEngine, @app2smile, @Maasea, @VirgilClyne
 # Other hints: @Choler, @bai1zi
 # Merged and released by @ddgksf2013 in form of qx
