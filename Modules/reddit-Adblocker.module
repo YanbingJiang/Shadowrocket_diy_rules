@@ -7,4 +7,4 @@
 hostname = %APPEND% gql-fed.reddit.com
 
 [Script]
-reddit.response = type=http-response,pattern=^https?:\/\/gql-fed\.reddit\.com\/$,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/reddit.js
+reddit=type=http-response,pattern=^https?:\/\/gql-fed\.reddit\.com\/$,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/reddit.js
