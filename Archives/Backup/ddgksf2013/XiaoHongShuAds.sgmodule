@@ -1,0 +1,63 @@
+#!name=XiaoHongShu AdBlock
+#!desc=Converted from QX XiaoHongShu AdBlock Rules
+#!author=ddgksf2013
+#!tgchannel=https://t.me/ddgksf2021
+# Surge Module Source: https://github.com/ddgksf2013/Modules
+# Original QX Rewrite Source: https://github.com/ddgksf2013/Rewrite/raw/master/AdBlock/XiaoHongShuAds.conf
+
+[URL Rewrite]
+# > 小红书_搜索广告推荐@ddgksf2013
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/search\/notes\/recommend_info\? - reject
+# > 小红书_通用广告请求@ddgksf2013
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/system_service\/splash - reject
+# > 小红书_通用广告请求@ddgksf2013
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/gslb - reject
+# > 小红书_通用广告请求@ddgksf2013
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/(tag\/)?ads - reject
+# > 小红书_隐私屏蔽@ddgksf2013
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/v\d+\/stateReport - reject
+# > 小红书_Switches@ddgksf2013
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/data\/native\/matrix_switches - reject
+# > 小红书_青少年请求@ddgksf2013
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/user\/teenager\/status - reject
+# > 小红书_启动引导@ddgksf2013
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/guide\/home_guide - reject
+
+[Script]
+# > 小红书_热门视频流@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/tabfeed,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+# > 小红书_视频保存[new]@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/video\/save,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+# > 小红书_评论区图片处理@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/comment\/list,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+# > 小红书_Live图片去水印@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/live_photo\/save,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+# > 小红书_搜索结果推荐广告@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/search\/notes\?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+# > 小红书_视频播放页商品推广@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/widgets,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+# > 小红书_短视频流去水印+强制开启保存功能@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/redtube\?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+# > 小红书_信息流视频去水印+强制开启保存功能@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/videofeed\?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+# > 小红书_信息流图片去水印@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/feed\?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+# > 小红书_信息流图片[部分用户是下面请求]去水印@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/imagefeed,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+# > 小红书_开屏广告@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/system_service\/splash_config,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+# > 小红书_首页瀑布流@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/homefeed\?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+# > 小红书_启动处理@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/system_service\/config\?,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+# > 小红书_热搜发现@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/search\/hot_list,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+# > 小红书_默认填词@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/search\/hint,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+# > 小红书_去除购物@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/homefeed\/categories,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+# > 小红书_猜你想搜@ddgksf2013
+redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/search\/trending,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
+
+[MITM]
+hostname = %APPEND% *.xiaohongshu.com
