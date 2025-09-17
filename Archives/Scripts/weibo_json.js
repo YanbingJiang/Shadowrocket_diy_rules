@@ -1,8 +1,8 @@
 // SOURCE: https://raw.githubusercontent.com/ddgksf2013/Scripts/master/weibo_json.js
 // Author: @ddgksf2013 @Zmqcherish
-// Update: 2025-08-15
+// Update: 2025-09-15
 
-const version = "V2.0.139";
+const version = "V2.0.142";
 
 const mainConfig = {
     isDebug: !1,
@@ -70,7 +70,7 @@ const mainConfig = {
     "/video/remind_info": "removeVideoRemind",
     "/checkin/show": "removeCheckin",
     "/live/media_homelist": "removeMediaHomelist",
-    "/comments/build_comments": "removeComments",
+    "/container_detail": "removeComments",
     "/container/get_item": "containerHandler",
     "/profile/container_timeline": "userHandler",
     "/video/tiny_stream_video_list": "nextVideoHandler",
@@ -580,16 +580,24 @@ function removeMediaHomelist(e) {
   mainConfig.removeLiveMedia && (log("remove 首页直播"), (e.data = {}));
 }
 function removeComments(e) {
-  var t = ["广告", "廣告", "相关内容", "推荐", "热推", "推薦"],
-    a = e.datas || [];
+  var t = ["广告", "廣告", "相关内容", "推荐", "热推", "推薦", "荐读"],
+    a =
+      (e.pageHeader &&
+        (e.pageHeader.data.items = e.pageHeader.data.items.filter(
+          (e) => "detail" == e.category,
+        )),
+      e.items || []);
   if (0 !== a.length) {
     var o = [];
     for (const r of a) {
-      var i = r.adType || "";
-      -1 == t.indexOf(i) && 6 != r.type && o.push(r);
+      var i = r.data.adType || "";
+      -1 == t.indexOf(i) &&
+        6 != r.data.card_type &&
+        236 != r.data.card_type &&
+        o.push(r);
     }
     log("remove 评论区相关和推荐内容"),
-      (e.datas = o),
+      (e.items = o),
       e.tip_msg && delete e.tip_msg;
   }
 }
