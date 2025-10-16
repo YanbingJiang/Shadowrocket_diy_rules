@@ -28,8 +28,6 @@
 redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/tabfeed,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
 # > 小红书_视频保存[new]@ddgksf2013
 redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/video\/save,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
-# > 小红书_评论区图片处理@ddgksf2013
-redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/comment\/list,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
 # > 小红书_Live图片去水印@ddgksf2013
 redbook_json=type=http-response,pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/live_photo\/save,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/redbook_json.js
 # > 小红书_搜索结果推荐广告@ddgksf2013
