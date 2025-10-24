@@ -1,0 +1,97 @@
+#!name=Zhihu AdBlock
+#!desc=Converted from QX Zhihu AdBlock Rules
+#!author=ddgksf2013
+#!tgchannel=https://t.me/ddgksf2021
+!url=https://raw.githubusercontent.com/ddgksf2013/Modules/refs/heads/main/Adblock/ZhihuAds.sgmodule
+# Surge Module Source: https://github.com/ddgksf2013/Modules
+# Original QX Rewrite Source: https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+
+[URL Rewrite]
+# > 知乎_拦截DNS解析@blackmatrix7
+^https?:\/\/118\.89\.204\.198 - reject
+^https?:\/\/103\.41\.167\.237 - reject
+^https?:\/\/2402:4e00:1200:ed00:0:9089:6dac:96b6 - reject
+# > 知乎_屏蔽远程配置@blackmatrix7
+^https?:\/\/api\.zhihu\.com\/ab\/api\/v1\/products\/zhihu\/platforms\/ios\/config - reject
+# > 知乎_品牌提问广告@blackmatrix7
+^https?:\/\/api\.zhihu\.com\/brand\/question\/\d+/card\? - reject
+^https?:\/\/www\.zhihu\.com\/api\/v\d+\/brand\/question/\d+/card\? - reject
+# > 知乎_去除底部标签页关注人角标@blackmatrix7
+^https?:\/\/api\.zhihu\.com\/moments\/tab_v2 - reject
+# > 知乎_去除消息通知角标@blackmatrix7
+^https?:\/\/api\.zhihu\.com\/(notifications\/v\d\/count) - reject
+# > 知乎_拦截回答下的卡片广告@blackmatrix7
+^https?:\/\/www\.zhihu\.com\/api\/v\d\/answers\/\d+\/recommendations - reject
+# > 知乎_拦截应用内弹窗@blackmatrix7
+^https?:\/\/api\.zhihu\.com\/me\/guides - reject
+# > 知乎_去除关注页最常访问@blackmatrix7
+^https?:\/\/api\.zhihu\.com\/moments\/recent - reject
+# > 知乎_拦截推荐页顶部广告@blackmatrix7
+^https?:\/\/api\.zhihu\.com\/api\/v4\/ecom_data\/config - reject
+# > 知乎_底栏加号的广告@blackmatrix7
+^https?:\/\/api\.zhihu\.com\/content-distribution-core\/bubble\/common\/settings - reject
+# > 知乎_推荐页搜索栏左侧图标@blackmatrix7
+^https?:\/\/api\.zhihu\.com\/feed\/render\/revisit\/current_reading - reject
+# > 知乎_疑似推荐页内容更新红点@blackmatrix7
+^https?:\/\/api\.zhihu\.com\/feed\/render\/revisit\/tag_config - reject
+# > 知乎_暂不清楚作用@blackmatrix7
+^https?:\/\/.*zhihu\.com\/commercial_api - reject
+^https?:\/\/.*zhihu\.com\/ad-style-service\/request - reject
+# > 知乎_文章页去除底部广告@blackmatrix7
+^https?:\/\/www\.zhihu\.com\/api\/v\d\/articles\/\d+\/recommendation - reject
+# > 知乎_我的页面下方内容@ddgksf2013
+^https?:\/\/api\.zhihu\.com\/api\/v4\/profile\/cards - reject
+# > 知乎_热榜页去除直播@ddgksf2013
+^https?:\/\/api\.zhihu\.com\/drama\/hot-drama-list - reject
+# > 知乎_回答页面顶部推广@ddgksf2013
+^https?:\/\/www\.zhihu\.com\/api\/v4\/topics\/rank_list\/question\/\d+\/related - reject
+# > 知乎_首页右下角悬浮窗@blackmatrix7
+^https?:\/\/api\.zhihu\.com\/commercial_api\/app_float_layer - reject
+# > 知乎_回答页面相关搜索词@ddgksf2013
+^https?:\/\/www\.zhihu\.com\/api\/v4\/search\/related_queries\/answer\/ - reject
+# > 知乎_广告请求@ddgksf2013
+^http:\/\/[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){1,4}(:\d+)?\/v2\/resolv - reject
+# > 知乎_首页左侧图标@ddgksf2013
+^https?:\/\/api\.zhihu\.com\/root\/window - reject
+# > 知乎_我的页面底部@ddgksf2013
+^https?:\/\/www\.zhihu\.com\/appview\/v\d\/zhmore - reject
+
+[Script]
+# > 知乎_我的页面开通会员CARD@ddgksf2013
+Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/unlimited/go/my_card,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+# > 知乎_开屏广告@ddgksf2013
+Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/commercial_api.*launch_v2,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+# > 知乎_用户信息@ddgksf2013
+Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/people/self$,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+# > 知乎_推荐信息流去广告@ddgksf2013
+Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/topstory\/recommend,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+# > 知乎_搜索页去除推广@ddgksf2013
+Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/search\/preset_words,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+# > 知乎_猜你想搜下面条目['猜你想搜'四个字无法去除]@ddgksf2013
+Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/search\/recommend_query,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+# > 知乎_删除会员页面会员购@ddgksf2013
+Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/tabs,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+# > 知乎_热榜页去除广告@ddgksf2013
+Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/v2\/topstory\/hot-lists,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+# > 知乎_会员页面顶部处理@ddgksf2013
+Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/header,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+# > 知乎_回答信息流去广告@ddgksf2013
+Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/next-data,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/next-render,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+# > 知乎_问题回答列表@ddgksf2013
+Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/(v4\/)?questions\/\d+\/feeds,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+# > 知乎_回答内容优化@ddgksf2013
+Zhihu=type=http-response,pattern=^https?:\/\/www\.zhihu\.com\/appview\/v2\/answer\/,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+# > 知乎_会员页面购物处理@ddgksf2013
+Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/bazaar\/vip_tab\/modules,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+# > 知乎_修改用户盐值@blackmatrix7
+Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/user-credit\/basis,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+# > 知乎_消息页@blackmatrix7
+Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/notifications\/v3\/(message|timeline\/entry\/system_message),requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+# > 知乎_关注页面去除今日话题和为您推荐@ddgksf2013
+Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/moments_v3,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+# > 知乎_搜索发现@ddgksf2013
+Zhihu=type=http-response,pattern=https://api.zhihu.com/search/hot_search,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
+
+[MITM]
+hostname = %APPEND% 118.89.204.198,103.41.167.237,2402:4e00:1200:ed00:0:9089:6dac:96b6,www.zhihu.com,api.zhihu.com,zhuanlan.zhihu.com,appcloud2.zhihu.com,m-cloud.zhihu.com,103.41.167.236,103.41.167.234,103.41.167.235,103.41.167.226
