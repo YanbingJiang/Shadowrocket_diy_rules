@@ -56,6 +56,10 @@
 # > 知乎_我的页面底部@ddgksf2013
 ^https?:\/\/www\.zhihu\.com\/appview\/v\d\/zhmore - reject
 
+[Body Rewrite]
+# > 知乎_回答页底部相关圈子及搜索词@ddgksf2013
+http-response-jq ^https?:\/\/.*zhihu.com\/(answers|articles)\/v\d '.third_business |= del(.related_queries, .ring)'
+
 [Script]
 # > 知乎_我的页面开通会员CARD@ddgksf2013
 Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/unlimited/go/my_card,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
@@ -94,4 +98,4 @@ Zhihu=type=http-response,pattern=^https?:\/\/api\.zhihu\.com\/moments_v3,require
 Zhihu=type=http-response,pattern=https://api.zhihu.com/search/hot_search,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/ddgksf2013/d43179d848586d561dbb968dee93bae8/raw/Zhihu.Adblock.js
 
 [MITM]
-hostname = %APPEND% 118.89.204.198,103.41.167.237,2402:4e00:1200:ed00:0:9089:6dac:96b6,www.zhihu.com,api.zhihu.com,zhuanlan.zhihu.com,appcloud2.zhihu.com,m-cloud.zhihu.com,103.41.167.236,103.41.167.234,103.41.167.235,103.41.167.226
+hostname = %APPEND% 118.89.204.198,103.41.167.237,2402:4e00:1200:ed00:0:9089:6dac:96b6,www.zhihu.com,api.zhihu.com,page-info.zhihu.com,zhuanlan.zhihu.com,appcloud2.zhihu.com,m-cloud.zhihu.com,103.41.167.236,103.41.167.234,103.41.167.235,103.41.167.226
