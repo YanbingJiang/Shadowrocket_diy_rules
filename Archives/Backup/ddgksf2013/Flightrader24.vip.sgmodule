@@ -1,0 +1,9 @@
+#!url=http://script.hub/file/_start_/https://ddgksf2013.top/scripts/flightradar24.vip.js/_end_/flightradar24.vip.sgmodule?type=qx-rewrite&n=Flightradar24%E4%BC%9A%E5%91%98%E8%A7%A3%E9%94%81@ddgksf2013+%E7%99%BB%E5%BD%95%E4%BD%BF%E7%94%A8%EF%BC%8C%E6%97%85%E8%A1%8C%E5%8A%A9%E6%89%8B&headers=User-Agent:surge&del=true&jqEnabled=true&target=shadowrocket-module
+#!name=Flightradar24会员解锁@ddgksf2013
+#!desc=登录使用，旅行助手
+
+[Script]
+flightradar24.vip = type=http-request, pattern=^https?:\/\/mobile\.flightradar24\.com\/mobile\/(user-session|\w{9}), script-path=https://ddgksf2013.top/scripts/flightradar24.vip.js, timeout=60
+
+[MITM]
+hostname = %APPEND% mobile.flightradar24.com
