@@ -1,0 +1,26 @@
+#!url=http://script.hub/file/_start_/https://ddgksf2013.top/rewrite/BiliBiliAdsLite.conf/_end_/BiliBiliAdsLite.sgmodule?type=qx-rewrite&n=%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9Lite%E5%8E%BB%E5%B9%BF%E5%91%8A%40ddgksf2013+%E8%BD%BB%E9%87%8F%E7%89%88%E5%8E%BB%E5%B9%BF%E5%91%8A&headers=User-Agent:surge&del=true&jqEnabled=true&target=shadowrocket-module&category=ddgksf2013
+#!name=哔哩哔哩Lite去广告@ddgksf2013
+#!desc=轻量版去广告
+#!category=ddgksf2013
+
+[URL Rewrite]
+^https?:\/\/app\.bilibili\.com\/x\/v2\/splash\/show - reject-200
+
+[Script]
+bilibili.ads = type=http-response, pattern=^https:\/\/app\.bilibili\.com\/x\/v2\/splash\/list, script-path=https://ddgksf2013.top/scripts/bilibili.ads.js, requires-body=true, max-size=-1, timeout=60
+
+bilibili.ads = type=http-response, pattern=^https?:\/\/app\.bilibili\.com\/x\/v2\/account\/myinfo\?, script-path=https://ddgksf2013.top/scripts/bilibili.ads.js, requires-body=true, max-size=-1, timeout=60
+
+bilibili.ads = type=http-response, pattern=^https?:\/\/app\.bilibili\.com\/x\/v2\/feed\/index, script-path=https://ddgksf2013.top/scripts/bilibili.ads.js, requires-body=true, max-size=-1, timeout=60
+
+bilibili.ads = type=http-response, pattern=^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/tab, script-path=https://ddgksf2013.top/scripts/bilibili.ads.js, requires-body=true, max-size=-1, timeout=60
+
+bilibili.ads = type=http-response, pattern=^https?:\/\/app\.bilibili\.com\/x\/v2\/account\/mine, script-path=https://ddgksf2013.top/scripts/bilibili.ads.js, requires-body=true, max-size=-1, timeout=60
+
+bilibili.ads = type=http-response, pattern=^https?:\/\/app\.bilibili\.com\/x\/resource\/top\/activity, script-path=https://ddgksf2013.top/scripts/bilibili.ads.js, requires-body=true, max-size=-1, timeout=60
+
+bilibili.ads = type=http-response, pattern=^https?:\/\/app\.bilibili\.com\/x\/v2\/search\/square, script-path=https://ddgksf2013.top/scripts/bilibili.ads.js, requires-body=true, max-size=-1, timeout=60
+
+[MITM]
+hostname = %APPEND% app.bilibili.com
+
