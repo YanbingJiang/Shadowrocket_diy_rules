@@ -1,0 +1,11 @@
+#!url=http://script.hub/file/_start_/https://raw.githubusercontent.com/ddgksf2013/Rewrite/refs/heads/master/AdBlock/RedditAds.conf/_end_/RedditAds.sgmodule?type=qx-rewrite&n=Reddit%E5%8E%BB%E5%B9%BF%E5%91%8A%40ddgksf2013+%E5%BA%94%E7%94%A8%E5%87%80%E5%8C%96&headers=User-Agent:surge&del=true&jqEnabled=true&target=shadowrocket-module&category=ddgksf2013
+#!name=Reddit去广告@ddgksf2013
+#!desc=应用净化
+#!category=ddgksf2013
+
+[Script]
+reddit = type=http-response, pattern=^https?:\/\/gql-fed\.reddit\.com\/$, script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/reddit.js, requires-body=true, max-size=-1, timeout=60
+
+[MITM]
+hostname = %APPEND% gql-fed.reddit.com
+
