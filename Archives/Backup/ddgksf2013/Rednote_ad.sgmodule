@@ -1,0 +1,52 @@
+#!url=http://script.hub/file/_start_/https://ddgksf2013.top/rewrite/XiaoHongShuAds.conf/_end_/XiaoHongShuAds.sgmodule?type=qx-rewrite&n=%E5%B0%8F%E7%BA%A2%E4%B9%A6%E5%8E%BB%E5%B9%BF%E5%91%8A%40ddgksf2013+%E5%8E%BB%E5%B9%BF%E5%91%8A%E5%8E%BB%E6%B0%B4%E5%8D%B0&headers=User-Agent:surge&del=true&jqEnabled=true&target=shadowrocket-module&category=ddgksf2013
+#!name=小红书去广告@ddgksf2013
+#!desc=去广告去水印
+#!category=ddgksf2013
+
+[URL Rewrite]
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/search\/notes\/recommend_info\? - reject-200
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/system_service\/splash - reject-200
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/gslb - reject-200
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/httpdns - reject-200
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/(tag\/)?ads - reject-200
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/v\d+\/stateReport - reject-200
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/data\/native\/matrix_switches - reject-200
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/user\/teenager\/status - reject-200
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/guide\/home_guide - reject-200
+
+[Script]
+redbook.ads = type=http-response, pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/tabfeed, script-path=https://ddgksf2013.top/scripts/redbook.ads.js, requires-body=true, max-size=-1, timeout=60
+
+redbook.ads = type=http-response, pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/video\/save, script-path=https://ddgksf2013.top/scripts/redbook.ads.js, requires-body=true, max-size=-1, timeout=60
+
+redbook.ads = type=http-response, pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/live_photo\/save, script-path=https://ddgksf2013.top/scripts/redbook.ads.js, requires-body=true, max-size=-1, timeout=60
+
+redbook.ads = type=http-response, pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/search\/notes\?, script-path=https://ddgksf2013.top/scripts/redbook.ads.js, requires-body=true, max-size=-1, timeout=60
+
+redbook.ads = type=http-response, pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/widgets, script-path=https://ddgksf2013.top/scripts/redbook.ads.js, requires-body=true, max-size=-1, timeout=60
+
+redbook.ads = type=http-response, pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/redtube\?, script-path=https://ddgksf2013.top/scripts/redbook.ads.js, requires-body=true, max-size=-1, timeout=60
+
+redbook.ads = type=http-response, pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/videofeed\?, script-path=https://ddgksf2013.top/scripts/redbook.ads.js, requires-body=true, max-size=-1, timeout=60
+
+redbook.ads = type=http-response, pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/feed\?, script-path=https://ddgksf2013.top/scripts/redbook.ads.js, requires-body=true, max-size=-1, timeout=60
+
+redbook.ads = type=http-response, pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/note\/imagefeed, script-path=https://ddgksf2013.top/scripts/redbook.ads.js, requires-body=true, max-size=-1, timeout=60
+
+redbook.ads = type=http-response, pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/system_service\/splash_config, script-path=https://ddgksf2013.top/scripts/redbook.ads.js, requires-body=true, max-size=-1, timeout=60
+
+redbook.ads = type=http-response, pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/homefeed\?, script-path=https://ddgksf2013.top/scripts/redbook.ads.js, requires-body=true, max-size=-1, timeout=60
+
+redbook.ads = type=http-response, pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/system_service\/config\?, script-path=https://ddgksf2013.top/scripts/redbook.ads.js, requires-body=true, max-size=-1, timeout=60
+
+redbook.ads = type=http-response, pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/search\/hot_list, script-path=https://ddgksf2013.top/scripts/redbook.ads.js, requires-body=true, max-size=-1, timeout=60
+
+redbook.ads = type=http-response, pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/search\/hint, script-path=https://ddgksf2013.top/scripts/redbook.ads.js, requires-body=true, max-size=-1, timeout=60
+
+redbook.ads = type=http-response, pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/homefeed\/categories, script-path=https://ddgksf2013.top/scripts/redbook.ads.js, requires-body=true, max-size=-1, timeout=60
+
+redbook.ads = type=http-response, pattern=^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/sns\/v\d+\/search\/trending, script-path=https://ddgksf2013.top/scripts/redbook.ads.js, requires-body=true, max-size=-1, timeout=60
+
+[MITM]
+hostname = %APPEND% *.xiaohongshu.com
+
