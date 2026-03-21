@@ -17,7 +17,7 @@ DOMAIN-SUFFIX,adlog-ztjy.szy.cn,REJECT
 
 [URL Rewrite]
 # > Version
-^https?:\/\/2026.03.14/c407/v2.0.636 - reject-200
+^https?:\/\/2026.03.18/c407/v2.0.637 - reject-200
 # > 10
 ^https?:\/\/ftapi\.10jqka\.com\.cn\/futgwapi\/api\/om\/v\d\/ad\/common\/transfer - reject-200
 # > 139mail
@@ -250,7 +250,7 @@ https://fbchina.flipchina.cn/v2/ad/query/* - reject-200
 # > huitongcaijing
 ^https?:\/\/data\.hgold\.cn\/ky\/.*\/ad\.php - reject-200
 # > i4
-^https?:\/\/list-app-m\.i4\.cn\/getopfstadinfo\.xhtml - reject-200
+^https?:\/\/list-app-m\.i4\.cn.*adinfo\.xhtml - reject-200
 # > igpsport
 ^https?:\/\/prod\.zh\.igpsport\.com\/.+\/GetStartAd - reject-200
 # > jingdongdushu
