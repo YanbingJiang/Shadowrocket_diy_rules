@@ -1,0 +1,13 @@
+#!url=http://script.hub/file/_start_/https://raw.githubusercontent.com/wf021325/qx/master/js/jd_price.js/_end_/jd_price.sgmodule?type=qx-rewrite&n=%E4%BA%AC%E4%B8%9C%E5%8E%86%E5%8F%B2%E6%AF%94%E4%BB%B7%E5%8A%9F%E8%83%BD%E5%A2%9E%E5%BC%BA%40wf021325+%E6%85%A2%E6%85%A2%E4%B9%B0%E8%8E%B7%E5%8F%96ck%E5%90%8E%E4%BD%BF%E7%94%A8&headers=User-Agent:surge&del=true&jqEnabled=true&target=shadowrocket-module&category=wf021325
+#!name=京东历史比价功能增强@wf021325
+#!desc=慢慢买获取ck后使用
+#!category=wf021325
+
+[Script]
+jd_price = type=http-response, pattern=^https?:\/\/in\.m\.jd\.com\/product\/graphext\/\d+\.html, script-path=https://raw.githubusercontent.com/wf021325/qx/master/js/jd_price.js, requires-body=true, max-size=-1, timeout=60
+
+jd_price = type=http-request, pattern=^https?:\/\/apapia-sqk-weblogic\.manmanbuy\.com\/baoliao\/center\/menu$, script-path=https://raw.githubusercontent.com/wf021325/qx/master/js/jd_price.js, requires-body=true, max-size=-1, timeout=60
+
+[MITM]
+hostname = %APPEND% in.m.jd.com, apapia-sqk-weblogic.manmanbuy.com
+
