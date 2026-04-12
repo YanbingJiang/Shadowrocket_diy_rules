@@ -8,8 +8,6 @@ DOMAIN,ad.12306.cn,DIRECT
 DOMAIN-SUFFIX,shenshiads.com,REJECT
 # > lexiaotong
 DOMAIN-SUFFIX,yfanads.com,REJECT
-# > nongyeyinhang
-DOMAIN-SUFFIX,msmp.abchina.com.cn,REJECT
 DOMAIN-SUFFIX,iyes.youku.com,REJECT
 # > zhangtongjiayuan
 DOMAIN-SUFFIX,innoads.cn,REJECT
