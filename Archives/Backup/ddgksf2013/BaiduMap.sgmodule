@@ -1,0 +1,25 @@
+#!url=http://script.hub/file/_start_/https://ddgksf2013.top/scripts/bdmap.ads.js/_end_/bdmap.ads.sgmodule?type=qx-rewrite&n=%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BE%E5%8E%BB%E5%B9%BF%E5%91%8A%40ddgksf2013+%E5%BA%94%E7%94%A8%E5%87%80%E5%8C%96&headers=User-Agent:surge&del=true&jqEnabled=true&target=shadowrocket-module&category=ddgksf2013
+#!name=百度地图去广告@ddgksf2013
+#!desc=应用净化
+#!category=ddgksf2013
+
+[URL Rewrite]
+# > 百度地图_搜索推广@ddgksf2013
+^https?:\/\/newclient\.map\.baidu\.com\/client\/phpui.*qt=hw - reject-200
+# > 百度地图_开屏广告|首页左上角广告@ddgksf2013
+^https?:\/\/newclient\.map\.baidu\.com\/client\/phpui2\/\?qt=ads - reject-200
+# > 百度地图_各种商业推广@ddgksf2013
+^https?:\/\/newclient\.map\.baidu\.com\/client\/crossmarketing - reject-200
+# > 百度地图_我的页面地图动态@ddgksf2013
+^https?:\/\/newclient\.map\.baidu\.com\/client\/usersystem\/home\/dynamic - reject-200
+# > 百度地图_TIPS@ddgksf2013
+^https?:\/\/newclient\.map\.baidu\.com\/contributor-bus/bounty/tips - reject-200
+
+[Body Rewrite]
+http-response-jq ^https?:\/\/.*map\.baidu\.com\/.*govui\/rich_content '.data.posts.content=[]'
+http-response-jq ^https?:\/\/httpdns\.baidubce\.com '.data["newclient.map.baidu.com"]={}'
+http-response-jq ^https?:\/\/newclient\.map\.baidu\.com\/usercenter/mine/page 'del(.data.sport_card, .data.gold, .data.gold_coin_card, .data.shop)'
+http-response-jq ^https?:\/\/newclient\.map\.baidu\.com\/living/nearby/hot-words\? '.Result.data=[]'
+
+[MITM]
+hostname = %APPEND% 180.76.76.200, newclient.map.baidu.com, httpdns.baidubce.com, ugc.map.baidu.com
