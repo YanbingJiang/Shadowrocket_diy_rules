@@ -1,0 +1,12 @@
+#!url=http://script.hub/file/_start_/https://raw.githubusercontent.com/ddgksf2013/Rewrite/refs/heads/master/Html/General.conf/_end_/General.sgmodule?type=qx-rewrite&n=Google%E9%87%8D%E5%AE%9A%E5%90%91%E5%8A%9F%E8%83%BD%E5%A2%9E%E5%BC%BA%40DivineEngine+%E5%B0%86.cn%E9%87%8D%E5%AE%9A%E5%90%91%E8%87%B3.com&headers=User-Agent:surge&del=true&jqEnabled=true&target=shadowrocket-module&category=DivineEngine
+#!name=Google重定向功能增强@DivineEngine
+#!desc=将.cn重定向至.com
+#!category=DivineEngine
+
+[URL Rewrite]
+# Redirect Google Search Service
+^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 302
+
+[MITM]
+hostname = %APPEND% www.google.cn
+
