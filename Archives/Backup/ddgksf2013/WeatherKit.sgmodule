@@ -1,0 +1,27 @@
+#!url=http://script.hub/file/_start_/https://github.com/NSRingo/WeatherKit/releases/latest/download/iRingo.WeatherKit.snippet/_end_/iRingo.WeatherKit.sgmodule?type=qx-rewrite&n=WeatherKit%E5%8A%9F%E8%83%BD%E5%A2%9E%E5%BC%BA%40NSRingo+%E8%A7%A3%E9%94%81%E8%8B%B9%E6%9E%9C%E5%A4%A9%E6%B0%94&headers=User-Agent:surge&del=true&jqEnabled=true&target=shadowrocket-module&category=NSRingo
+#!name=WeatherKit功能增强@NSRingo
+#!desc=解锁苹果天气
+#!author=VirgilClyne[https://github.com/VirgilClyne],WordlessEcho[https://github.com/WordlessEcho],001[https://github.com/001ProMax]
+#!icon=https://developer.apple.com/assets/elements/icons/weatherkit/weatherkit-128x128.png
+#!category=NSRingo
+#!openUrl=http://boxjs.com/#/app/iRingo.WeatherKit
+#!homepage=https://NSRingo.github.io/guide/Weather/weather-kit
+#!date=2026-03-12 02:11:09
+#!version=3.1.0
+
+[Rule]
+#[filter_local]
+DOMAIN,weather-analytics-events.apple.com,REJECT
+DOMAIN-SUFFIX,tthr.apple.com,REJECT
+DOMAIN,tether.edge.apple,REJECT
+
+[Script]
+# 🌤 WeatherKit.api.v1.availability.response
+response.bundle = type=http-response, pattern=^https?:\/\/weatherkit\.apple\.com\/api\/v1\/availability\/, script-path=https://github.com/NSRingo/WeatherKit/releases/download/v3.1.0/response.bundle.js, requires-body=true, max-size=-1, timeout=60
+
+# 🌤 WeatherKit.api.v2.weather.response
+response.bundle = type=http-response, pattern=^https?:\/\/weatherkit\.apple\.com\/api\/v2\/weather\/, script-path=https://github.com/NSRingo/WeatherKit/releases/download/v3.1.0/response.bundle.js, requires-body=true, max-size=-1, timeout=60
+
+[MITM]
+hostname = %APPEND% weatherkit.apple.com
+
