@@ -1,0 +1,60 @@
+#!url=http://script.hub/file/_start_/https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/AmapAds.conf/_end_/AmapAds.sgmodule?type=qx-rewrite&n=%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E5%8E%BB%E5%B9%BF%E5%91%8A%40ddgksf2013+%E5%BA%94%E7%94%A8%E5%87%80%E5%8C%96&headers=User-Agent:surge&del=true&jqEnabled=true&target=shadowrocket-module&category=ddgksf2013
+#!name=高德地图去广告@ddgksf2013
+#!desc=应用净化
+#!category=ddgksf2013
+
+[Rule]
+DOMAIN-SUFFIX,optimus-ads.amap.com,DIRECT
+
+[URL Rewrite]
+# > 高德地图_开屏请求@ddgksf2013
+^https?:\/\/.*\.amap\.com\/ws\/aos\/alimama\/splash_screen - reject-200
+# > 高德地图_首页底部信息流@ddgksf2013
+^https?:\/\/.*\.amap\.com\/v\d\/ai_rec\/ - reject-dict
+# > 高德地图_路线规划下方广告@ddgksf2013
+^https?:\/\/.*\.amap\.com\/ws\/faas\/amap-navigation\/card-service-route-plan\? - reject-dict
+# > 高德地图_Tip请求@ddgksf2013
+^https?:\/\/.*\.amap\.com\/ws\/boss\/order_web\/\w{8}_information - reject-200
+# > 高德地图_通用广告请求@ddgksf2013
+^https?:\/\/.*\.amap\.com\/ws\/asa\/ads_attribution - reject
+# > 高德地图_搜索框scene@ddgksf2013
+^https?:\/\/.*\.amap\.com\/ws\/shield\/scene\/recommend - reject-dict
+# > 高德地图_首页左上角gif@ddgksf2013
+^https?:\/\/.*\.amap\.com\/uploadimg\/\w+\.gif - reject-img
+# > 高德地图_左下天气@ddgksf2013
+^https?:\/\/.*\.amap\.com\/ws\/valueadded\/weather - reject-dict
+
+[Script]
+# > 高德地图_amdc处理@ddgksf2013
+amdc = type=http-response, pattern=^http:\/\/amdc\.m\.taobao\.com, script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amdc.js, requires-body=true, max-size=-1, timeout=60
+
+# > 高德地图_底部tab栏角标@ddgksf2013
+amap = type=http-response, pattern=^https?:\/\/.*\.amap\.com\/ws\/message\/notice\/list, script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amap.js, requires-body=true, max-size=-1, timeout=60
+
+# > 高德地图_首页右中广告@ddgksf2013
+amap = type=http-response, pattern=^https?:\/\/.*\.amap\.com\/ws\/shield\/frogserver\/aocs\/updatable, script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amap.js, requires-body=true, max-size=-1, timeout=60
+
+# > 高德地图_附近页面@ddgksf2013
+amap = type=http-response, pattern=^https?:\/\/.*\.amap\.com\/ws\/shield\/search\/nearbyrec_smart, script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amap.js, requires-body=true, max-size=-1, timeout=60
+
+# > 高德地图_打车页面处理@ddgksf2013
+amap = type=http-response, pattern=^https?:\/\/.*\.amap\.com\/ws\/promotion-web\/resource, script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amap.js, requires-body=true, max-size=-1, timeout=60
+
+# > 高德地图_首页底部处理@ddgksf2013
+amap = type=http-response, pattern=^https?:\/\/.*\.amap\.com\/ws\/faas\/amap-navigation\/main-page, script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amap.js, requires-body=true, max-size=-1, timeout=60
+
+# > 高德地图_开屏广告@ddgksf2013
+amap = type=http-response, pattern=^https?:\/\/.*\.amap\.com\/ws\/valueadded\/alimama\/splash_screen, script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amap.js, requires-body=true, max-size=-1, timeout=60
+
+# > 高德地图_首页顶部推广@ddgksf2013
+amap = type=http-response, pattern=^https?:\/\/.*\.amap\.com\/ws\/msgbox\/pull, script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amap.js, requires-body=true, max-size=-1, timeout=60
+
+# > 高德地图_我的页面@ddgksf2013
+amap = type=http-response, pattern=^https?:\/\/.*\.amap\.com\/ws\/shield\/dsp\/profile\/index\/nodefaas, script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amap.js, requires-body=true, max-size=-1, timeout=60
+
+# > 高德地图_搜索框热词@ddgksf2013
+amap = type=http-response, pattern=^https?:\/\/.*\.amap\.com\/ws\/shield\/search\/new_hotword, script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/amap.js, requires-body=true, max-size=-1, timeout=60
+
+[MITM]
+hostname = %APPEND% m5.amap.com, m5-zb.amap.com, center.amap.com, amap-aos-info-nogw.amap.com, ai.amap.com
+
