@@ -1,0 +1,12 @@
+#!url=http://script.hub/file/_start_/https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/Snippet/GoogleCAPTCHA.snippet/_end_/GoogleCAPTCHA.sgmodule?type=qx-rewrite&n=Google%E4%BA%BA%E6%9C%BA%E5%8A%9F%E8%83%BD%E5%A2%9E%E5%BC%BA%40NobyDa+%E8%A7%A3%E5%86%B3Google%E6%90%9C%E7%B4%A2%E4%BA%BA%E6%9C%BA%E9%AA%8C%E8%AF%81&headers=User-Agent:surge&del=true&jqEnabled=true&target=shadowrocket-module&category=NobyDa
+#!name=Google人机功能增强@NobyDa
+#!desc=解决Google搜索人机验证
+#!category=NobyDa
+
+[Script]
+# 片段：https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/Snippet/GoogleCAPTCHA.snippet
+Google_CAPTCHA = type=http-response, pattern=^https:\/\/www\.google\.com(?:\.[a-z]+|)\/(?:search\?(?:|.+?&)q=|$), script-path=https://raw.githubusercontent.com/NobyDa/Script/master/Surge/JS/Google_CAPTCHA.js, requires-body=true, max-size=-1, timeout=60
+
+[MITM]
+hostname = %APPEND% www.google.com*
+
