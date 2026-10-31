@@ -1,0 +1,26 @@
+#!url=http://script.hub/file/_start_/https://raw.githubusercontent.com/ddgksf2013/Rewrite/refs/heads/master/AdBlock/TieBaAds.conf/_end_/TieBaAds.sgmodule?type=qx-rewrite&n=%E7%99%BE%E5%BA%A6%E8%B4%B4%E5%90%A7%E5%8E%BB%E5%B9%BF%E5%91%8A%40app2smile+%E5%BA%94%E7%94%A8%E5%87%80%E5%8C%96&headers=User-Agent:surge&del=true&jqEnabled=true&target=shadowrocket-module&category=app2smile
+#!name=百度贴吧去广告@app2smile
+#!desc=应用净化
+#!category=app2smile
+
+[Rule]
+IP-CIDR,180.76.76.200/32,REJECT
+
+[URL Rewrite]
+# > 页面中部广告@ddgksf2013
+^https?:\/\/tieba(c)?\.baidu\.com\/c\/f\/ad\/getFeedAd - reject-200
+
+[Body Rewrite]
+http-response-jq ^https?:\/\/tieba(c)?\.baidu\.com\/c\/f\/search\/discover '.data.discover_list = []'
+http-response-jq ^https?:\/\/tieba(c)?\.baidu\.com\/c\/f\/sidebar\/home 'del(.game_center, .tools, .vip_banner, .task_list)'
+http-response-jq ^https?:\/\/tieba(c)?\.baidu\.com\/c\/u\/user\/profile 'del(.duxiaoman, .namoaixud, .namoaixud_entry, .recom_naws_list, .duxiaoman_entry, .vip_banner) | .zone_info |= map(select(.type == "common_func" or .type == "auxiliary_func"))'
+http-response-jq ^https?:\/\/tieba(c)?\.baidu\.com\/c\/f\/forum\/forumGuide '.hot_search = []'
+http-response-jq ^https?:\/\/tieba(c)?\.baidu\.com\/mo\/q\/search\/startPage 'del(.data)'
+
+[Script]
+# > 贴吧proto处理@app2smile
+tieba-proto = type=http-response, pattern=^http(s:\/\/tiebac|:\/\/c\.tieba)\.baidu\.com\/c\/f\/(frs\/(page|threadlist|generalTabList)|pb\/page|excellent\/personalized)\?cmd, script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/tieba-proto.js, requires-body=true, binary-body-mode=true, max-size=-1, timeout=60
+
+[MITM]
+hostname = %APPEND% tieba.baidu.com, tiebac.baidu.com
+
