@@ -832,10 +832,6 @@ https?:\/\/m\.sd\.10086\.cn\/zapi\/app_common\/homeWelcome\/welcome.do - reject-
 http-response-jq ^https?:\/\/api\.qeeniao\.com\/nap\/ad '.data={}'
 http-response-jq ^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba.*mytab '.data.model.children |= map(select(.name | contains("营销") | not))'
 
-[Map Local]
-# > dongqiudi
-^https?:\/\/ap\.(dongqiudi|dongdianqiu)\.com\/plat\/v4 data-type=file data="https://raw.githubusercontent.com/ddgksf2013/Scripts/master/dongqiudi.js"
-
 [Script]
 # > 369chuxing
 dict = type=http-response, pattern=^https?:\/\/api\.369cx\.cn\/v\d\/Splash\/GetSplashAd, script-path=https://raw.githubusercontent.com/ddgksf2013/Scripts/refs/heads/master/dict.js, requires-body=true, max-size=-1, timeout=60
